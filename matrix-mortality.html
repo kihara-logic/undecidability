@@ -1,0 +1,1906 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="像と核で解く、整数行列の零化パズル"><title>零化工房 | Matrix Mortality Lab</title>
+<style>
+:root{color-scheme:light;--ink:#192a28;--muted:#52645e;--paper:#f6f7f1;--line:#dbe1d7;--teal:#087865;--rust:#a44a19;--white:#fff;--mono:ui-monospace,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,sans-serif}main,header>div{max-width:1180px;margin:auto;padding:0 24px}header{background:#142c27;color:white}header>div{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:750;letter-spacing:.12em}.tag,.eyebrow,.number{font:600 12px var(--mono);letter-spacing:.13em}.tag{color:#a9d5c5}.intro{padding:28px 0 16px}.eyebrow{color:var(--teal)}h1{font-size:clamp(26px,5vw,44px);line-height:1.2;letter-spacing:-.04em;margin:8px 0}p{margin:6px 0}nav{display:flex;gap:8px;overflow:auto;padding:4px 2px 14px}button{font:inherit;color:inherit;background:white;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}button:hover:not(:disabled){border-color:var(--teal);background:#edf7f0}button:disabled{opacity:.45;cursor:default}button:focus-visible,summary:focus-visible{outline:3px solid #178d78;outline-offset:2px}nav button{white-space:nowrap}nav [aria-current=true]{background:#193e34;color:white;border-color:#193e34}nav [aria-current=true]:hover{background:#193e34}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.pad{padding:17px 19px}.toolbar,.row,.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.toolbar{justify-content:space-between;border-bottom:1px solid var(--line)}.toolbar label{font-size:13px}input{accent-color:var(--teal)}h2{font-size:20px;margin:3px 0}h3{font-size:15px;margin:0 0 5px}.muted,small{color:var(--muted)}.plot{display:block;width:100%;height:auto;background:#fbfcf8}.legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 16px;font-size:12px;border-top:1px solid var(--line)}.legend span::before{content:"";width:11px;height:3px;background:var(--swatch);display:inline-block;vertical-align:middle;margin-right:5px}.cards{display:grid;gap:8px;margin:12px 0}.card{width:100%;display:grid;grid-template-columns:30px 1fr auto;align-items:center;text-align:left;gap:9px}.card strong{color:var(--teal);font-family:var(--mono);font-size:18px}.matrix{display:inline-grid;grid-template-columns:repeat(2,minmax(1ch,auto));column-gap:10px;text-align:right;padding:1px 7px;border-inline:1.5px solid;border-radius:3px;font:14px/1.35 var(--mono);vertical-align:middle;max-width:100%;overflow:auto}.actions button{font-size:13px}.metrics{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);justify-content:space-between}.math{font-family:var(--mono);overflow-wrap:anywhere}.history{max-height:68px;overflow:auto;overflow-wrap:anywhere}.readout{padding:10px 16px;min-height:55px;background:#f0f6ef;font-size:13px}.win{background:#e3f5e9;border-top:1px solid #bfd9cc}.primary{background:#193e34;color:white;border-color:#193e34}.primary:hover:not(:disabled){background:#26564a;color:white}details{margin-top:12px}summary{cursor:pointer;color:var(--teal);font-weight:650}footer{margin:15px 0 24px;font-size:12px;color:var(--muted)}[hidden]{display:none!important}@media(max-width:760px){.layout{grid-template-columns:1fr}main,header>div{padding-inline:14px}.intro{padding-top:19px}.card{padding:5px 9px}} 
+.lesson,.notes{margin-top:16px}.notes details{padding-top:10px;border-top:1px solid var(--line)}.equation{overflow-x:auto;padding:8px 0}.notes details p{margin-top:8px}
+.equation math{width:max-content;margin-inline:auto}.latest-factor{color:var(--teal)}.preview-label{color:var(--teal)}
+.stage-list{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none}.stage-link{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);text-decoration:none}.stage-link:hover{background:#edf7f0;border-color:var(--teal)}.stage-link .number{color:var(--teal)}.stage-link small{margin-left:auto}.chapter-list{margin-top:12px}.back-link{color:var(--teal);display:inline-block;margin:18px 0 10px}.gate-notes{margin-top:16px}.stage-link:focus-visible,.back-link:focus-visible{outline:3px solid #178d78;outline-offset:2px}
+.gate-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0;margin:0 0 14px;list-style:none}.gate-steps li{background:white;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px}.gate-steps li[aria-current=step]{border-color:var(--teal);background:#e3f5e9;color:#134e40}.gate-steps strong{display:block}.gate-instruction{margin:12px 0 0;padding:8px 10px;border-left:3px solid var(--teal);background:#f0f6ef}.gate-instruction p{margin:2px 0}.gate-card-note{display:block;font-size:12px;line-height:1.4;color:var(--muted)}.card.suggested{border-color:var(--teal);background:#f0f8f2}.gate-preview{min-height:3.5em;font-size:13px;color:#4b3b81}.gate-view-note{margin:0;padding:8px 16px;font-size:13px;color:var(--muted)}.gate-measure{font-weight:700;color:var(--teal)}
+.plot-controls{display:flex;flex-wrap:wrap;gap:6px 14px}.square-plot{background:#112522}.plot-status{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 16px;border-top:1px solid var(--line);background:#f6f9f4}.rank-badge{color:#14614f;font-weight:700}.plot-caption{font-size:12px;color:var(--muted)}.rank-badge.changed{color:#7e461b}.rank-ring{animation:rank-ring 480ms ease-out both;transform-box:fill-box;transform-origin:center}@keyframes rank-ring{from{opacity:.8;transform:scale(.7)}to{opacity:0;transform:scale(2.5)}}@media(prefers-reduced-motion:reduce){.rank-ring{animation:none;opacity:0}}
+.clear-card{margin:14px 0;padding:15px;border:1px solid #81b8a4;border-radius:10px;background:#e2f5ea;animation:clear-appear 240ms ease-out}.clear-label{display:inline-block;padding:2px 8px;border-radius:20px;background:#145c48;color:white;font-size:12px;font-weight:750;letter-spacing:.08em}.clear-card h3{font-size:22px;line-height:1.3;margin:8px 0 4px}.clear-actions{display:grid;gap:7px;margin-top:12px}.clear-next{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:#193e34;color:white;text-decoration:none;font-weight:700}.clear-next:hover{background:#26564a}.clear-next:focus-visible{outline:3px solid #178d78;outline-offset:2px}.clear-next small{display:block;color:#c8e8da;font-weight:500}.clear-actions button{justify-self:start;font-size:13px}@keyframes clear-appear{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.clear-card{animation:none}}
+.gate-canvas{touch-action:none;user-select:none;cursor:grab}.gate-canvas:active{cursor:grabbing}.gate-canvas:focus-visible{outline:3px solid #66e4bd;outline-offset:-3px}.camera-tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.camera-tools button{padding:4px 8px;font-size:12px}.gate-2d{background:#f3f7f1}.gate-secondary{margin:0;border-top:1px solid var(--line)}.gate-secondary summary{padding:9px 16px}.gate-secondary .camera-tools{padding:0 16px 8px}.gate-secondary .plot{width:min(100%,400px);margin:0 auto;border-radius:6px}.gate-target{color:#8b441f;font-weight:650}.card.ready{border-color:var(--teal);background:#dff4e7}.gate-ready{display:block;color:#0e5947;font-weight:750;font-size:12px}
+.stage-tools{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:12px}.stage-tools .back-link{margin:0}.stage-tools .actions{margin-left:auto}.stage-tools button{padding:5px 10px;font-weight:650;border-color:#a6b9af}.stage-tools button:disabled{opacity:.65}
+.domino-steps{margin-bottom:12px}.domino-palette{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.domino-add{display:grid;grid-template-columns:auto auto;gap:10px;align-items:center;text-align:left}.domino-tile{display:inline-grid;min-width:2.9em;text-align:center;border:1px solid #95b6a9;border-radius:5px;background:#edf6ee;font:600 16px/1.4 var(--mono);overflow:hidden}.domino-tile span{padding:2px 5px}.domino-tile span+span{border-top:1px solid #95b6a9}.domino-tile.alt{background:#f1edf8;border-color:#b3a6ca}.domino-tile.alt span+span{border-color:#b3a6ca}.domino-strip{display:flex;gap:6px;align-items:center;min-height:56px;overflow:auto;padding:4px 0}.word-board{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:center;margin-top:12px;padding:10px;background:#f4f7f0;border-radius:8px}.word-row{overflow:auto;display:flex;gap:3px;min-height:30px;align-items:center}.digit{display:inline-grid;place-items:center;min-width:26px;height:28px;border-radius:4px;background:white;border:1px solid var(--line);font:650 16px var(--mono)}.digit.marker{background:#f8e7d8;border-color:#cc916d;color:#834016}.word-board.matched .digit{border-color:#77ad98;background:#e2f5ea}.domino-gate{margin:12px 0;padding:10px;border-radius:8px;background:#f5f1e8}.domino-coefficient{min-height:2em}.domino-hint{margin-top:12px}.domino-gate label{display:flex;align-items:center;gap:6px}.domino-gate button{margin-top:8px}
+.domino-layout.words-only{grid-template-columns:minmax(0,1fr);max-width:760px}.digit.prefix{background:#e2f5ea;border-color:#77ad98}.digit.extra,.digit.different{background:#faead8;border-color:#c68d59}.word-board .digit.different{border-style:dashed}
+.prediction-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.prediction-options button{text-align:left;padding:7px}.prediction-options button[aria-pressed=true]{border-color:var(--teal);background:#e5f5ec}.prediction-options svg{display:block;width:100%;height:auto;background:#f3f7f1;border-radius:4px;margin-top:4px}
+.encoding-upper{color:#087060}.encoding-lower{color:#634398}.encoding-upper.digit,.encoding-upper.number-cell{background:#e6f4ed;border-color:#86b7a8}.encoding-lower.digit,.encoding-lower.number-cell{background:#f1eaf9;border-color:#b9a3d2}.domino-strip.encoding-strip{align-items:start;padding-bottom:10px}.encoding-factor{display:grid;justify-items:center;gap:6px;flex:0 0 auto;padding:6px;border:1px solid var(--line);border-radius:8px}.encoding-factor math{font-size:14px}.encoding-result{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0}.encoding-result dl{display:grid;gap:4px;margin:0}.encoding-result dl div{display:flex;align-items:center;gap:6px}.encoding-result dd{margin:0;font-weight:750}.encoding-calculations{display:grid;gap:8px;margin:12px 0}.encoding-calculations p{margin:0}.encoding-formula{overflow-x:auto}.encoding-calculations section{background:#f6f7f1;border-radius:8px;padding:8px 10px}.encoding-calculations h3{margin:0;font-size:13px}
+.proof-panel{margin:12px 0}.proof-panel .actions{margin:8px 0}.proof-panel table{width:100%;border-collapse:collapse}.proof-panel th,.proof-panel td{border-bottom:1px solid var(--line);padding:6px;text-align:left}.proof-panel input{max-width:8em;padding:5px;border:1px solid var(--line);border-radius:5px;font:inherit}.proof-panel svg{width:100%;max-width:440px;display:block}.proof-panel a{margin-top:8px}.gate-measure{display:inline-block;background:#d9f2e4;padding:3px 9px;border-radius:6px;font-size:1.13em}.gate-card-note{margin-top:3px}.hint-list{padding-left:1.45em;font-size:.9em}.stage-lesson{margin:8px 0}.encoding-quiz{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.encoding-quiz input{width:8em;font:inherit;padding:5px}.domino-coefficient{overflow:auto}.card-slot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px;align-items:center}.card-slot .preview-button{font-size:12px;padding:5px;min-height:36px}.card-slot .card{min-width:0}.card-slot .card>.matrix{max-width:100%}@media(max-width:430px){.card-slot .card{column-gap:4px;grid-template-columns:auto minmax(0,1fr) auto}.card-slot .matrix{column-gap:4px;padding-inline:4px}.gate-steps li{padding:6px}.stage-tools .actions{gap:4px}}.card-slot [aria-pressed=true]{background:#e3f5e9}.proof-kind{font-weight:700;color:var(--teal)}.math-details{margin-top:14px}.stage-entry p{margin:0;color:var(--muted)}.proof-panel [aria-live]{overflow-wrap:anywhere}
+.stage-heading{margin:0 0 12px}.stage-heading h2{font-size:clamp(23px,4vw,34px);margin:0}.stage-heading p{margin:3px 0}.stage-heading :focus,#homeTitle:focus,#dominoTitle:focus{outline:0;text-decoration:underline;text-decoration-color:#a3c8b9;text-underline-offset:.2em}.proof-visual{min-width:0}.proof-visual table{width:100%;border-collapse:collapse}.proof-visual th,.proof-visual td{border-bottom:1px solid var(--line);padding:7px;text-align:left}.proof-visual svg{width:100%;display:block}.proof-chain,.pcp-flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.proof-chain span,.pcp-flow strong{border:1px solid var(--line);border-radius:7px;background:#eef7f1;padding:6px 10px}.proof-form{margin-top:12px}.proof-form label{display:block;margin:8px 0}.proof-form select{display:block;width:100%;min-width:0;padding:6px;font:inherit}.proof-form fieldset{min-width:0;margin:0;border:1px solid var(--line);border-radius:8px}.proof-form fieldset:disabled{opacity:.65}.proof-visual input[type=range]{width:100%;accent-color:#146958}.invariant-steps{padding-left:0;list-style:none;display:flex;gap:6px;flex-wrap:wrap}.invariant-steps li{background:#f1f4ef;border-radius:6px;padding:4px 8px}.invariant-steps .done{background:#d9f2e4}.invariant-key{color:#2056a0}.family-lab input{width:5em;font:inherit}.math-note{font-size:13px;color:var(--muted)}@media(max-width:760px){#plot,#gateXZ{max-height:240px}.proof-visual{padding:12px}.stage-heading{margin-bottom:8px}}
+.lab-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.lab-cards button{min-height:44px}.lab-card-label{display:block;font-weight:700}.lab-stat{font-weight:650}.lab-calculation{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}.lab-feedback{border-left:4px solid #b36f3a;background:#fcf3e7;padding:9px 12px;margin:12px 0}.support-map{display:grid;gap:7px}.support-row{display:grid;grid-template-columns:minmax(108px,auto) minmax(0,1fr);align-items:center;gap:8px;padding:6px;background:#f4f6ef;border:1px solid var(--line);border-radius:9px}.support-row:has(.support-node[aria-pressed=true]){background:#e5f4ea;border-color:#8ab7a3}.support-row button{font-size:13px;min-height:40px}.support-node{display:flex;align-items:center;gap:6px;justify-content:space-between}.support-edges{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;font-size:13px}.support-edge-open{color:var(--muted);padding:4px 6px;border:1px dashed var(--line);border-radius:5px}.support-pattern{display:inline-grid;grid-template-columns:repeat(2,1.15em);gap:2px;vertical-align:middle}.support-bit{background:#eff0eb;color:#455851;border:1px solid #c3cdc3;text-align:center;border-radius:3px;font:650 11px/1.2 var(--mono)}.support-bit.on{background:#167763;color:white;border-color:#167763}.support-change{color:var(--teal);font-weight:650}#triangleImage{display:block;width:100%;max-height:176px;background:#edf4ed;border-radius:10px}.triangle-table{width:100%;border-collapse:collapse;text-align:center}.triangle-table th,.triangle-table td{padding:4px}.triangle-table button{min-height:36px;padding:4px 8px}.triangle-table .selected-row{background:#e5f4ea}.triangle-table [aria-pressed=true]{border-color:#167763;background:#d9f2e4}.triangle-table .zero-entry{font-weight:750;color:#075e50}.active-diagonal{background:#d9f2e4;border-radius:3px}.triangle-table th:first-child{width:38%}@media(max-width:410px){.support-row{grid-template-columns:100px minmax(0,1fr);gap:4px}.support-row button{padding:4px 5px}.triangle-table th,.triangle-table td{padding:2px}}
+.extract-strip{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.extract-card{min-width:46px;min-height:48px;font-weight:750;padding:5px 8px}.extract-card.gate,.extract-token.gate{background:#f9e9da;color:#753c20;border-color:#d0a17e}.extract-card.gate[aria-pressed=true]{background:#bd6638;color:white;border-color:#8c411f}.extract-card.in-interval{box-shadow:inset 0 -4px #168c75}.extract-card small{display:block;font-size:11px;font-weight:550}.extract-choices,.extract-free-strip{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.extract-choices button{min-height:44px;text-align:left}.extract-choices button[aria-pressed=true]{background:#d9f2e4;border-color:#168c75}.extract-token{display:inline-block;border:1px solid var(--line);background:#f5f7f2;border-radius:5px;padding:3px 6px}.extract-token.marked{color:#694a8c;border-color:#cdb9e1}.extract-check-note{font-weight:650}#extractTitle:focus,#extractIntervalTitle:focus,#extractWinTitle:focus{outline:0;text-decoration:underline;text-decoration-color:#a3c8b9;text-underline-offset:.2em}#extractGame .word-row{overflow-wrap:anywhere}#extractFreeResult .equation{padding:2px 0}#extractPalette button{min-height:40px}
+</style></head>
+<body>
+<header><div><span class="brand">零化工房</span><span class="tag">MATRIX MORTALITY LAB / 0.1</span></div></header>
+<main>
+<div id="home">
+<section class="intro"><div class="eyebrow">MATRIX MORTALITY LAB</div><h1 id="homeTitle" tabindex="-1">図形を、原点へ。</h1><p class="muted">行列を組み合わせて図形を原点に移しましょう。像と核から、行列のモータリティ問題へ。</p></section>
+<h2>ステージ一覧</h2>
+<div id="stages" class="layout chapter-list"></div>
+</div>
+<div id="game" hidden>
+<div class="stage-tools">
+<a class="back-link" href="#stages">← ステージ一覧</a>
+<div class="actions" role="group" aria-label="ステージの操作"><button id="undo">↶ 一手戻す</button><button id="reset">リセット</button></div>
+</div>
+<div id="matrixGame">
+<div class="stage-heading"><div id="stageNumber" class="eyebrow"></div><h2 id="stageTitle" tabindex="-1"></h2><p id="stageGoal" class="muted"></p></div>
+<ol id="gateSteps" class="gate-steps" aria-label="零化ゲートの手順" hidden>
+<li><strong>1　直線をつくる</strong>B を押す</li>
+<li><strong>2　B の核に重ねる</strong>高さを変える</li>
+<li><strong>3　B で零化する</strong>重なったら B を押す</li>
+</ol>
+<div class="layout">
+<section id="proofVisual" class="panel pad proof-visual" aria-labelledby="proofVisualTitle" hidden><h3 id="proofVisualTitle"></h3><div id="proofTable" aria-live="polite"></div><div id="proofGraphic"></div></section>
+<section id="transformPanel" class="panel">
+<div class="pad toolbar"><div><div class="eyebrow">TRANSFORMATION</div><h3 id="plotTitle">正方形の像</h3></div><div class="plot-controls" id="overlayControl"><label><input type="checkbox" id="overlay"> 像・核を重ねる</label><label><input type="checkbox" id="trail" checked> 一手前の残像</label></div></div>
+<svg id="plot" class="plot" viewBox="0 0 600 368" role="img" aria-label="座標平面上の単位正方形とその像"></svg>
+<svg id="gateXZ" class="plot gate-2d" viewBox="0 0 600 290" role="img" aria-label="現在の像と B の核の xz 平面への投影" hidden></svg>
+<div id="plotStatus" class="plot-status"><span id="plotRank" class="rank-badge"></span><span id="plotCaption" class="plot-caption">図の動きは計算前後の補間です</span></div>
+<div id="squareLegend" class="legend"><span style="--swatch:#087865">現在の図形・像</span><span style="--swatch:#87988f">元の正方形</span><span style="--swatch:#6956a4" id="trailLegend">一手前の残像</span><span style="--swatch:#bc5a25" id="kernelLegend">候補の核</span></div>
+<div id="gateLegend" class="legend" hidden><span style="--swatch:#168c75">青緑：現在の像</span><span style="--swatch:#bc5a25">橙：B の核（零化の目標）</span><span style="--swatch:#6956a4">紫の点線：カードを押した場合</span></div>
+<div id="readout" class="readout"></div><p id="gateProjection" class="gate-view-note" hidden>Bの核は3次元空間では平面ですが、この図ではy座標を省略し、xz平面から見ています。零化の条件はx+z=0です。</p>
+<details id="gate3DPanel" class="gate-secondary" hidden>
+<summary>補助図：3Dで立方体と核の平面を見る</summary>
+<div class="camera-tools"><button id="zoomOut" aria-label="縮小">−</button><button id="zoomIn" aria-label="拡大">＋</button><button id="resetCamera">視点を戻す</button></div>
+<svg id="gate3D" class="plot square-plot gate-canvas" viewBox="0 0 600 368" role="img" tabindex="0" aria-label="回転できる3D図。矢印キーで回転、プラスとマイナスで拡大縮小"></svg>
+<p class="gate-view-note">ドラッグまたは矢印キーで回転。ホイールまたは＋・−で拡大縮小。青緑の図形は単位立方体の像です。</p>
+</details>
+</section>
+<section class="panel">
+<div class="pad">
+<div id="gateInstruction" class="gate-instruction" role="status" hidden></div>
+<div id="predictionOptions" class="prediction-options" role="group" aria-label="直線の候補" hidden></div>
+<section id="win" class="clear-card" aria-labelledby="winTitle" hidden>
+<span class="clear-label">✓ ステージクリア</span>
+<h3 id="winTitle"></h3><p id="winText"></p><div id="stageLesson" class="stage-lesson"></div><details id="familyLab" class="family-lab" hidden><summary>核の傾きを変えて試す</summary><p>Kₜ の核の傾きは t。U を n 回使うと、傾きは n になります。</p><div class="row"><label>t <input id="familyT" type="number" min="-3" max="3" step="1" value="2"></label><label>n <input id="familyN" type="number" min="0" max="4" step="1" value="2"></label></div><p id="familyResult" aria-live="polite"></p></details>
+<div class="clear-actions">
+<a class="clear-next" id="nextStage"><span><span id="nextStageLabel"></span><small id="nextStageName"></small></span><span aria-hidden="true">→</span></a>
+<button id="replay">自分の解を振り返る</button>
+</div>
+</section>
+<button id="reuseYes" hidden>第1章の解 E → F を適用する</button><div id="cards" class="cards"></div>
+<p id="gatePreview" class="gate-preview" hidden></p>
+<div class="actions"><button id="hint">ヒント</button></div><ol id="hintList" class="hint-list" hidden></ol>
+<p id="slopeReadout" class="math" hidden></p>
+<details id="orderCompare" hidden><summary>二つの操作順を比べる</summary><p>B の直後の同じ直線から、順にカードを掛けてみます。</p><div class="actions"><button id="orderUF">U → F を試す</button><button id="orderFU">F → U を試す</button></div><div id="orderResult" aria-live="polite"></div></details>
+<section id="proofPanel" class="proof-panel" hidden aria-labelledby="proofTitle"><h3 id="proofTitle">判定を組み立てる</h3><p id="proofPrompt"></p><div id="proofControls"></div><div id="proofResult" aria-live="polite"></div><div id="proofWin" class="clear-card" hidden><span class="clear-label">✓ NO 証明が完成</span><p id="proofSummary"></p><a id="proofNext" class="clear-next">次のステージへ →</a></div></section>
+<div id="productStatus"><div class="row metrics"><strong>現在の積</strong><span id="product"></span><span id="stats"></span></div>
+<div id="history" class="math history muted"></div></div>
+<details id="solution"><summary>解答例を見る</summary><p id="example"></p></details>
+</div>
+<div id="review" class="pad win" hidden><strong id="reviewTitle"></strong><p id="reviewText" aria-live="polite"></p><div class="actions"><button id="prevFrame">前の手</button><button id="nextFrame">次の手</button><button id="endReview">振り返りを閉じる</button></div></div>
+</section>
+</div>
+<details id="matrixLesson" class="panel pad lesson">
+<summary>行列の積と操作順</summary>
+<div id="calculation"></div>
+</details>
+<div class="layout notes">
+<section id="squareQA" class="panel pad" aria-labelledby="qaTitle">
+<h2 id="qaTitle">線形代数Q&A</h2>
+<details>
+<summary>なぜ新しい行列を左から掛ける？</summary>
+<p>元の点を列ベクトル <math><mi>v</mi></math> とすると、これまでの操作で <math><mi>v</mi></math> は <math><mi>P</mi><mi>v</mi></math> に移っています。次のカードの行列 <math><mi>M</mi></math> をその点に作用させると、<math><mi>M</mi><mo>(</mo><mi>P</mi><mi>v</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>M</mi><mi>P</mi><mo>)</mo><mi>v</mi></math> です。このため積は <math><mi>M</mi><mi>P</mi></math> に更新されます。</p>
+<p>たとえば <math><mi>A</mi></math>、<math><mi>B</mi></math> の順に押すと、積は <math><mi>B</mi><mi>A</mi></math> です。列ベクトルに近い右側の行列から順に作用します。最初の積は、点をそのままにする単位行列 <math><mi>I</mi></math> です。</p>
+</details>
+<details>
+<summary>行列の列と、図の矢印はどうつながる？</summary>
+<p><math><msub><mi>e</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>)</mo></math>、<math><msub><mi>e</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo></math> を列ベクトルと考えると、<math><mi>P</mi><msub><mi>e</mi><mn>1</mn></msub></math> は <math><mi>P</mi></math> の第1列、<math><mi>P</mi><msub><mi>e</mi><mn>2</mn></msub></math> は第2列です。図の矢印はこの二つを原点から描いたものです。</p>
+<p>点 <math><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></math> の移り先は <math><mi>x</mi><mi>P</mi><msub><mi>e</mi><mn>1</mn></msub><mo>+</mo><mi>y</mi><mi>P</mi><msub><mi>e</mi><mn>2</mn></msub></math> です。たとえば正方形の角 <math><mo>(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>)</mo></math> は、二つの矢印を足した位置に移ります。二つの列が張る空間が <math><mi>P</mi></math> の<strong>像</strong>で、その次元が<strong>階数</strong>です。階数2なら図形は平行四辺形、1なら線分、0なら原点になります。</p>
+</details>
+<details>
+<summary>なぜ「像」と「核」を重ねると攻略できる？</summary>
+<p><math><mi>P</mi></math> の像は <math><mi>P</mi><mi>v</mi></math> と書けるベクトル全体、<math><mi>M</mi></math> の<strong>核</strong>は <math><mi>M</mi></math> で原点へ送られるベクトル全体です。<math><mi>P</mi></math> の像が <math><mi>M</mi></math> の核に含まれると、どの <math><mi>v</mi></math> についても <math><mi>M</mi><mo>(</mo><mi>P</mi><mi>v</mi><mo>)</mo><mo>=</mo><mn mathvariant="bold">0</mn></math> です。逆に <math><mi>M</mi><mi>P</mi><mo>=</mo><mi>O</mi></math> なら、どの <math><mi>P</mi><mi>v</mi></math> も <math><mi>M</mi></math> の核に入ります。</p>
+<p>図が線分になったら、その線分を含む原点を通る直線に注目しましょう。その直線に核が重なるカードを使えば、線分全体が原点に移ります。</p>
+</details>
+</section>
+<section id="gateQA" class="panel pad" aria-labelledby="gateQATitle" hidden>
+<h2 id="gateQATitle">零化ゲートのしくみ</h2>
+<details id="gateProof" hidden><summary>クリア後の解説を読む</summary>
+<p id="gateIntroProof" hidden>最初の B がつくる直線は、もう一度 B を掛けても変わりません。これは <math><msup><mi>B</mi><mn>2</mn></msup><mo>=</mo><mi>B</mi></math> だからです。S で直線を橙色の平面に移した後は、同じ B でその直線を原点へ送れます。</p>
+<div id="gateOrderProof" hidden><p>B の直後は高さがゼロの直線です。高さを変えるカードを両方使っても、順番で結果が変わります。</p>
+<ul><li>U → F の順では <math><mn>0</mn><mo>↦</mo><mi>x</mi><mo>↦</mo><mo>−</mo><mi>x</mi></math>。直線が B の核に入ります。</li>
+<li>F → U の順では <math><mn>0</mn><mo>↦</mo><mn>0</mn><mo>↦</mo><mi>x</mi></math>。直線は B の核から外れます。</li></ul></div>
+<p>最初のカード <math><mi>B</mi></math> は、どの点も <math><mi>p</mi><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mo>−</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>)</mo></math> の定数倍に移します。間の行列の積を <math><mi>M</mi></math> とすると、直線の向きは <math><mi>M</mi><mi>p</mi></math> です。</p>
+<p>列ベクトル <math><mi>q</mi><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo></math> を使うと、<math><mi>B</mi><mo>=</mo><mi>p</mi><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup></math> と書けます。</p>
+<div class="equation"><math display="block"><mi>B</mi><mi>M</mi><mi>B</mi><mo>=</mo><mi>p</mi><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mi>M</mi><mi>p</mi><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mo>=</mo><mo>(</mo><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mi>M</mi><mi>p</mi><mo>)</mo><mi>B</mi></math></div>
+<p>最後の <math><mi>B</mi></math> を掛けた結果は、<math><mi>B</mi></math> の定数倍です。係数は方向ベクトルの <math><mi>x</mi><mo>+</mo><mi>z</mi></math> なので、この一つの数がゼロなら零化できます。</p>
+</details>
+<p id="gateProofPrompt" class="muted">零化すると、直線を平面に入れることと、ひとつの数をゼロにすることの関係を確認できます。</p>
+</section>
+<section class="panel pad" aria-labelledby="meaningsTitle">
+<h2 id="meaningsTitle">行列の意味</h2>
+<p class="muted">このステージのカードが、点の座標をどう変えるかを見てみましょう。</p>
+<div id="meanings"></div>
+</section>
+</div>
+</div>
+<section id="dominoGame" hidden aria-labelledby="dominoTitle">
+<div class="intro"><div class="eyebrow" id="dominoStageNumber"></div><h1 id="dominoTitle" tabindex="-1"></h1>
+<p class="muted" id="dominoIntro"></p><p id="dominoOrder">第1・2章では選んだ行列を左から掛けます。ここではドミノを右に連結するので、行列の因子も右に足します。</p></div>
+<ol id="dominoSteps" class="gate-steps domino-steps" aria-label="このステージの手順">
+<li><strong>1　ドミノを並べる</strong>上下を一致させる</li>
+<li><strong>開始用の行列</strong>最初の下段に自動で 1</li>
+<li><strong>3　B で確かめる</strong>両側から B を掛ける</li>
+</ol>
+<div id="dominoLayout" class="layout domino-layout">
+<section class="panel pad" aria-labelledby="dominoBoardTitle">
+<h2 id="dominoBoardTitle">ドミノを並べる</h2>
+<div id="dominoPalette" class="domino-palette"></div>
+<div id="encodingPlayback" hidden><button id="encodingStep">例を一枚進める</button><small id="encodingPlaybackNote"></small></div>
+<div id="dominoStrip" class="domino-strip" aria-label="選んだドミノの列"></div>
+<div id="dominoWords" class="word-board">
+<strong>上段</strong><div id="dominoUpper" class="word-row"></div>
+<strong>下段</strong><div id="dominoLower" class="word-row"></div>
+</div>
+<p id="dominoMatch" role="status"></p>
+<div id="wordsWin" class="clear-card" hidden><span class="clear-label">✓ ステージクリア</span><h3>上下に同じ文字列ができた！</h3><p>上下で継ぎ目が違っても、つないだ文字が同じなら成功です。この一致を、次は行列の掛け算で表しましょう。</p><a id="toEncoding" class="clear-next">次のステージへ · ドミノの答えを、行列から読め <span aria-hidden="true">→</span></a></div>
+<details class="domino-hint"><summary>ヒント</summary><p>最初の文字が同じドミノから試し、上下で余っている文字を次のドミノで補いましょう。</p></details>
+</section>
+<section id="encodingPanel" class="panel pad" aria-labelledby="encodingTitle" hidden>
+<h2 id="encodingTitle">積から上下の一致を判定する</h2>
+<p>積の最下段は、<strong class="encoding-upper">左が上段</strong>、<strong class="encoding-lower">中央が下段</strong>の値です。文字列は4進数として読みます。たとえば <code>23</code> は <math><mn>2</mn><mo>×</mo><mn>4</mn><mo>+</mo><mn>3</mn><mo>=</mo><mn>11</mn></math> です。</p>
+<div id="encodingResult" class="encoding-result"></div>
+<div id="encodingCalculations" class="encoding-calculations"></div>
+<p id="encodingPrompt"></p>
+<form id="encodingQuiz" class="encoding-quiz"><label for="encodingInput" id="encodingQuestion"></label><div class="actions"><input id="encodingInput" inputmode="numeric" autocomplete="off" required pattern="[0-9]+"><button>確かめる</button></div></form>
+<p id="encodingFeedback" role="status"></p>
+<details><summary>二つの数が等しければ、なぜ文字列も同じ？</summary><p>このドミノの文字は 2 と 3 だけです。先頭に 0 が付くことはないので、4進数として同じ値なら、桁数も各桁の数字も一致します。</p></details>
+<div id="encodingWin" class="clear-card" hidden><span class="clear-label">✓ ステージクリア</span><h3>積からドミノの答えを読めた！</h3><p>次の問いは、第2章の零化ゲートで、この一致を検出できるかどうかです。</p><details><summary>具体例で、連結と行列積を照合する</summary><p>ドミノ①と②を連結した上下の語はどちらも 232 です。二つの行列を掛けた結果と、連結後の語から直接作った行列は同じになるでしょうか。</p><button id="compareEncoding">二つの行列を照合する</button><div id="encodingComparison" aria-live="polite"></div></details><a id="toGateDomino" class="clear-next" href="#stage-9">次へ · 零化ゲートで確かめる <span aria-hidden="true">→</span></a></div>
+</section>
+<section id="dominoGatePanel" class="panel pad" aria-labelledby="dominoGateTitle">
+<h2 id="dominoGateTitle">零化ゲートで確かめる</h2>
+<div class="pcp-flow" aria-label="この符号化で同値な三つの条件"><strong>上下の語が一致</strong><span aria-hidden="true">⇔</span><strong>比較する4進数の差が0</strong><span aria-hidden="true">⇔</span><strong>BMB = 0</strong></div>
+<p class="math-note">下段に開始記号を付ける符号化で、この三つが同じ条件を表します。</p>
+<p>ゲートは、上段の先頭に <strong>1</strong> を付けた語と、符号化した下段の語を比べます。</p>
+<div class="domino-gate">
+<p><strong>開始用の行列</strong>を最初のドミノに使い、下段の先頭に 1 を付けます。</p>
+<div class="word-board">
+<strong>比較する上段</strong><div id="gateUpper" class="word-row"></div>
+<strong>比較する下段</strong><div id="gateLower" class="word-row"></div>
+</div>
+<p id="dominoCoefficient" class="domino-coefficient"></p>
+<button id="dominoCheck" class="primary">両側から B を掛ける</button>
+</div>
+<p id="dominoCheckResult" role="status" hidden></p>
+<details id="markerExperiment" hidden><summary>開始記号がなかった場合と比較する</summary><div id="markerComparison"></div></details><div id="dominoWin" class="clear-card" hidden><span class="clear-label">✓ ステージクリア</span><h3>文字列の一致が零積になった！</h3><a class="clear-next" href="#stage-21">次へ · 零積からドミノの解を取り出す <span aria-hidden="true">→</span></a></div>
+<details><summary>なぜ上段に 1 が付く？</summary>
+<p>第2章と同じ <math><mi>B</mi><mo>=</mo><mi>p</mi><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup></math> を使います。上段の語を <var>u</var>、行列に符号化した下段の語を <var>v</var> とすると、<var>Mp</var> の第1成分は上段の桁をずらす倍率、第3成分は上下の符号の差です。ゲートはこの二つの成分を足します。</p>
+<div class="equation"><math display="block"><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mi>M</mi><mi>p</mi><mo>=</mo><msup><mn>4</mn><mrow><mo>|</mo><mi>u</mi><mo>|</mo></mrow></msup><mo>+</mo><msub><mrow><mo>(</mo><mi>u</mi><mo>)</mo></mrow><mn>4</mn></msub><mo>−</mo><msub><mrow><mo>(</mo><mi>v</mi><mo>)</mo></mrow><mn>4</mn></msub><mo>=</mo><msub><mrow><mo>(</mo><mn>1</mn><mi>u</mi><mo>)</mo></mrow><mn>4</mn></msub><mo>−</mo><msub><mrow><mo>(</mo><mi>v</mi><mo>)</mo></mrow><mn>4</mn></msub></math></div>
+<p>倍率を足すことは、4進表示で上段の先頭に 1 を置くことに相当します。下段にも開始記号を付ければ、元の上下の語が一致するとき、この差がゼロになります。</p></details><details id="pcpScope" hidden><summary>一般の PCP との関係</summary><p>この例は、ドミノの一致を零化に置き換える仕組みを示します。帰着には逆方向も必要です。次のステージでは、ゲートの使い方を自由にしたうえで、零積からドミノの解を取り出します。</p></details>
+</section>
+</div>
+<section id="dominoProductPanel" class="panel pad lesson" aria-labelledby="dominoProductTitle">
+<h2 id="dominoProductTitle">ドミノ列を行列で読む</h2>
+<p class="muted">ドミノを読む順に、対応する行列を左から並べます。この画面では、ドミノを右に足すと積の右端に因子が増えます。</p>
+<div id="dominoProduct"></div>
+<div id="dominoGateProduct"></div>
+<details><summary>文字列の連結が行列積になる理由</summary>
+<p>語を4進数として読むと、右に語をつなぐ操作は、桁をずらしてから足す操作です。たとえば 23 の右に 2 をつなぐと、4進数の値は 11 × 4 + 2 = 46 です。</p>
+<p>この操作を上段と下段について同時に記録するため、行列の対角成分に桁をずらす倍率を、第3行に各語の4進数としての値を入れます。</p>
+<div class="equation"><math display="block"><msub><mi>M</mi><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow></msub><mo>=</mo><mo>[</mo><mtable><mtr><mtd><msup><mn>4</mn><mrow><mo>|</mo><mi>u</mi><mo>|</mo></mrow></msup></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><msup><mn>4</mn><mrow><mo>|</mo><mi>v</mi><mo>|</mo></mrow></msup></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><msub><mrow><mo>(</mo><mi>u</mi><mo>)</mo></mrow><mn>4</mn></msub></mtd><mtd><msub><mrow><mo>(</mo><mi>v</mi><mo>)</mo></mrow><mn>4</mn></msub></mtd><mtd><mn>1</mn></mtd></mtr></mtable><mo>]</mo></math></div>
+<p>実際に掛けると <math><msub><mi>M</mi><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow></msub><msub><mi>M</mi><mrow><mi>s</mi><mo>,</mo><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>M</mi><mrow><mi>u</mi><mi>s</mi><mo>,</mo><mi>v</mi><mi>t</mi></mrow></msub></math> です。</p></details>
+</section>
+</section>
+<section id="decisionGame" hidden aria-labelledby="decisionTitle">
+<div class="stage-heading"><div id="decisionNumber" class="eyebrow"></div><h2 id="decisionTitle" tabindex="-1"></h2><p id="decisionGoal"></p></div>
+<div id="supportLab" hidden>
+<div class="layout">
+<section class="panel pad" aria-labelledby="supportMapTitle">
+<h3 id="supportMapTitle">点灯マップ</h3>
+<p class="muted">点灯（1）は正の成分、消灯（0）は零です。状態を選ぶと、その状態からの行き先を調べられます。</p>
+<p id="supportProgress" class="lab-stat" role="status"></p>
+<div id="supportMap" class="support-map"></div>
+</section>
+<section class="panel pad" aria-labelledby="supportActionsTitle">
+<h3 id="supportActionsTitle">この状態から試せるカード</h3>
+<p id="supportSelected"></p><div id="supportCards" class="lab-cards"></div>
+<div id="supportCalculation" class="lab-calculation"></div>
+<p id="supportWitness" class="lab-stat" hidden></p>
+<p id="supportFeedback" class="lab-feedback" role="status" hidden></p>
+<div class="actions"><button id="supportYes" hidden>全消灯への道を提出する</button><button id="supportNo">すべての行き先を確認したか調べる</button></div>
+</section>
+</div>
+<details class="panel pad lesson"><summary>なぜ点灯模様だけで判定できる？</summary>
+<p>積の一成分は、行と列の成分を掛けて足したものです。非負の数だけなら、正の数どうしを掛ける組が一つでもあれば、その成分は正です。そこで、掛け算を AND、足し算を OR に置き換えると、次の点灯模様を正確に計算できます。</p>
+<p>2×2 の点灯模様は最大16種類です。各模様から各カードを試した記録があれば、何手続けてもその地図の外へは出ません。負の成分を含むと、正の項と負の項が相殺することがあります。</p></details>
+</div>
+<div id="triangleLab" hidden>
+<div class="layout">
+<section class="panel pad">
+<h3>現在の積と立方体の像</h3>
+<p id="triangleRank" class="lab-stat" role="status"></p>
+<svg id="triangleImage" viewBox="0 0 320 176" role="img" aria-label="単位立方体の像"></svg>
+<div id="triangleProduct" class="lab-calculation"></div>
+<p id="triangleHistory" class="muted"></p>
+</section>
+<section class="panel pad">
+<h3>同じ対角位置を見比べる</h3>
+<p class="muted">左端の位置を押すと、その行を強調します。各位置を消すカードを記録するときは、表の数を押してください。</p>
+<div id="triangleTable"></div>
+<p id="triangleSelection" class="lab-stat"></p>
+<p id="triangleFeedback" class="lab-feedback" role="status" hidden></p>
+<div class="actions"><button id="triangleNo">選んだ位置で NO を証明する</button><button id="triangleApply">選んだカード列を最初から使う</button><button id="triangleRepeat" disabled>同じ列をもう一度使う</button></div>
+<h4>カードを1枚ずつ試す</h4><div id="triangleCards" class="lab-cards"></div>
+</section>
+</div>
+<details class="panel pad lesson"><summary>なぜ対角を見れば判定できる？</summary>
+<p>上三角行列どうしを掛けると、対角の各成分は同じ位置の数の積になります。たとえば <math><msub><mrow><mo>(</mo><mi>B</mi><mi>A</mi><mo>)</mo></mrow><mn>33</mn></msub><mo>=</mo><msub><mi>B</mi><mn>33</mn></msub><msub><mi>A</mi><mn>33</mn></msub></math> です。ある位置が全カードで非零なら、何枚掛けてもその位置は消えません。</p>
+<p>各位置に零を持つカードがあれば、それらの積 <var>P</var> は対角がすべて零になります。このとき <var>P</var> は、各基底ベクトルを番号が小さい基底ベクトルの線形結合へ移します。3次元なら3回で原点に着き、<math><msup><mi>P</mi><mn>3</mn></msup><mo>=</mo><mn>0</mn></math> になります。</p></details>
+</div>
+<div id="decisionWin" class="clear-card" hidden><span class="clear-label">✓ ステージクリア</span><h3 id="decisionWinTitle"></h3><p id="decisionCertificate"></p><a id="decisionNext" class="clear-next">次のステージへ →</a></div>
+</section>
+<section id="extractGame" hidden aria-labelledby="extractTitle">
+<div class="stage-heading"><div class="eyebrow">発展編 · 発展4</div><h2 id="extractTitle" tabindex="-1">零積からドミノの解を取り出せ</h2><p>積全体は零行列です。ゲートで区切り、零化を起こした区間を探してください。</p></div>
+<section class="panel pad">
+<h3>① ゲートの位置をすべて選ぶ</h3>
+<p class="muted">カードは積に書いた左から右の順です。B はゲート、①・②はドミノです。★の付いたドミノは、下段の先頭に開始記号 1 を付けた版です。</p>
+<div id="extractStrip" class="extract-strip" role="group" aria-label="零積のカード列"></div>
+<p id="extractCutCount" class="lab-stat" aria-live="polite"></p>
+<p id="extractHint" role="status"></p>
+<details id="extractMatrices"><summary>行列カードの中身と積を見る</summary><div id="extractCardMatrices" class="lab-cards"></div><div id="extractTotal"></div></details>
+</section>
+<section id="extractIntervals" class="panel pad lesson" hidden>
+<h3 id="extractIntervalTitle" tabindex="-1">② 隣り合うゲートの間を調べる</h3>
+<p class="muted">区間を一つ選ぶと、両側から B を掛けた結果を表示します。端のゲートより外側のカードは区間に含めません。</p>
+<div id="extractChoices" class="extract-choices" role="group" aria-label="ゲート間の区間"></div>
+<div id="extractCheck" aria-live="polite"></div>
+</section>
+<section id="extractWin" class="clear-card" hidden>
+<span class="clear-label">✓ ステージクリア</span><h3 id="extractWinTitle" tabindex="-1">ドミノの解を取り出せました</h3>
+<p id="extractSolution"></p><a href="#stages" class="clear-next">ステージ一覧へ戻る →</a>
+</section>
+<div id="extractMore" hidden>
+<details class="panel pad lesson" id="extractProof">
+<summary>どんな零積からでも取り出せる理由</summary>
+<ol>
+<li><strong>ドミノの行列だけでは消えません。</strong> 普通版も★付き版も、対角成分がすべて正の下三角行列なので可逆です。ゲートが1枚だけなら、左右から可逆行列を掛けてもゲートは非零のままです。</li>
+<li><strong>ゲート間ごとに、一つの数が現れます。</strong> ゲートを <math><mi>B</mi><mo>=</mo><mi>p</mi><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup></math> と書くと、<math><mi>B</mi><mi>M</mi><mi>B</mi><mo>=</mo><mo>(</mo><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mi>M</mi><mi>p</mi><mo>)</mo><mi>B</mi></math> です。ゲートが何枚あっても、中央に残るのは各区間の係数を掛け合わせた数と B です。左右に残ったドミノ行列は可逆なので、零積になるのは係数が0の区間があるときです。</li>
+<li><strong>係数0なら、ドミノの解が読めます。</strong> 比較に使う上段の語には、先頭にだけ 1 が付きます。数として一致した下段の語も、先頭にだけ 1 を持ちます。その 1 を除けば上下の語は同じです。空の区間では B² = B なので、取り出す列にはドミノが少なくとも1枚あります。</li>
+</ol>
+<p>任意のドミノの組に、普通版と★付き版の行列を一枚ずつ用意できます。前のステージで扱った「解から零積」と合わせ、ドミノ問題を零化問題に翻訳する二つの向きがそろいます。</p>
+</details>
+<details class="panel pad lesson" id="extractSandbox">
+<summary>自由にカードを並べて試す</summary>
+<p>ゲートも好きな位置に置けます。カードは右端に追加します。20枚まで試せます。</p>
+<div id="extractPalette" class="actions" aria-label="右端に足せるカード"></div>
+<p id="extractFreeStrip" class="extract-free-strip"></p>
+<div id="extractFreeResult" aria-live="polite"></div>
+<div class="actions"><button id="extractFreeUndo">右端を外す</button><button id="extractFreeReset">空にする</button><button id="extractFreeUse" hidden>この零積から解を取り出す</button></div>
+</details>
+</div>
+</section>
+</div>
+<footer>零化工房 · Matrix Mortality Lab</footer>
+<div id="announcement" role="status" style="position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden"></div>
+</main>
+<script>
+// Exact arithmetic and puzzle data. Matrices are in row-major order.
+const I=[1n,0n,0n,1n];
+const I3=[1n,0n,0n,0n,1n,0n,0n,0n,1n];
+const mul=(a,b)=>{
+ const n=a.length===4?2:3;
+ return a.map((_,index)=>{
+  const row=Math.floor(index/n), column=index%n;
+  let sum=0n;
+  for(let k=0;k<n;k++)sum+=a[n*row+k]*b[n*k+column];
+  return sum;
+ });
+};
+const rank=m=>{
+ if(m.length===4)return m[0]*m[3]!==m[1]*m[2]?2:m.some(Boolean)?1:0;
+ if(!m.some(Boolean))return 0;
+ const [a,b,c,d,e,f,g,h,i]=m;
+ if(a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g)!==0n)return 3;
+ for(let r=0;r<3;r++)for(let s=r+1;s<3;s++)
+  for(let j=0;j<3;j++)for(let k=j+1;k<3;k++)
+   if(m[3*r+j]*m[3*s+k]!==m[3*r+k]*m[3*s+j])return 2;
+ return 1;
+};
+const image=([a,b,c,d])=>a||c?[a,c]:[b,d];
+const kernel=([a,b,c,d])=>a||b?[-b,a]:[-d,c];
+const card=(id,label,values)=>({id,label,m:values.map(BigInt)});
+const E=card('E','横軸への射影',[1,0,0,0]), F=card('F','縦軸への射影',[0,0,0,1]);
+const C=card('C','斜めの直線へ',[1,-1,-1,1]), A=card('A','横方向のせん断',[1,2,0,1]);
+const gateCard=card('B','零化ゲート',[1,0,1,-1,0,-1,0,0,0]);
+const gateLift=card('U','高さに x を足す',[1,0,0,0,1,0,1,0,1]);
+const gateReflect=card('F','高さの符号を反転',[1,0,0,0,1,0,0,0,-1]);
+const proofU=card('U','傾きを1増やす',[1,0,1,1]);
+const proofK=t=>card(t===2?'K₂':'K₋₂','横軸へ戻す',[t,-1,0,0]);
+const swapTwice=card('S','上下を入れ替えて2倍',[0,2,2,0]);
+const triangleA=card('A','第1対角が零',[0,0,0,0,1,0,0,0,1]);
+const triangleB=card('B','第2対角が零',[1,1,0,0,0,1,0,0,1]);
+const triangleC=last=>card('C','対角行列',[2,0,0,0,1,0,0,0,last]);
+const stages=[
+ {id:'stage-1',title:'同じ行列を二度',goal:'Nを1回使うと、正方形はどうなるでしょう？ もう1回使うと？',cards:[card('N','横向きに写す',[0,1,0,0]),card('R','90度回転',[0,-1,1,0])],solution:[0,0],hint:'N は縦方向の成分だけを残し、それを横方向へ写します。横向きの図形にもう一度 N を使うと？'},
+ {id:'stage-2',title:'二本の軸',goal:'Eで残る方向を、Fは消すことができるでしょうか？ F のプレビューで像と核を重ねてみましょう。',cards:[E,F],solution:[0,1],hint:'E で横軸に移したあと、横軸上の点をすべて原点へ送るカードを探します。'},
+ {id:'stage-3',title:'斜めのすれ違い',goal:'Cでできた線分は、もう一度Cを使っても消えません。Aを間に挟むと、どうなるでしょう？',cards:[C,A],solution:[0,1,0],hint:'C の像は y = −x、核は y = x です。A が点 (1, −1) をどこに送るか調べてみましょう。'},
+ {id:'stage-4',title:'傾きを合わせる',goal:'横軸から出発し、傾き2の直線を作ってください。',cards:[card('K','横軸へ写す',[2,-1,0,0]),card('U','傾きを +1',[1,0,1,1]),card('D','傾きを −1',[1,0,-1,1])],solution:[0,1,1,0],hint:'K は像を横軸に戻します。K の核は y = 2x。横軸から傾き 2 を作るには？'},
+ {id:'stage-5',title:'遠回りの設計',goal:'傾きを+2、−1ずつ変える装置で、傾き5を作ってください。',cards:[card('K','横軸へ写す',[5,-1,0,0]),card('U','傾きを +2',[1,0,2,1]),card('D','傾きを −1',[1,0,-1,1])],solution:[0,1,1,1,2,0],hint:'K の核は y = 5x。横軸から始めて、+2 と −1 の組合せで傾き 5 を作ります。'},
+ {id:'stage-6',gate:true,gateIntro:true,number:'2-1',title:'消えないゲート',goal:'Bを押すと、立方体が一本の直線になります。もう一度Bを押すと、どうなるでしょう？',cards:[
+  gateCard,
+  card('S','高さから x を引く',[1,0,0,0,1,0,-1,0,1])
+ ],solution:[0,1,0],hint:'B がつくる直線は z = 0。S を押すと z = −x に移り、B の核と重なります。'},
+ {id:'stage-7',gate:true,number:'2-2',title:'高さを−1に合わせろ',goal:'Bでできた直線の高さは0です。x = 1 の位置では、T₊は高さを2増やし、T₋は3減らします。直線を高さ−1の方向へ動かしてください。',cards:[
+  gateCard,
+  card('T₊','高さに 2x を足す',[1,0,0,0,1,0,2,0,1]),
+  card('T₋','高さから 3x を引く',[1,0,0,0,1,0,-3,0,1])
+ ],solution:[0,1,2,0],hint:'B の直後は x = 1、z = 0 の方向です。2 と −3 を組み合わせて、x + z をゼロにしましょう。'},
+ {id:'stage-8',domino:true,wordsOnly:true,number:'発展1',title:'上下に同じ文字列を作れ'},
+ {id:'stage-9',domino:true,number:'発展3',title:'ドミノの一致を零化ゲートで確かめる'},
+ {id:'stage-10',gate:true,gateOrder:true,number:'2-3',title:'順番で行き先が変わる',goal:'UとFは、使う順番によって結果が変わります。両方の順番を試して、Bで消せるのはどちらか確かめましょう。',cards:[gateCard,gateLift,gateReflect],solution:[0,1,2,0],hint:'B の直後は z = 0。U と F のどちらなら、この直線の高さを変えられるでしょうか？'},
+ {id:'stage-11',gate:true,prediction:true,number:'2-4',title:'消える直線を予想せよ',goal:'最後にBを使うとき、消える直線はどちらでしょう？ 図を見て予想し、Bを押して確かめてください。',cards:[gateCard],hint:'青緑の直線全体が橙色に重なる候補を探しましょう。'},
+ {id:'stage-12',domino:true,encoding:true,number:'発展2',title:'ドミノの答えを、行列から読め'},
+ {id:'stage-13',number:'3-1',proof:'yes',title:'二手で零化できるか',goal:'第1章で見つけた解を、ここでは「零化できる」ことの証明書として提出します。',cards:[E,F],solution:[0,1],hint:'E で残る横軸を F はどう写しますか？'},
+ {id:'stage-14',number:'3-2',proof:'pairs',title:'二手で判定せよ',goal:'4通りの2手の積を調べ、零化できるか判定しましょう。結論を任意の手数に広げる理由も選びます。',cards:[card('A','横軸への射影',[1,0,0,0]),card('C','成分を足して横軸へ',[1,1,0,0])],hint:'2×2 の特異行列だけなら、零積があるときは隣り合う2因子だけで零になります。'},
+ {id:'stage-15',number:'3-3',proof:'yes',title:'傾きを合わせて零化せよ',goal:'K₂の像から出発し、U で傾きを変えて核へ到達し、YES の証拠を作りましょう。',cards:[proofK(2),proofU],solution:[0,1,1,0],hint:'U は傾きを1増やします。K₂の核の傾きは2です。'},
+ {id:'stage-16',number:'3-4',proof:'invariant',title:'届かないことを証明せよ',goal:'K で横軸を作り、U と K で傾きがどう変わるか観察しましょう。次に、傾きが外へ出られない範囲を証明します。',cards:[proofK(-2),proofU],hint:'横軸の傾き0を含み、核の傾き−2を含まない範囲を探しましょう。'},
+ {id:'stage-17',number:'4-1',lab:'support',title:'点灯マップをつくる',goal:'まず S を掛け、できた状態を選んでもう一度 S を掛けてみましょう。そのあとは全消灯への道を探すか、すべての行き先を調べます。',cards:[swapTwice,E]},
+ {id:'stage-18',number:'4-2',lab:'support',title:'一マス違うカード',goal:'前の問題からカードの一成分が変わりました。全消灯への道を見つけるか、すべての行き先を調べ尽くしましょう。',cards:[swapTwice,card('B','上の行に足し合わせる',[1,1,0,0])]},
+ {id:'stage-19',number:'5-1',lab:'triangle',title:'対角に注目せよ',goal:'対角の同じ位置をカード間で比べましょう。どのカードでも消えない位置を示すか、全対角を消すカード列から零積を作ってください。',cards:[triangleA,triangleB,triangleC(1)]},
+ {id:'stage-20',number:'5-2',lab:'triangle',title:'対角が消えた、その先へ',goal:'C の第3対角が 1 から 0 に変わりました。各対角を消すカードを選び、積全体を零にできるか確かめましょう。',cards:[triangleA,triangleB,triangleC(0)]},
+ {id:'stage-21',number:'発展4',domino:true,extract:true,title:'零積からドミノの解を取り出せ'}
+];
+const chapter=s=>s.domino?6:s.lab==='triangle'?5:s.lab==='support'?4:s.proof?3:s.gate?2:1;
+const stageOrder=stages.map((s,i)=>{
+ s.chapter=chapter(s);
+ s.clearCondition=s.extract?'extract':s.lab??(s.proof==='pairs'||s.proof==='invariant'?s.proof:s.wordsOnly?'words':s.encoding?'encoding':'zero');
+ return i;
+}).sort((a,b)=>stages[a].chapter-stages[b].chapter||
+ (stages[a].domino?stages[a].number.localeCompare(stages[b].number):a-b));
+const stageHref=i=>stages[i]?'#'+stages[i].id:'#stages';
+const predictionStarts=[mul(gateLift.m,gateCard.m),mul(gateReflect.m,mul(gateLift.m,gateCard.m))];
+const predictionNames=['ア','イ'];
+let predictionChoice=null;
+const identity=()=>stage().gate?I3:I;
+// UI state. Each snapshot is a completed discrete step.
+const $=id=>document.getElementById(id);
+let stageIndex=0, snapshots=[I], moves=[], selected=0, reviewing=null, frame=0, animation=0, completed=new Set();
+const progressKey='matrix-mortality-lab-cleared';
+try{
+ const saved=JSON.parse(localStorage.getItem(progressKey)??'[]');
+ if(Array.isArray(saved))stages.forEach((s,i)=>{if(saved.includes(s.id))completed.add(i)});
+}catch{}
+let previewCard=null;
+let visual=I.map(Number), visualExtent=1, plottedTarget=I, previousPlotRank=2;
+const stage=()=>stages[stageIndex], current=()=>snapshots.at(-1), won=()=>rank(current())===0;
+function ratio(n,d){
+ if(d===0n)return '垂直（傾きなし）';
+ if(d<0n){n=-n;d=-d}
+ let a=n<0n?-n:n,b=d;
+ while(b){[a,b]=[b,a%b]}
+ return nstr(n/a)+(d/a===1n?'':'/'+nstr(d/a));
+}
+const nstr=x=>String(x).replace(/^-/,'−');
+const vector=v=>'('+v.map(nstr).join(', ')+')';
+const matrix=m=>'<span class="matrix" style="grid-template-columns:repeat('+(m.length===4?2:3)+',minmax(1ch,auto))" aria-label="'+m.map(String).join(', ')+'">'+m.map(x=>'<span>'+nstr(x)+'</span>').join('')+'</span>';
+const mathNumber=x=>x<0n?'<mo>−</mo><mn>'+(-x)+'</mn>':'<mn>'+x+'</mn>';
+const mathMatrix=(m,highlight=false)=>{
+ const n=m.length===4?2:3;
+ const rows=Array.from({length:n},(_,i)=>'<mtr>'+m.slice(n*i,n*(i+1)).map((x,j)=>{
+  const shade=highlight===true&&i===2&&j<2?' class="number-cell encoding-'+(j===0?'upper':'lower')+'"':'';
+  return '<mtd'+shade+'>'+mathNumber(x)+'</mtd>';
+ }).join('')+'</mtr>');
+ return '<mrow><mo>[</mo><mtable>'+rows.join('')+'</mtable><mo>]</mo></mrow>';
+};
+function space(r,v){return r===2?'ℝ²':r===0?'{0}':'span'+vector(v)}
+function spaces(p,a){return '像 '+space(rank(p),image(p))+'　／　核 '+space(2-rank(a),kernel(a))}
+function squareExtent([a,b,c,d]){
+ return Math.max(1,Math.abs(a),Math.abs(b),Math.abs(a+b),Math.abs(c),Math.abs(d),Math.abs(c+d));
+}
+function draw(m,target,choice,extent,trail,settled,rankDrop=false){
+ const step=124/extent, X=x=>300+x*step,Y=y=>184-y*step;
+ const line=([x,y],[a,b],style)=>'<line x1="'+X(x)+'" y1="'+Y(y)+'" x2="'+X(a)+'" y2="'+Y(b)+'" '+style+'/>';
+ const map=([a,b,c,d],[x,y])=>[a*x+b*y,c*x+d*y];
+ const direction=(v,style)=>{
+  const [x,y]=v.map(Number), scale=extent*4/Math.max(Math.abs(x),Math.abs(y));
+  return line([-x*scale,-y*scale],[x*scale,y*scale],style);
+ };
+ const square=[[0,0],[1,0],[1,1],[0,1]];
+ const polygon=(corners,style)=>'<polygon points="'+corners.map(([x,y])=>X(x)+','+Y(y)).join(' ')+'" '+style+'/>';
+ const circle=([x,y],r,style)=>'<circle cx="'+X(x)+'" cy="'+Y(y)+'" r="'+r+'" '+style+'/>';
+ const grid=Math.pow(10,Math.floor(Math.log10(extent)));
+ const rankNow=settled?rank(target):null;
+ let s='<defs><linearGradient id="squareFill" x2="1" y2="1"><stop stop-color="#72ebc9" stop-opacity=".32"/>'+
+  '<stop offset="1" stop-color="#38ad91" stop-opacity=".13"/></linearGradient></defs>';
+ for(let i=-Math.ceil(3*extent/grid);i<=Math.ceil(3*extent/grid);i++){
+  s+=line([i*grid,-2*extent],[i*grid,2*extent],'stroke="#27403a"');
+  s+=line([-3*extent,i*grid],[3*extent,i*grid],'stroke="#27403a"');
+ }
+ s+=line([-3*extent,0],[3*extent,0],'stroke="#658279"')+line([0,-2*extent],[0,2*extent],'stroke="#658279"');
+ s+='<g fill="#aac1b6" font-size="12" font-family="monospace"><text x="580" y="174">x</text><text x="309" y="17">y</text><text x="283" y="202">0</text><text x="12" y="352">格子間隔 '+grid+'</text></g>';
+ s+=polygon(square,'fill="#b1c5bb" fill-opacity=".06" stroke="#91a79c" stroke-opacity=".7" stroke-dasharray="4 4"');
+ if(trail) s+=polygon(square.map(v=>map(trail,v)),'fill="#bdadf0" fill-opacity=".12" stroke="#bdaae8" stroke-opacity=".7" stroke-width="1.7" stroke-linejoin="round"');
+ if(choice){
+  if(rankNow===1)s+=direction(image(target),'stroke="#56d7b4" stroke-width="1.6" opacity=".65"');
+  if(rank(choice)===1)s+=direction(kernel(choice),'stroke="#ffb580" stroke-width="4.5" stroke-dasharray="7 5"');
+  else s+=circle([0,0],11,'fill="none" stroke="#ffb580" stroke-dasharray="3 2"');
+ }
+ const corners=square.map(v=>map(m,v));
+ if(rankNow!==0){
+  s+=polygon(corners,'fill="url(#squareFill)" stroke="#6aebc8" stroke-width="2.5" stroke-linejoin="round"');
+  if(rankNow!==1){
+   for(const f of [.25,.5,.75]){
+    s+=line(map(m,[f,0]),map(m,[f,1]),'stroke="#8ae6cb" stroke-opacity=".45"');
+    s+=line(map(m,[0,f]),map(m,[1,f]),'stroke="#8ae6cb" stroke-opacity=".45"');
+   }
+  }
+  const points=new Set();
+  for(let i=0;i<=4;i++)for(let j=0;j<=4;j++){
+   const point=map(m,[i/4,j/4]), key=point.join(',');
+   if(points.has(key))continue;
+   points.add(key);
+   s+=circle(point,2,'fill="#a9f7e0"');
+  }
+  for(const [label,tip,color,dy] of [['Pe₁',corners[1],'#a1f9df',-8],['Pe₂',corners[3],'#d0befa',16]]){
+   if(tip[0]===0&&tip[1]===0)continue;
+   const x=X(tip[0]), y=Y(tip[1]);
+   const dx=x-300, dyScreen=y-184, length=Math.hypot(dx,dyScreen);
+   const angle=Math.atan2(dyScreen,dx)*180/Math.PI;
+   s+=line([0,0],tip,'stroke="'+color+'" stroke-width="1.5"');
+   s+=length<12?circle(tip,3,'fill="'+color+'"'):
+    '<path d="M0 0L-9 -3.5V3.5Z" fill="'+color+'" transform="translate('+x+' '+y+') rotate('+angle+')"/>';
+   s+='<text x="'+(x+7)+'" y="'+(y+dy)+'" fill="'+color+'" font-size="13">'+label+'</text>';
+  }
+ }else{
+  s+=circle([0,0],11,'fill="#6aebc8" opacity=".19"')+circle([0,0],5.5,'fill="#a1f9df"');
+  if(rankDrop)s+=circle([0,0],13,'class="rank-ring" fill="none" stroke="#a1f9df" stroke-width="2"');
+ }
+ $('plot').innerHTML=s;
+}
+function renderPlot(animate=false, refresh=false){
+ const index=reviewing??moves.length;
+ const target=snapshots[index];
+ $('cards').querySelectorAll('.preview-button').forEach((button,i)=>button.setAttribute('aria-pressed',String(previewCard===i)));
+ if($('transformPanel').hidden)return;
+ if(stage().gate){renderGate(target,animate,refresh);return}
+ const drawable=m=>m.every(x=>x>=-1000000000000n&&x<=1000000000000n);
+ const activeChoice=()=>reviewing===null?stage().cards[selected]:stage().cards[moves[index]];
+ const hasOverlay=()=>reviewing!==null||$('overlay').checked||previewCard!==null;
+ const trail=()=>$('trail').checked&&index>0&&drawable(snapshots[index-1])?snapshots[index-1].map(Number):null;
+ const choice=activeChoice();
+ const overlay=hasOverlay(), p=choice&&choice.m;
+ $('trailLegend').hidden=!trail();
+ $('kernelLegend').hidden=!overlay||!choice;
+ $('readout').textContent=overlay?(choice?spaces(target,p)+'　候補 '+choice.id+'。'+(rank(mul(p,target))===0?'この一手で零化します。':''):'像 '+space(rank(target),image(target))+'。'):'青緑は、単位正方形とその格子を現在の積 P で写したものです。';
+ if(refresh&&animation)return;
+ cancelAnimationFrame(animation);
+ animation=0;
+ if(target!==plottedTarget){
+  previousPlotRank=rank(plottedTarget);
+  plottedTarget=target;
+ }
+ if(!drawable(target)){
+  $('plot').innerHTML='<text x="300" y="184" text-anchor="middle" fill="#dceee5" font-size="18">描画範囲外です。正確な積は計算欄に表示しています。</text>';
+  $('plotRank').textContent='階数 '+rank(target);
+  visual=I.map(Number);visualExtent=1;
+  return;
+ }
+ const end=target.map(Number), endExtent=squareExtent(end);
+ const start=visual, startExtent=visualExtent;
+ const rankAfter=rank(target);
+ const showRank=()=>{
+  $('plotRank').classList.toggle('changed',previousPlotRank!==rankAfter);
+  $('plotRank').textContent=previousPlotRank===rankAfter?'階数 '+rankAfter:'階数 '+previousPlotRank+' → '+rankAfter;
+ };
+ const finish=(rankDrop=false)=>{
+  visual=end;visualExtent=endExtent;
+  draw(end,target,hasOverlay()?activeChoice()?.m:null,endExtent,trail(),true,rankDrop);
+  showRank();
+ };
+ if(!animate||matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return}
+ const duration=rankAfter<previousPlotRank?620:460;
+ const time=performance.now();
+ function tick(now){
+  const t=Math.min(1,(now-time)/duration),u=t*t*(3-2*t);
+  if(t===1){animation=0;finish(rankAfter<previousPlotRank);return}
+  visual=start.map((x,i)=>x+(end[i]-x)*u);
+  visualExtent=startExtent+(endExtent-startExtent)*u;
+  draw(visual,target,null,visualExtent,trail(),false);
+  animation=requestAnimationFrame(tick);
+ }
+ animation=requestAnimationFrame(tick);
+}
+// After a gate, nonzero P e3 spans the image. Before the first gate, cards send e3 to ±e3.
+const gateDirection=p=>[p[2],p[5],p[8]];
+const initialCamera={yaw:.68,pitch:.42,zoom:1};
+let camera={...initialCamera}, cameraDrag=null;
+const cubeCorners=Array.from({length:8},(_,i)=>[i&1,(i>>1)&1,i>>2]);
+const cubeFaces=[[0,1,3,2],[4,5,7,6],[0,1,5,4],[2,3,7,6],[0,2,6,4],[1,3,7,5]];
+const cubeEdges=cubeCorners.flatMap((_,i)=>[1,2,4].filter(bit=>!(i&bit)).map(bit=>[i,i|bit]));
+const cubeGrid=[0,.5,1].flatMap(x=>[0,.5,1].flatMap(y=>[0,.5,1].map(z=>[x,y,z])));
+const gateCandidate=()=>reviewing===null&&!won()&&previewCard!==null
+ ?mul(stage().cards[previewCard].m,current()):null;
+
+function gateLine([x,,z],style){
+ const absX=x<0n?-x:x, absZ=z<0n?-z:z;
+ const scale=absX>absZ?absX:absZ;
+ const dx=Number(10800n*x/scale)/100, dz=Number(10800n*z/scale)/100;
+ return '<path d="M'+(300-dx)+' '+(145+dz)+'L'+(300+dx)+' '+(145-dz)+'" '+style+'/>';
+}
+function drawGateScene(m, settled, candidate=null, pulse=false){
+ const {yaw,pitch,zoom}=camera, scale=48*zoom;
+ const cosYaw=Math.cos(yaw),sinYaw=Math.sin(yaw);
+ const cosPitch=Math.cos(pitch),sinPitch=Math.sin(pitch);
+ const project=([x,y,z])=>{
+  const horizontal=x*cosYaw-y*sinYaw;
+  const depth=x*sinYaw+y*cosYaw;
+  return [300+scale*horizontal,184+scale*(depth*sinPitch-z*cosPitch),depth*cosPitch+z*sinPitch];
+ };
+ const move=([x,y,z],matrix=m)=>[0,3,6].map(i=>matrix[i]*x+matrix[i+1]*y+matrix[i+2]*z);
+ const line=(a,b,style)=>'<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" '+style+'/>';
+ const circle=([x,y],r,style)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" '+style+'/>';
+ const polygon=(points,style)=>'<polygon points="'+points.map(p=>p.slice(0,2).join(',')).join(' ')+'" '+style+'/>';
+ const origin=project([0,0,0]);
+ const points=cubeCorners.map(point=>move(point));
+ // A finite patch represents the infinite plane. Enlarge it around an aligned segment.
+ const aligned=settled===1&&plottedTarget[2]+plottedTarget[8]===0n;
+ const reach=Math.max(...points.map(([x,y])=>Math.max(Math.abs(x),Math.abs(y))));
+ const extent=aligned?Math.max(2.8,Math.min(16,reach+.35)):2.8;
+ const plane=[[-extent,-extent,extent],[extent,-extent,-extent],[extent,extent,-extent],[-extent,extent,extent]];
+ let drawing=polygon(plane.map(project),'fill="#d48551" fill-opacity="'+(aligned ? .33 : .23)+'" stroke="#eeac7e" stroke-opacity=".8" stroke-width="1.3"');
+ for(const t of [-2,-1,0,1,2]){
+  drawing+=line(project([t,-extent,-t]),project([t,extent,-t]),'stroke="#e5a16e" stroke-opacity=".27"');
+  drawing+=line(project([-extent,t,extent]),project([extent,t,-extent]),'stroke="#e5a16e" stroke-opacity=".27"');
+ }
+ for(const [i,label] of ['x','y','z'].entries()){
+  const vector=[0,0,0];vector[i]=3.3;
+  const tip=project(vector);
+  drawing+=line(project(vector.map(x=>-x*.65)),tip,'stroke="#9ab5a9" stroke-opacity=".6"');
+  drawing+='<text x="'+(tip[0]+5)+'" y="'+(tip[1]-4)+'" fill="#c9ddd3" font-size="14">'+label+'</text>';
+ }
+ const projected=points.map(project);
+ const span=values=>{
+  const points=values.map(project);
+  let pair=[points[0],points[0]], distance=-1;
+  points.forEach((a,i)=>points.slice(i+1).forEach(b=>{
+   const d=(a[0]-b[0])**2+(a[1]-b[1])**2;
+   if(d>distance){distance=d;pair=[a,b]}
+  }));
+  return pair;
+ };
+ if(settled===1){
+  const dir=[m[2],m[5],m[8]];
+  const length=Math.max(...dir.map(Math.abs));
+  const guide=dir.map(v=>v/length*4);
+  drawing+=line(project(guide.map(v=>-v)),project(guide),'stroke="#68dfbc" stroke-opacity=".45" stroke-width="1.4"');
+  drawing+=line(...span(points),'stroke="#81f6d4" stroke-width="4" stroke-linecap="round"');
+ }else if(settled!==0){
+  const depth=face=>face.reduce((sum,i)=>sum+projected[i][2],0)/4;
+  const faces=cubeFaces.slice().sort((a,b)=>depth(a)-depth(b));
+  for(const face of faces) drawing+=polygon(face.map(i=>projected[i]),'fill="#61e3bd" fill-opacity=".09"');
+  for(const [a,b] of cubeEdges) drawing+=line(projected[a],projected[b],'stroke="#77ebca" stroke-width="1.7"');
+ }
+ if(settled!==0){
+  const drawn=new Set();
+  for(const p of cubeGrid){
+   const v=move(p), key=v.join(',');
+   if(drawn.has(key))continue;
+   drawn.add(key);
+   drawing+=circle(project(v),1.8,'fill="#a3f4dc" opacity=".85"');
+  }
+ }else{
+  drawing+=circle(origin,10,'fill="#6aebc8" opacity=".19"')+circle(origin,5,'fill="#a1f9df"');
+  if(pulse)drawing+=circle(origin,13,'class="rank-ring" fill="none" stroke="#a1f9df" stroke-width="2"');
+ }
+ if(candidate){
+  const r=rank(candidate), next=candidate.map(Number);
+  const previewStyle='stroke="#d3c1ff" stroke-width="2.7" stroke-dasharray="6 4"';
+  const vertices=cubeCorners.map(point=>move(point,next));
+  if(r===0)drawing+=circle(origin,9,'fill="none" '+previewStyle);
+  else if(r===1)drawing+=line(...span(vertices),previewStyle);
+  else for(const [a,b] of cubeEdges)drawing+=line(project(vertices[a]),project(vertices[b]),previewStyle);
+ }
+ $('gate3D').innerHTML=drawing;
+}
+function renderGate(target,animate,refresh){
+ drawGate(target);
+ if(refresh&&animation)return;
+ cancelAnimationFrame(animation);animation=0;
+ if(target!==plottedTarget){
+  previousPlotRank=rank(plottedTarget);
+  plottedTarget=target;
+ }
+ const end=target.map(Number), start=visual, r=rank(target);
+ const finish=(pulse=false)=>{
+  visual=end;
+  if($('gate3DPanel').open)drawGateScene(end,r,gateCandidate(),pulse);
+  $('plotRank').classList.toggle('changed',previousPlotRank!==r);
+  $('plotRank').textContent=previousPlotRank===r?'階数 '+r:'階数 '+previousPlotRank+' → '+r;
+ };
+ if(!animate||!$('gate3DPanel').open||matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return}
+ const duration=r<previousPlotRank?680:470, time=performance.now();
+ function tick(now){
+  const t=Math.min(1,(now-time)/duration), u=t*t*(3-2*t);
+  if(t===1){animation=0;finish(r===0&&previousPlotRank>0);return}
+  visual=start.map((x,i)=>x+(end[i]-x)*u);
+  drawGateScene(visual,null);
+  animation=requestAnimationFrame(tick);
+ }
+ animation=requestAnimationFrame(tick);
+}
+function drawGate(product){
+ const r=rank(product);
+ const direction=r===1?gateDirection(product):null;
+ const sum=direction?direction[0]+direction[2]:null;
+ const aligned=sum===0n;
+ const phase=r===3?0:r===1&&!aligned?1:2;
+ const count=reviewing??moves.length;
+ const intro=stage().gateIntro;
+ const prediction=stage().prediction;
+ const awaitingChoice=prediction&&predictionChoice===null;
+ const testedPrediction=prediction&&count>0;
+ const triedAgain=intro&&moves.slice(0,count).some((move,i)=>move===0&&moves[i-1]===0);
+ const overshot=intro&&phase===1&&moves[count-1]===1;
+ const tryAgain=intro&&phase===1&&!triedAgain&&!overshot;
+ const instructions=[
+  ['まず B を押す','橙色は B の核です。空間全体は入りきらないので、まず B で直線をつくります。'],
+  intro
+   ?overshot?['一手戻して、線の位置を比べる','S を続けると橙色の線を通り越します。重なったところまで戻して B を押しましょう。']
+    :tryAgain?['もう一度 B を押してみる','青緑の線は、まだ橙色の核から外れています。B を押すと、線は残るでしょうか？']
+    :['今度は S で線の向きを変える','直線が残りました。Bは、自分が作った直線を消せません。Sで直線の向きを変えてから、もう一度Bを押してみましょう。']
+   :stage().gateOrder?['U と F の順番を試す','U は高さに x を足し、F は高さの符号を反転します。まずどちらを押すか考えましょう。']
+    :['青緑の線を B の核に重ねる','T₊・T₋ で向きを変えます。2D図で橙色の線に重なると、B で零化できる状態です。'],
+  ['B を押せばクリア','x+z=0になりました。Bを押せば零化できます。']
+ ];
+ const [title,description]=r===0?['零化成功','像は原点だけになりました。']:
+  awaitingChoice?['零化できる直線を選ぶ','二つの候補図を見比べましょう。橙の線が B の核です。']:
+  prediction?(testedPrediction
+   ?['直線が残りました','選んだ直線は B の核から外れていました。もう一方の候補を選んで試しましょう。']
+   :['候補'+predictionNames[predictionChoice]+'を選びました','B を押して、予想どおり原点に移るか確かめましょう。']):
+  instructions[phase];
+ const failedGate=count>0&&moves[count-1]===0&&rank(snapshots[count-1])===1&&r===1;
+ const prior=failedGate?gateDirection(snapshots[count-1]):null;
+ const feedback=prior?' <p>Bを押す前の方向 '+vector(prior)+' は x+z = '+nstr(prior[0]+prior[2])+' だったため、直線が残りました。</p>':'';
+ const instruction='<strong>'+title+'</strong><p>'+description+'</p>'+feedback;
+ if($('gateInstruction').innerHTML!==instruction)$('gateInstruction').innerHTML=instruction;
+ $('gateSteps').querySelectorAll('li').forEach((step,i)=>{
+  if(r!==0&&i===phase)step.setAttribute('aria-current','step');
+  else step.removeAttribute('aria-current');
+ });
+ $('cards').querySelectorAll('.card').forEach((button,i)=>{
+  const ready=!prediction&&reviewing===null&&i===0&&aligned;
+  button.classList.toggle('suggested',intro&&reviewing===null&&r!==0&&!overshot&&(phase===1&&!tryAgain?i!==0:i===0));
+  button.classList.toggle('ready',ready);
+  const badge=button.querySelector('.gate-ready');
+  if(badge)badge.hidden=!ready;
+ });
+
+ let drawing=r===3&&!awaitingChoice?'<rect x="26" y="20" width="548" height="250" rx="9" fill="#e2f1e8"/>'+
+  '<text x="350" y="47" fill="#155b49" font-size="17">現在の像：空間全体</text>':'';
+ drawing+='<path d="M52 145H548 M300 18V268" stroke="#8da095"/>'+
+  '<path d="M192 37L408 253" stroke="#e8b18e" stroke-width="12" opacity=".65"/>'+
+  '<path d="M192 37L408 253" stroke="#b95422" stroke-width="2.5"/>'+
+  '<g fill="#52645e" font-size="16"><text x="555" y="150">x</text><text x="309" y="25">z</text></g>'+
+  '<text x="419" y="257" fill="#8b441f" font-weight="700" font-size="17">B の核 · x + z = 0</text>';
+ if(direction)drawing+=gateLine(direction,'stroke="#087865" stroke-width="4"');
+ if(r===0)drawing+='<circle cx="300" cy="145" r="7" fill="#087865"/>';
+ const choice=reviewing===null&&r!==0&&previewCard!==null?stage().cards[previewCard]:null;
+ let preview='カードにマウスを重ねると、押した場合の変化を確認できます。';
+ if(choice){
+  const next=mul(choice.m,product);
+  const nextRank=rank(next);
+  if(nextRank===3){
+   preview=choice.id+' を押すと立方体はせん断されますが、像は空間全体のままです。';
+  }else if(nextRank===0){
+   drawing+='<circle cx="300" cy="145" r="10" fill="none" stroke="#6956a4" stroke-width="3" stroke-dasharray="3 3"/>';
+   preview=choice.id+' を押すと原点に潰れます。';
+  }else{
+   const nextDirection=gateDirection(next);
+   drawing+=gateLine(nextDirection,'stroke="#6956a4" stroke-width="3" stroke-dasharray="7 5"');
+   const nextSum=nextDirection[0]+nextDirection[2];
+   preview=intro&&choice===gateCard&&direction&&direction.every((value,i)=>value===nextDirection[i])
+    ?'B を押しても、直線の向きは変わりません。'
+    :choice.id+' を押すと、紫の点線の向きになります。x + z = '+nstr(nextSum)+'。'+
+     (nextSum===0n?'B の核に入ります。':'');
+  }
+ }
+ $('gatePreview').textContent=prediction||r===0||reviewing!==null?'':preview;
+ $('gateXZ').innerHTML=drawing;
+ $('readout').innerHTML=awaitingChoice?'候補を選ぶと、その直線をここに表示します。':
+  r===3
+  ?'<strong>階数3。像空間は空間全体です。</strong> 橙の線は B の核を xz 平面から見たものです。'
+  :r===0?'<strong>現在の像は原点。</strong>'
+  :'<strong>現在の像は青緑の直線。</strong> 方向ベクトル <span class="math">'+vector(direction)+'</span>　／　<span class="gate-measure">x + z = '+nstr(sum)+'</span>'+
+   (aligned?'（B の核に到達）':'')+(stage().number==='2-2'?'　x = 1 での高さ '+ratio(direction[2],direction[0])+' ／ 目標 −1':'');
+}
+function renderCalculation(){
+ const panel=$('calculation');
+ const count=reviewing??moves.length;
+ const product=snapshots[count];
+ const preview=reviewing===null&&!won()&&previewCard!==null?stage().cards[previewCard]:null;
+ const factors=moves.slice(0,count).reverse().map(index=>stage().cards[index]);
+ if(stage().prediction&&predictionChoice!==null)factors.push({m:snapshots[0]});
+ if(preview)factors.unshift(preview);
+ const caption=preview
+  ?'<strong class="preview-label">プレビュー</strong>　'+preview.id+' を次に掛けた場合'
+  :count?'<strong>'+count+'手目まで</strong>　左端が最後に掛けた行列です。':stage().prediction?'選んだ候補の行列です。':'スタート時の積は単位行列です。';
+ const left=factors.length?factors.map(({m},i)=>i===0
+  ?'<mrow class="latest-factor">'+mathMatrix(m)+'</mrow>':mathMatrix(m)
+ ).join('<mo>×</mo>'):'<mi>I</mi>';
+ const result=preview?mul(preview.m,product):product;
+ panel.innerHTML='<p>'+caption+'</p><div class="equation" tabindex="0" aria-label="行列の積">'+
+  '<math display="block">'+left+'<mo>=</mo>'+mathMatrix(result)+'</math></div>';
+}
+const meanings={
+ N:'縦座標を横座標に移し、移り先の縦座標をゼロにします。どの点も横軸に移るので「横向きに写す」と呼んでいます。',
+ R:'横軸の正方向は縦軸の正方向へ、縦軸の正方向は横軸の負方向へ移ります。図形全体が原点を中心に反時計回りに90度回転します。',
+ E:'横座標を保ち、縦座標をゼロにします。点を真上または真下から横軸に下ろす操作です。',
+ F:'縦座標を保ち、横座標をゼロにします。点を真横から縦軸に移す操作です。',
+ C:'移り先の横座標と縦座標は互いに符号が逆です。そのため、どの点も傾きが −1 の直線上に移ります。',
+ A:'縦座標はそのままで、横座標に縦座標の2倍を足します。同じ高さの点は横に同じだけずれます。',
+ K:'移り先の縦座標はいつもゼロです。横座標は元の横座標と縦座標の両方から計算されます。',
+ U:'横座標を保ち、縦座標に横座標の定数倍を足します。傾きが定義できる原点を通る直線では、その係数の分だけ傾きが増えます。',
+ D:'横座標を保ち、縦座標から横座標を引きます。傾きが定義できる原点を通る直線では、傾きが1減ります。',
+ B:'どの点も同じ直線に写します。横座標と高さの和がゼロの点は原点へ移ります。',
+ 'T₊':'横の位置を保ち、高さだけを変えます。',
+ 'T₋':'横の位置を保ち、高さだけを変えます。',
+ S:'横の位置を保ち、高さから横座標を引きます。高さがゼロだった直線は、S を掛けると高さが横座標の符号を逆にした値になります。',
+ F3:'横の位置を保ち、高さの符号を反転します。高さがゼロの点は動きません。',
+ U3:'横の位置を保ち、高さに横座標を足します。'
+};
+function renderMeanings(){
+ const variable=name=>'<mi>'+name+'</mi>';
+ const axes=stage().gate?['x','y','z']:['x','y'];
+ const coordinate=row=>{
+  const terms=row.map((coefficient,i)=>[coefficient,axes[i]]).filter(([coefficient])=>coefficient!==0n);
+  return terms.map(([coefficient,name],index)=>{
+   const magnitude=coefficient<0n?-coefficient:coefficient;
+   const sign=coefficient<0n?'<mo>−</mo>':index?'<mo>+</mo>':'';
+   return sign+(magnitude===1n?'':mathNumber(magnitude))+variable(name);
+  }).join('')||mathNumber(0n);
+ };
+ const tuple=entries=>'<mrow><mo>(</mo>'+entries.join('<mo>,</mo>')+'<mo>)</mo></mrow>';
+ $('meanings').innerHTML=stage().cards.map(({id,label,m})=>{
+  const output=axes.map((_,i)=>coordinate(m.slice(i*axes.length,(i+1)*axes.length)));
+  const meaning=stage().clearCondition==='pairs'
+   ?(id==='A'?meanings.E:'縦座標を横座標に足し、横軸に写します。')
+   :meanings[stage().gateOrder&&id!=='B'?id+'3':id]??meanings.K;
+  return '<details><summary>'+id+' · '+label+'</summary><p><math>'+tuple(axes.map(variable))+
+   '<mo>↦</mo>'+tuple(output)+'</math></p><p>'+meaning+'</p>'+(stage().gate?'<math>'+mathMatrix(m)+'</math>':'')+'</details>';
+ }).join('');
+}
+function update(animate=false){
+ const p=reviewing===null?current():snapshots[reviewing], count=reviewing??moves.length;
+ const prediction=stage().prediction;
+ const noChoice=prediction&&predictionChoice===null;
+ $('product').innerHTML=noChoice?'候補未選択':matrix(p);
+ $('stats').textContent=noChoice?'':count+' 手 · 階数 '+rank(p);
+ $('matrixLesson').hidden=Boolean(noChoice)||stage().clearCondition==='pairs';
+ $('plotStatus').hidden=Boolean(noChoice);
+ if(prediction)$('predictionOptions').querySelectorAll('button').forEach((button,i)=>{
+  button.setAttribute('aria-pressed',String(i===predictionChoice));
+  button.disabled=won()||reviewing!==null;
+ });
+ $('gate3DPanel').hidden=!stage().gate||Boolean(noChoice);
+ renderCalculation();
+ const ids=moves.slice(0,count).map(i=>stage().cards[i].id);
+ $('history').textContent=prediction?(noChoice?'':count?'操作順 候補'+predictionNames[predictionChoice]+' → B':'選択中：候補'+predictionNames[predictionChoice]):
+  ids.length?'操作順 '+ids.join(' → ')+'　／　積 '+ids.slice().reverse().join(' · '):'操作順 —　／　積 I';
+ $('undo').disabled=!moves.length||reviewing!==null;
+ $('reset').disabled=!moves.length&&(!prediction||noChoice)&&!stage().gateOrder&&!['pairs','invariant'].includes(stage().clearCondition);
+ $('win').hidden=!stageWon()||reviewing!==null;
+ if(stageWon())completed.add(stageIndex);
+ const targetSlope=({'1-4':2,'1-5':5,'3-3':2,'3-4':-2})[stage().number??'1-'+(stageIndex+1)];
+ $('slopeReadout').hidden=targetSlope===undefined;
+ if(targetSlope!==undefined){
+  const slope=m=>rank(m)===1?ratio(image(m)[1],image(m)[0]):rank(m)===0?'原点':'まだ平面';
+  $('slopeReadout').textContent='現在の傾き '+slope(p)+' ／ 核の傾き '+nstr(targetSlope)+
+   (count&&rank(p)===1&&rank(snapshots[count-1])===1?'　変化 '+slope(snapshots[count-1])+' → '+slope(p):'');
+ }
+ $('solution').hidden=!stage().solution||!stageWon();
+ $('reuseYes').disabled=moves.length!==0||reviewing!==null;
+ if(stage().clearCondition==='invariant')updateInvariantObservation(count);
+ $('stageLesson').innerHTML=stageLessons[stage().number??'1-'+(stageIndex+1)]??'';
+ $('review').hidden=reviewing===null;
+ $('gateProof').hidden=!completed.has(stageIndex);
+ $('gateProofPrompt').hidden=completed.has(stageIndex);
+ document.querySelectorAll('.card,.preview-button').forEach(b=>{b.disabled=won()||reviewing!==null||Boolean(prediction&&(noChoice||moves.length))});
+ if(won()){
+  $('winTitle').textContent=(stage().proof==='yes'?'YES の証明：':'')+moves.length+' 手で零化！';
+  if(stage().gateIntro){
+   const observed=moves.some((move,i)=>move===0&&moves[i-1]===0&&rank(snapshots[i])===1);
+   $('winTitle').textContent=(observed?'観察を含む ':'')+moves.length+' 手で零化！';
+  }
+  $('winText').textContent=stage().gateIntro?'観察では B を重ねて直線が残ることを確かめます。最短の零化列は '+verifiedMinimum.get(stage().id)+' 手です。':prediction?'橙色の核に入った直線は、B で原点に移りました。':
+   '最後の行列の核に、直前の像が含まれました。'+(verifiedMinimum.has(stage().id)?'最短 '+verifiedMinimum.get(stage().id)+' 手。':'');
+ }
+ if(reviewing!==null){
+  const i=reviewing, next=stage().cards[moves[i]], last=stage().cards[moves[i-1]];
+  $('reviewTitle').textContent='振り返り '+i+' / '+moves.length;
+  let sentence=i===0?(prediction?'選んだ候補の直線から始めます。':'単位行列から始めます。'):last.id+' を作用させ、階数 '+rank(snapshots[i-1])+' → '+rank(p)+'。';
+  if(i>0&&!stage().gate)sentence+='像は '+space(rank(p),image(p))+' です。';
+  if(next){if(!stage().gate)sentence+=' 次の '+next.id+' の核は '+space(2-rank(next.m),kernel(next.m))+'。'; if(rank(mul(next.m,p))===0)sentence+=' 今の像が次のカードの核に含まれるので、'+next.id+'P = O になります。';}
+  else sentence+=' 一般に、AP = O ⇔ im(P) ⊆ ker(A) です。';
+  $('reviewText').textContent=sentence;
+  $('prevFrame').disabled=i===0;
+  $('nextFrame').disabled=i===moves.length;
+ }
+ renderPlot(animate);
+}
+function navigation(){
+ try{localStorage.setItem(progressKey,JSON.stringify([...completed].map(i=>stages[i].id)))}catch{}
+ const entries=include=>stageOrder.map(i=>{
+  const s=stages[i];
+  if(!include(s))return '';
+  return '<li><a class="stage-link" href="'+stageHref(i)+'"><span class="number">'+
+   (s.number??String(i+1).padStart(2,'0'))+'</span><span>'+s.title+'</span>'+
+   (completed.has(i)?'<small>クリア済み ✓</small>':'')+'</a></li>';
+ }).join('');
+ const chapters=[
+  ['第1章','図形を零にせよ','行列を組み合わせ、実際に零積を見つけます。'],
+  ['第2章','零化ゲートを攻略せよ','直線の向きと、B で零化できる条件を調べます。'],
+  ['第3章','零化できるか、証明せよ','零積を作る YES 証明と、零積がないことを示す NO 証明を作ります。'],
+  ['第4章','点灯マップで零化を判定せよ','非負行列の積を点灯パターンで追い、有限の地図を作ります。'],
+  ['第5章','上三角行列の対角を調べよ','対角成分に注目して、零積を作れるか判定します。'],
+  ['発展編','ドミノと行列の秘密','ゲートが調べる数を文字列の違いとして表し、一致を行列の零化に置き換えます。']
+ ];
+ $('stages').innerHTML=chapters.map(([label,title,description],i)=>
+  '<section class="panel pad stage-entry"><div class="eyebrow">'+label+'</div><h3>'+title+'</h3><p>'+description+
+  '</p><ol class="stage-list">'+entries(s=>s.chapter===i+1)+'</ol></section>').join('');
+}
+function route(focus=false){
+ const index=stages.findIndex(s=>'#'+s.id===location.hash);
+ const inGame=Boolean(stages[index]);
+ $('game').hidden=!inGame;
+ $('home').hidden=inGame;
+ if(inGame)openStage(index);
+ else {cancelAnimationFrame(animation);animation=0;navigation()}
+ if(focus)$(inGame?(stage().extract?'extractTitle':stage().lab?'decisionTitle':stage().domino?'dominoTitle':'stageTitle'):'homeTitle').focus({preventScroll:true});
+ if(focus)window.scrollTo(0,0);
+}
+function choosePrediction(index){
+ predictionChoice=index;
+ snapshots=[index===null?I3:predictionStarts[index]];
+ moves=[];reviewing=null;previewCard=null;
+ plottedTarget=snapshots[0];previousPlotRank=rank(plottedTarget);
+ update();
+}
+function renderPredictionOptions(){
+ $('predictionOptions').replaceChildren(...predictionStarts.map((product,i)=>{
+  const button=document.createElement('button');
+  const direction=gateDirection(product);
+  button.setAttribute('aria-label','候補'+predictionNames[i]+'。方向ベクトル '+vector(direction));
+  button.innerHTML='<strong>候補'+predictionNames[i]+'</strong>'+
+   '<svg viewBox="165 15 270 260" aria-hidden="true"><path d="M179 145H421 M300 25V265" stroke="#a6b6aa" stroke-width="2"/>'+
+   '<path d="M192 37L408 253" stroke="#d38b53" stroke-width="12"/>'+
+   gateLine(direction,'stroke="#087865" stroke-width="5"')+'</svg>';
+  button.onclick=()=>choosePrediction(i);
+  return button;
+ }));
+}
+function openStage(i){
+ stageIndex=i;
+ const domino=Boolean(stage().domino);
+ const lab=Boolean(stage().lab);
+ $('matrixGame').hidden=domino||lab;
+ $('dominoGame').hidden=!domino||Boolean(stage().extract);
+ $('extractGame').hidden=!stage().extract;
+ $('decisionGame').hidden=!lab;
+ cancelAnimationFrame(animation);animation=0;
+ if(stage().extract){openExtract();return}
+ if(lab){openDecisionLab();return}
+ if(domino){openDomino();return}
+ snapshots=[identity()];moves=[];selected=0;reviewing=null;previewCard=null;predictionChoice=null;
+ const gate=Boolean(stage().gate);
+ plottedTarget=identity();visual=plottedTarget.map(Number);visualExtent=1;previousPlotRank=rank(plottedTarget);
+ camera={...initialCamera};cameraDrag=null;
+ $('plot').classList.add('square-plot');
+ $('plotCaption').hidden=gate;
+ $('plot').toggleAttribute('hidden',gate);
+ $('gateXZ').toggleAttribute('hidden',!gate);
+ $('gate3DPanel').hidden=!gate;
+ $('gate3DPanel').open=false;
+ $('matrixLesson').open=!gate&&!stage().proof;
+ $('gateProjection').hidden=!gate;
+ $('orderCompare').hidden=!stage().gateOrder;
+ $('orderCompare').open=Boolean(stage().gateOrder);
+ orderTried.clear();$('orderResult').textContent='';
+ resetHints();
+ setupProof();
+ $('plotTitle').textContent=gate?'いまの像と B の核（xz 平面）':'正方形の像';
+ $('overlayControl').hidden=gate;
+ $('squareLegend').hidden=gate;
+ $('gateLegend').hidden=!gate;
+ $('gateSteps').hidden=!gate||Boolean(stage().prediction);
+ $('predictionOptions').hidden=!stage().prediction;
+ if(stage().prediction)renderPredictionOptions();
+ $('gateInstruction').hidden=!gate;
+ $('gatePreview').hidden=!gate||Boolean(stage().prediction);
+ $('squareQA').hidden=gate;
+ $('gateQA').hidden=!gate;
+ $('gateProof').open=false;
+ $('gateIntroProof').hidden=!stage().gateIntro;
+ $('reuseYes').hidden=stage().number!=='3-1';
+ $('familyLab').hidden=stage().number!=='3-3';
+ $('familyLab').open=false;
+ $('familyT').value='2';$('familyN').value='2';
+ renderFamily();
+ $('gateOrderProof').hidden=!stage().gateOrder;
+ const nextIndex=stageOrder[stageOrder.indexOf(i)+1];
+ const next=stages[nextIndex];
+ $('nextStage').href=stageHref(nextIndex);$('proofNext').href=stageHref(nextIndex);
+ $('nextStageLabel').textContent=next?'次のステージへ':'ステージ一覧へ戻る';
+ $('nextStageName').textContent=next?next.title:'';
+ $('nextStageName').hidden=!next;
+ renderMeanings();
+ $('stageNumber').textContent=stage().number?'第'+stage().chapter+'章 · '+stage().number:'STAGE '+String(i+1).padStart(2,'0');
+ $('stageTitle').textContent=stage().title;$('stageGoal').textContent=stage().goal;
+ $('solution').open=false;
+ $('solution').hidden=Boolean(stage().prediction);
+ const example=stage().gateIntro?[0,0,1,0]:(stage().solution??[]);
+ const ids=example.map(j=>stage().cards[j].id);
+ $('example').textContent=ids.join(' → ')+'（'+ids.length+'手）';
+ $('cards').replaceChildren(...stage().cards.map((c,j)=>{
+  const b=document.createElement('button');b.className='card';
+  const note=gate?(j===0?'<small class="gate-card-note gate-target">核：橙の平面（x + z = 0）</small><small class="gate-ready" hidden>✓ このカードでクリア</small>':'<small class="gate-card-note">核：原点だけ</small>'):'';
+  b.innerHTML='<strong>'+c.id+'</strong><span>'+c.label+(gate?'<small class="gate-card-note">'+(j===0?'零化ゲート':'方向を変えるカード')+'</small>':'')+note+'</span>'+(gate?'':matrix(c.m));
+  const select=showPreview=>{
+   selected=j;
+   if(reviewing!==null||won()||stage().prediction)return;
+   if(showPreview){previewCard=j;renderCalculation()}
+   renderPlot(false,true);
+  };
+  const clearPreview=()=>{
+   if(previewCard===j){previewCard=null;renderCalculation();renderPlot(false,true)}
+  };
+  b.onpointerenter=event=>select(event.pointerType!=='touch');
+  b.onpointerleave=clearPreview;
+  b.onfocus=()=>select(b.matches(':focus-visible'));
+  b.onblur=clearPreview;
+  b.onclick=()=>{
+   selected=j;previewCard=null;snapshots.push(mul(c.m,current()));moves.push(j);
+   if(won()&&!stageWon())$('orderCompare').open=true;
+   if(won())$('announcement').textContent=stageWon()?'零化成功。'+moves.length+'手。':'零積ができました。比較パネルで両方の順番を確認しましょう。';
+   update(true);
+   if(stageWon()){navigation();$('nextStage').focus()}
+  };
+  if(stage().prediction)return b;
+  const slot=document.createElement('div');slot.className='card-slot';
+  const preview=document.createElement('button');preview.className='preview-button';
+  preview.textContent='プレビュー';preview.setAttribute('aria-label',c.id+' をプレビュー');
+  preview.onclick=()=>{if(previewCard===j)clearPreview();else select(true)};
+  slot.append(b,preview);return slot;
+ }));
+ navigation();update();
+}
+$('overlay').onchange=$('trail').onchange=()=>renderPlot(false,true);
+$('undo').onclick=()=>{
+ if(stage().extract){undoExtract();return}
+ if(stage().lab){undoDecision();return}
+ if(stage().domino){if(dominoHistory.length>1)dominoHistory.pop();renderDomino();return}
+ snapshots.pop();moves.pop();update(true);
+};
+$('reset').onclick=()=>{
+ if(stage().extract){openExtract();return}
+ if(stage().lab){resetDecision();return}
+ if(stage().domino){resetDomino();return}
+ if(stage().prediction){resetHints();choosePrediction(null);return}
+ snapshots=[identity()];moves=[];reviewing=null;previewCard=null;orderTried.clear();$('orderResult').textContent='';resetHints();setupProof();update(true);
+};
+$('hint').onclick=showHint;
+$('replay').onclick=()=>{reviewing=0;update();$('nextFrame').focus()};
+$('prevFrame').onclick=()=>{reviewing--;update(true)};
+$('nextFrame').onclick=()=>{reviewing++;update(true)};
+$('endReview').onclick=()=>{reviewing=null;update();$('replay').focus()};
+function redrawCamera(){
+ if(stage().gate)drawGateScene(visual,animation?null:rank(plottedTarget),animation?null:gateCandidate());
+}
+function rotateCamera(dx,dy){
+ camera.yaw+=dx;
+ camera.pitch=Math.max(-1.45,Math.min(1.45,camera.pitch+dy));
+ redrawCamera();
+}
+function zoomCamera(factor){
+ camera.zoom=Math.max(.28,Math.min(3.5,camera.zoom*factor));
+ redrawCamera();
+}
+const gateCanvas=$('gate3D');
+$('gate3DPanel').ontoggle=()=>{if(stage().gate&&$('gate3DPanel').open)redrawCamera()};
+gateCanvas.onpointerdown=event=>{
+ if(!stage().gate||event.button!==0||cameraDrag)return;
+ cameraDrag={id:event.pointerId,x:event.clientX,y:event.clientY};
+ gateCanvas.setPointerCapture(event.pointerId);
+};
+gateCanvas.onpointermove=event=>{
+ if(cameraDrag?.id!==event.pointerId)return;
+ rotateCamera((event.clientX-cameraDrag.x)*.012,(event.clientY-cameraDrag.y)*.012);
+ cameraDrag.x=event.clientX;cameraDrag.y=event.clientY;
+};
+gateCanvas.onlostpointercapture=event=>{if(cameraDrag?.id===event.pointerId)cameraDrag=null};
+gateCanvas.addEventListener('wheel',event=>{
+ if(!stage().gate||event.ctrlKey)return;
+ event.preventDefault();
+ zoomCamera(Math.exp(-Math.max(-100,Math.min(100,event.deltaY))*.003));
+},{passive:false});
+gateCanvas.onkeydown=event=>{
+ if(!stage().gate)return;
+ const actions={
+  ArrowLeft:()=>rotateCamera(-.16,0),ArrowRight:()=>rotateCamera(.16,0),
+  ArrowUp:()=>rotateCamera(0,-.16),ArrowDown:()=>rotateCamera(0,.16),
+  '+':()=>zoomCamera(1.2),'=':()=>zoomCamera(1.2),'-':()=>zoomCamera(1/1.2)
+ };
+ if(!Object.hasOwn(actions,event.key))return;
+ event.preventDefault();actions[event.key]();
+};
+$('zoomIn').onclick=()=>zoomCamera(1.2);
+$('zoomOut').onclick=()=>zoomCamera(1/1.2);
+$('resetCamera').onclick=()=>{camera={...initialCamera};redrawCamera()};
+const dominoTiles=[{name:'①',upper:'2',lower:'23'},{name:'②',upper:'32',lower:'2'}];
+const baseFour=word=>Array.from(word).reduce((value,digit)=>4n*value+BigInt(digit),0n);
+const wordMatrix=(u,v)=>[4n**BigInt(u.length),0n,0n,0n,4n**BigInt(v.length),0n,baseFour(u),baseFour(v),1n];
+let dominoHistory=[], previousWordSolution=null;
+const dominoState=()=>dominoHistory.at(-1);
+const dominoTile=(tile,index)=>'<span class="domino-tile'+(index===1?' alt':'')+'"><span>'+tile.upper+'</span><span>'+tile.lower+'</span></span>';
+const wordDigits=(word,style=()=>'')=>Array.from(word,(digit,i)=>'<span class="digit'+(digit==='1'?' marker':'')+style(i)+'">'+digit+'</span>').join('')||'<span class="muted">—</span>';
+function resetDomino(){
+ dominoHistory=[{order:[],tested:false,quiz:0,feedback:''}];
+ $('encodingInput').value='';
+ $('encodingComparison').replaceChildren();
+ $('markerExperiment').open=false;
+ renderDomino();
+}
+function changeDomino(change){
+ const state=dominoState();
+ dominoHistory.push({...state,tested:false,quiz:Math.min(state.quiz,2),feedback:'',...change});
+ renderDomino();
+}
+function openDomino(){
+ const wordsOnly=Boolean(stage().wordsOnly);
+ const encoding=Boolean(stage().encoding);
+ $('dominoTitle').textContent=stage().title;
+ $('dominoStageNumber').textContent='発展編 · ドミノと行列の秘密 · '+stage().number;
+ $('dominoOrder').hidden=wordsOnly;
+ $('markerExperiment').open=false;
+ $('dominoIntro').textContent=encoding
+  ?'四進数で読む、桁をずらして連結する、積の最下段を読む、の三つを順に試しましょう。'
+  :wordsOnly?'第2章では判定値が0になるとゲートが図形を消しました。この値を文字列の違いとして表すために、まず上下の文字列をそろえましょう。':'ドミノを右に足し、上下が一致する列を作って、零化ゲートで確かめましょう。';
+ $('dominoLayout').classList.toggle('words-only',wordsOnly);
+ $('dominoSteps').hidden=wordsOnly||encoding;
+ $('dominoGatePanel').hidden=wordsOnly||encoding;
+ $('dominoProductPanel').hidden=wordsOnly;
+ $('encodingPanel').hidden=!encoding;
+ $('encodingPlayback').hidden=!encoding;
+ $('dominoStrip').classList.toggle('encoding-strip',encoding);
+ $('toEncoding').href=stageHref(stages.findIndex(s=>s.encoding));
+ $('dominoPalette').replaceChildren(...dominoTiles.map((tile,i)=>{
+  const button=document.createElement('button');
+  button.className='domino-add';
+  button.innerHTML=dominoTile(tile,i)+'<span>'+tile.name+' を足す</span>';
+  button.setAttribute('aria-label','ドミノ '+tile.name+' を足す。上段 '+tile.upper+'、下段 '+tile.lower);
+  button.onclick=()=>changeDomino({order:[...dominoState().order,i]});
+  return button;
+ }));
+ resetDomino();
+}
+function renderDomino(){
+ const {order,tested}=dominoState();
+ const tiles=order.map(i=>dominoTiles[i]);
+ const upper=tiles.map(tile=>tile.upper).join('');
+ const lower=tiles.map(tile=>tile.lower).join('');
+ const hasTiles=tiles.length>0, matched=hasTiles&&upper===lower;
+ const wordsOnly=stage().wordsOnly;
+ $('undo').disabled=dominoHistory.length===1;
+ $('reset').disabled=dominoHistory.length===1;
+ $('dominoStrip').innerHTML=tiles.map((tile,i)=>dominoTile(tile,order[i])).join('')||'<span class="muted">上のドミノを押すと、ここに並びます。</span>';
+ $('dominoWords').classList.toggle('matched',matched);
+ $('wordsWin').hidden=!(wordsOnly&&matched);
+ if(wordsOnly){
+  let prefix=0;
+  const sharedLength=Math.min(upper.length,lower.length);
+  while(prefix<sharedLength&&upper[prefix]===lower[prefix])prefix++;
+  const mismatch=prefix<sharedLength;
+  const style=i=>i<prefix?' prefix':i===prefix&&mismatch?' different':i>=sharedLength?' extra':'';
+  $('dominoUpper').innerHTML=wordDigits(upper,style);
+  $('dominoLower').innerHTML=wordDigits(lower,style);
+  $('dominoMatch').textContent=!hasTiles?'まずドミノを1枚選びましょう。':
+   matched?'✓ 上下とも「'+upper+'」になりました。':
+   mismatch?'左から'+(prefix+1)+'文字目が違います。この位置は右に足しても変わらないので、一手戻して試しましょう。':
+   (upper.length>lower.length?'上段':'下段')+'に「'+(upper.length>lower.length?upper:lower).slice(prefix)+'」が余っています。短い段の続きに同じ文字が来るように選びましょう。';
+  if(matched){previousWordSolution=order;completed.add(stageIndex);navigation()}
+  return;
+ }
+ if(stage().encoding){renderEncoding(tiles,upper,lower);return}
+ const gateUpper=hasTiles?'1'+upper:'', gateLower=hasTiles?'1'+lower:'';
+ const factors=tiles.map(({upper,lower},i)=>wordMatrix(upper,i===0?'1'+lower:lower));
+ const product=factors.reduce(mul,I3);
+ const coefficient=baseFour(gateUpper)-baseFour(gateLower);
+ const result=tested?mul(mul(gateCard.m,product),gateCard.m):null;
+ const cleared=Boolean(result&&rank(result)===0);
+ $('markerExperiment').hidden=!cleared;
+ $('pcpScope').hidden=!cleared;
+ $('dominoCheck').disabled=!hasTiles||tested;
+ $('dominoUpper').innerHTML=wordDigits(upper);
+ $('dominoLower').innerHTML=wordDigits(lower);
+ $('dominoMatch').textContent=matched?'✓ 上段と下段が一致しました。次は零化ゲートで確かめましょう。':hasTiles?'上下の語はまだ一致していません。':'まずドミノを1枚選びましょう。';
+ $('gateUpper').innerHTML=wordDigits(gateUpper);
+ $('gateLower').innerHTML=wordDigits(gateLower);
+ const baseNotation=word=>'<msub><mrow><mo>(</mo><mn>'+word+'</mn><mo>)</mo></mrow><mn>4</mn></msub>';
+ $('dominoCoefficient').innerHTML=hasTiles
+  ?'<math><msup><mi>q</mi><mi mathvariant="normal">T</mi></msup><mi>M</mi><mi>p</mi><mo>=</mo>'+
+   baseNotation(gateUpper)+'<mo>−</mo>'+baseNotation(gateLower)+'<mo>=</mo>'+
+   mathNumber(baseFour(gateUpper))+'<mo>−</mo>'+mathNumber(baseFour(gateLower))+'<mo>=</mo>'+mathNumber(coefficient)+'</math>'
+  :'ドミノを選ぶと、二つの語を4進数として比較します。';
+ const equation=inner=>'<div class="equation" tabindex="0"><math display="block">'+inner+'</math></div>';
+ $('dominoProduct').innerHTML=equation((factors.length?factors.map(mathMatrix).join('<mo>×</mo>'):'<mi>I</mi>')+'<mo>=</mo>'+mathMatrix(product));
+ $('dominoGateProduct').innerHTML=result?equation('<mi>B</mi><mi>M</mi><mi>B</mi><mo>=</mo>'+mathNumber(coefficient)+'<mi>B</mi><mo>=</mo>'+mathMatrix(result)):'';
+ $('dominoCheckResult').hidden=!tested;
+ $('dominoCheckResult').textContent=cleared?'係数が0なので、BMB は零行列です。':
+  tested?'係数が '+nstr(coefficient)+' なので、BMB は零行列になりません。':'';
+ $('dominoWin').hidden=!cleared;
+ const phase=matched?2:0;
+ if(cleared){
+  const ordinary=wordMatrix(upper,lower);
+  const ordinaryGate=mul(mul(gateCard.m,ordinary),gateCard.m);
+  $('markerComparison').innerHTML='<p>開始用の行列あり：'+gateUpper+' と '+gateLower+' を比較 → '+nstr(coefficient)+'。</p><p>開始用の行列なし：'+gateUpper+' と '+lower+' を比較 → '+nstr(ordinaryGate[0])+'。BMB は非零です。</p><div class="equation"><math display="block">'+mathMatrix(ordinaryGate)+'</math></div>';
+ }
+ $('dominoSteps').querySelectorAll('li').forEach((step,i)=>{
+  if(!cleared&&phase===i)step.setAttribute('aria-current','step');
+  else step.removeAttribute('aria-current');
+ });
+ if(cleared){completed.add(stageIndex);navigation()}
+}
+const encodingExample=()=>previousWordSolution??[0,1];
+const numberMath=value=>'<mn>'+value+'</mn>';
+function renderEncoding(tiles,upper,lower){
+ const {order,quiz,feedback}=dominoState();
+ const count=tiles.length, example=encodingExample();
+ const canPlay=count<example.length&&order.every((index,i)=>index===example[i]);
+ $('encodingStep').textContent=previousWordSolution?'前の解を一枚進める':'例を一枚進める';
+ $('encodingStep').disabled=!canPlay;
+ $('encodingPlaybackNote').textContent=canPlay?'':count===example.length&&order.every((index,i)=>index===example[i])?' 例の再生が終わりました。':' リセットすると例を再生できます。';
+ $('dominoWords').classList.remove('matched');
+ $('dominoUpper').innerHTML=wordDigits(upper,()=>' encoding-upper');
+ $('dominoLower').innerHTML=wordDigits(lower,()=>' encoding-lower');
+ $('dominoMatch').textContent=count?'上段・下段の値は、「積から上下の一致を判定する」欄に表示されます。':'ドミノを選ぶか、例を一枚進めてみましょう。';
+ const factors=tiles.map(tile=>wordMatrix(tile.upper,tile.lower));
+ const before=factors.slice(0,-1).reduce(mul,I3);
+ const product=count?mul(before,factors.at(-1)):I3;
+ if(count)$('dominoStrip').innerHTML=tiles.map((tile,i)=>'<div class="encoding-factor">'+dominoTile(tile,order[i])+
+  '<math>'+mathMatrix(factors[i],true)+'</math></div>').join('');
+ const labels=['上段','下段'];
+ const styles=['encoding-upper','encoding-lower'];
+ $('encodingResult').innerHTML=count?'<math aria-label="現在の行列積">'+mathMatrix(product,true)+'</math><dl>'+
+  labels.map((label,i)=>'<div class="'+styles[i]+'"><dt>'+label+'の値</dt><dd>'+product[6+i]+'</dd></div>').join('')+'</dl>':'';
+ const last=tiles.at(-1);
+ $('encodingCalculations').innerHTML=count?['upper','lower'].map((row,i)=>{
+  const word=last[row], factor=factors.at(-1), value=factor[6+i], shift=factor[i*4];
+  const explanation=count===1?'最初の文字列 <code>'+word+'</code> を4進数として読みます。':
+   '<code>'+word+'</code> を右に'+word.length+'桁足すので、今までの値を '+shift+' 倍してから '+value+' を足します。';
+  const formula=count===1?'<msub><mrow><mo>(</mo><mn>'+word+'</mn><mo>)</mo></mrow><mn>4</mn></msub>':
+   numberMath(before[6+i])+'<mo>×</mo>'+numberMath(shift)+'<mo>+</mo>'+numberMath(value);
+  return '<section class="'+styles[i]+'"><h3>'+labels[i]+'の値の更新</h3><p>'+explanation+'</p><div class="encoding-formula"><math>'+formula+
+   '<mo>=</mo>'+numberMath(product[6+i])+'</math></div></section>';
+ }).join(''):'';
+ const cleared=quiz===3;
+ const questions=['① 32 を4進数として読むと、いくつですか？','② 23 の右に 2 を足します。11 × 4 + 2 はいくつですか？','③ 現在の積の最下段・中央は、下段の文字列の値です。その数を入力しましょう。'];
+ $('encodingQuestion').textContent=questions[quiz]??'';
+ $('encodingPrompt').textContent=quiz===2&&count<2?'積を読むため、ドミノを2枚以上並べましょう。':'';
+ $('encodingQuiz').hidden=cleared||quiz===2&&count<2;
+ $('encodingFeedback').textContent=feedback;
+ $('encodingWin').hidden=!cleared;
+ $('dominoProduct').innerHTML='<div class="equation" tabindex="0"><math display="block">'+
+  (count?factors.map(m=>mathMatrix(m,true)).join('<mo>×</mo>'):'<mi>I</mi>')+'<mo>=</mo>'+mathMatrix(product,true)+'</math></div>';
+ $('dominoGateProduct').innerHTML='';
+ if(cleared){completed.add(stageIndex);navigation()}
+}
+$('encodingStep').onclick=()=>{
+ const order=dominoState().order;
+ changeDomino({order:[...order,encodingExample()[order.length]]});
+};
+$('encodingQuiz').onsubmit=event=>{
+ event.preventDefault();
+ const input=$('encodingInput'), raw=input.value.trim();
+ if(!/^\d+$/.test(raw))return;
+ const {order,quiz}=dominoState();
+ if(quiz>=3||quiz===2&&order.length<2)return;
+ const product=order.map(i=>dominoTiles[i]).map(({upper,lower})=>wordMatrix(upper,lower)).reduce(mul,I3);
+ const expected=[baseFour('32'),baseFour('232'),product[7]][quiz];
+ const correct=BigInt(raw)===expected;
+ const messages=correct?['3 × 4 + 2 = 14。次は右に文字を足します。','11 × 4 + 2 = 46。次は実際の行列積を読みましょう。','積の最下段・中央から、下段の値 '+expected+' を読み取れました。']:
+  ['左の桁は4の位です。3を4倍して2を足しましょう。','1桁ずらすために11を4倍してから2を足します。','積の最下段のうち、紫の中央の成分を見ましょう。'];
+ if(correct)input.value='';
+ changeDomino({quiz:quiz+(correct?1:0),feedback:messages[quiz]});
+ if(!$('encodingWin').hidden)$('toGateDomino').focus();
+};
+$('dominoCheck').onclick=()=>{
+ changeDomino({tested:true});
+ if(!$('dominoWin').hidden)$('dominoWin').querySelector('a').focus();
+};
+const stageWon=()=>won()&&(!stage().gateOrder||orderTried.size===2);
+let hintsShown=0, inspectedPairs=new Map();
+const orderTried=new Map();
+const stageLessons={
+ '1-1':'N は非零ですが、1回目でできる横軸上の像を2回目で消すので <strong>N² = 0</strong> です。',
+ '1-2':'<strong>AP = 0 ⇔ im P ⊆ ker A</strong>。E の像（青緑）と F の核（橙）は同じ横軸です。<svg width="150" height="29" viewBox="0 0 150 29" role="img" aria-label="像と核が重なる横軸"><path d="M8 14h134" stroke="#d38b53" stroke-width="9"/><path d="M8 14h134" stroke="#087865" stroke-width="3"/></svg>',
+ '1-3':'<strong>C² = 2C ≠ 0、CAC = 0</strong>。A が直線の向きを変えると C で消せます。第2章でも同じ考え方を使います。',
+ '1-5':'<strong>せん断 Uₐ は傾き s を s+a に変えます。</strong> (1,s) を (1,s+a) に写すためです。',
+ '2-1':'<strong>B² = B ≠ 0、BSB = 0</strong>。間に方向を変えるカードを挟むと、同じ B で零化できます。第1章の CAC と同じ仕組みです。',
+ '2-4':'<strong>BMB = (qᵀMp)B</strong>。M が動かした方向 Mp の x+z がゼロのときに、最後の B がその直線を消します。',
+ '3-1':'<strong>YES 証明書</strong>は、零行列になる実際の積です。EF と FE はどちらも零行列になります。',
+ '3-3':'<strong>YES 証明書</strong>は K₂U²K₂ = 0。一般に KₜUⁿKₜ = (t−n)Kₜ なので、n = 2 で消えます。'
+};
+const verifiedMinimum=new Map();
+for(const item of stages){
+ if(!item.solution)continue;
+ let frontier=[item.gate?I3:I];
+ for(let n=1;n<=item.solution.length;n++){
+  frontier=frontier.flatMap(product=>item.cards.map(({m})=>mul(m,product)));
+  if(frontier.some(product=>rank(product)===0)){verifiedMinimum.set(item.id,n);break}
+ }
+}
+function resetHints(){
+ hintsShown=0;
+ $('hintList').hidden=true;
+ $('hintList').replaceChildren();
+ $('hint').textContent='ヒント';
+ $('hint').disabled=false;
+}
+function showHint(){
+ const list=$('hintList'), s=stage();
+ const hints=s.gate?['青緑の直線と橙色の核の向きを比べましょう。','方向ベクトル (x,y,z) が x+z=0 を満たすと B が零化できます。',s.hint]:
+  s.proof==='pairs'?['2枚を掛ける順序を区別しましょう。','行列がすべて特異なら、零積が存在する場合は2因子で零になります。',s.hint]:
+  s.proof==='invariant'?['最初の K の後の傾きに注目しましょう。','初期値を含み、U と K で保たれ、核を含まない領域が必要です。',s.hint]:
+  ['青緑の図形がどの方向に広がっているか見ましょう。','次に使う行列の核が今の像を含めば零化できます。',s.hint];
+ if(hintsShown>=hints.length)return;
+ const li=document.createElement('li');li.textContent=hints[hintsShown++];list.append(li);
+ list.hidden=false;
+ $('hint').textContent='ヒント '+hintsShown+' / 3';
+ $('hint').disabled=hintsShown===3;
+ if(!s.gate){$('overlay').checked=true;renderPlot(false,true)}
+}
+function compareOrder(key,first,second){
+ const start=gateCard.m;
+ const middle=mul(first.m,start), end=mul(second.m,middle);
+ const heights=[start,middle,end].map(product=>{const [x,,z]=gateDirection(product);return ratio(z,x)});
+ orderTried.set(key,{heights,zero:rank(mul(gateCard.m,end))===0});
+ $('orderResult').innerHTML='<ul>'+[...orderTried].map(([label,{heights,zero}])=>
+  '<li><strong>'+label+'</strong>：'+heights.join(' → ')+'。B で'+(zero?'消せる':'消せない')+'。</li>').join('')+'</ul>'+
+  (orderTried.size===2?(won()?'<p>両方の比較と零積が揃いました。行列の積は、一般に順番を入れ替えられません。</p>':'<p>行列の積は、一般に順番を入れ替えられません。比較した順番を使って零積を作りましょう。</p>'):'');
+ update();
+ if(stageWon()){$('announcement').textContent='両順序の比較と零積を確認しました。';$('nextStage').focus()}
+}
+$('orderUF').onclick=()=>compareOrder('U → F',gateLift,gateReflect);
+$('orderFU').onclick=()=>compareOrder('F → U',gateReflect,gateLift);
+let invariantBoundary=-2n;
+let invariantObserved=false;
+function setupProof(){
+ const mode=stage().clearCondition;
+ const active=mode==='pairs'||mode==='invariant';
+ $('proofPanel').hidden=!active;
+ $('proofVisual').hidden=!active;
+ $('transformPanel').hidden=active;
+ $('cards').hidden=mode==='pairs';
+ $('productStatus').hidden=mode==='pairs';
+ $('proofWin').hidden=true;
+ for(const id of ['proofResult','proofControls','proofGraphic','proofTable'])$(id).replaceChildren();
+ inspectedPairs=new Map();
+ if(mode==='pairs'){
+  $('proofTitle').textContent='判定を組み立てる';
+  $('proofVisualTitle').textContent='2手の積を比べる';
+  $('proofPrompt').textContent='① 4通りの積を調べる。たとえば AC は、C を使ったあとに A を使う積です。';
+  const actions=document.createElement('div');actions.className='actions';
+  for(const [i,left] of stage().cards.entries())for(const [j,right] of stage().cards.entries()){
+   const button=document.createElement('button');
+   button.textContent=left.id+right.id+' を調べる';
+   button.onclick=()=>{
+    inspectedPairs.set(2*i+j,mul(left.m,right.m));
+    renderPairProof();button.disabled=true;
+   };
+   actions.append(button);
+  }
+  $('proofControls').append(actions);
+  $('proofControls').insertAdjacentHTML('beforeend',`<form id="pairForm" class="proof-form" hidden>
+   <h4>② 任意の手数について判定する</h4>
+   <label>結論 <select id="pairVerdict" required><option value="">選んでください</option><option value="yes">零化できる</option><option value="no">零化できない</option></select></label>
+   <label>理由 <select id="pairReason" required><option value="">選んでください</option><option value="adjacent">零化するには、隣り合う2因子の積が零になる必要がある</option><option value="bounded">このゲームでは行列を2回までしか使えない</option><option value="commute">A と C の掛ける順番は自由に入れ替えられる</option></select></label>
+   <button>判定を提出する</button></form>`);
+  $('pairForm').onsubmit=event=>{
+   event.preventDefault();
+   const correct=$('pairVerdict').value==='no'&&$('pairReason').value==='adjacent'&&validPairCertificate(stage().cards,inspectedPairs);
+   $('proofWin').hidden=!correct;
+   $('proofResult').textContent=correct?'':'表の判定と、長い積が零になる仕組みをもう一度見比べてみましょう。';
+   if(correct)completeProof('どの2因子積も非零なので、任意の長さの積も非零です。この例では、A も C も (1, 0) をそのまま残します。何手掛けてもこのベクトルが原点へ移らないことからも、同じ結論が出ます。');
+  };
+  renderPairProof();
+ }
+ if(mode==='invariant'){
+  invariantBoundary=-2n;invariantObserved=false;
+  $('proofTitle').textContent='不変領域を確かめる';
+  $('proofVisualTitle').textContent='傾きの数直線';
+  $('proofGraphic').innerHTML=`<div id="invariantHistory" aria-live="polite"></div><div id="invariantDiagram"></div>
+   <label for="invariantSlider">境界 <var>c</var> を動かす</label>
+   <input id="invariantSlider" type="range" min="-4" max="3" value="-2" step="1">
+   <p id="invariantRegion"></p><p class="math-note"><span class="invariant-key">青い点</span>は現在の傾き、緑の帯は選んだ範囲です。</p>`;
+  $('proofControls').innerHTML=`<form id="invariantForm" class="proof-form"><fieldset id="invariantReasons" disabled>
+   <legend>選んだ範囲に傾きが留まる理由</legend>
+   <label>U を使うと <select id="shiftReason" required><option value="">選んでください</option><option value="increase">傾きが1増えるので、境界以上に留まる</option><option value="reset">どの傾きも0に戻る</option></select></label>
+   <label>K を使うと <select id="returnReason" required><option value="">選んでください</option><option value="outside">核の傾きが範囲の外なら、零化せずに傾き0へ戻る</option><option value="inside">核の傾きが範囲の中でも、零化せずに傾き0へ戻る</option></select></label>
+   <button>範囲と理由を検証する</button></fieldset></form>`;
+  $('invariantSlider').oninput=()=>{
+   invariantBoundary=BigInt($('invariantSlider').value);
+   $('proofWin').hidden=true;
+   $('proofResult').replaceChildren();
+   renderInvariantDiagram(reviewing??moves.length);
+  };
+  $('invariantForm').onsubmit=event=>{
+   event.preventDefault();
+   if(invariantObserved)renderInvariantProof(invariantBoundary);
+  };
+ }
+}
+function completeProof(summary){
+ $('proofSummary').textContent=summary;
+ $('proofWin').hidden=false;
+ $('announcement').textContent='NO 証明が完成しました。';
+ $('proofNext').focus();
+ completed.add(stageIndex);
+ navigation();
+}
+function validPairCertificate(cards,record){
+ return cards.every(({m})=>m.length===4&&rank(m)<2)&&
+  cards.every(({m:left},i)=>cards.every(({m:right},j)=>{
+   const product=mul(left,right), checked=record.get(cards.length*i+j);
+   return checked&&product.every((x,k)=>checked[k]===x)&&rank(product)>0;
+  }));
+}
+function renderPairProof(){
+ const cards=stage().cards;
+ $('proofTable').innerHTML='<div class="row">'+cards.map(({id,m})=>'<math><mi>'+id+'</mi><mo>=</mo>'+mathMatrix(m)+'</math>').join('')+'</div><table><thead><tr><th scope="col">積</th><th scope="col">計算結果</th><th scope="col">判定</th></tr></thead><tbody>'+
+  cards.flatMap(({id:left},i)=>cards.map(({id:right},j)=>{
+   const m=inspectedPairs.get(cards.length*i+j);
+   return '<tr><th scope="row">'+left+right+'</th>'+(m?'<td><math>'+mathMatrix(m)+'</math></td><td>'+(rank(m)?'非零':'零')+'</td>':'<td>—</td><td>未確認</td>')+'</tr>';
+  })).join('')+'</tbody></table>';
+ if(inspectedPairs.size!==cards.length**2)return;
+ $('pairForm').hidden=false;
+ $('proofGraphic').innerHTML=`<h4>長い積はどこで零になる？</h4>
+  <div class="proof-chain"><span>A₁</span><strong>— v₁ᵀu₂ —</strong><span>A₂</span><strong>— v₂ᵀu₃ —</strong><span>A₃</span></div>
+  <p>非零の特異な 2×2 行列は階数1です。各因子を <math><msub><mi>A</mi><mi>i</mi></msub><mo>=</mo><msub><mi>u</mi><mi>i</mi></msub><msubsup><mi>v</mi><mi>i</mi><mi mathvariant="normal">T</mi></msubsup></math> と書くと、積は次の形になります。</p>
+  <div class="equation" tabindex="0" aria-label="長い行列積の分解"><math display="block"><msub><mi>A</mi><mn>1</mn></msub><mo>⋯</mo><msub><mi>A</mi><mi>n</mi></msub><mo>=</mo><msub><mi>u</mi><mn>1</mn></msub><mo>(</mo><msubsup><mi>v</mi><mn>1</mn><mi mathvariant="normal">T</mi></msubsup><msub><mi>u</mi><mn>2</mn></msub><mo>)</mo><mo>⋯</mo><mo>(</mo><msubsup><mi>v</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mi mathvariant="normal">T</mi></msubsup><msub><mi>u</mi><mi>n</mi></msub><mo>)</mo><msubsup><mi>v</mi><mi>n</mi><mi mathvariant="normal">T</mi></msubsup></math></div>
+  <p>括弧の中は数です。たとえば最初の括弧が0になるのは、A₂ の像が A₁ の核に含まれるときです。端のベクトルはどちらも非零なので、積が零になるのは途中の括弧が0になるときです。零行列が因子に含まれる場合は、その2乗がすでに零です。</p>`;
+}
+function invariantConditions(k,u,c){
+ const [t,b,d,e]=k,[a,f,g,h]=u;
+ const resets=k.length===4&&b===-1n&&d===0n&&e===0n;
+ const shifts=u.length===4&&a===1n&&f===0n&&h===1n;
+ return [c<=0n,shifts&&g>=0n,resets&&t<c&&c<=0n,resets&&t<c];
+}
+function updateInvariantObservation(count){
+ const applied=moves.slice(0,count);
+ const first=applied.indexOf(0);
+ const shift=first<0?-1:applied.indexOf(1,first+1);
+ const reset=shift<0?-1:applied.indexOf(0,shift+1);
+ const k=stage().cards[0].id;
+ const steps=[
+  [first,'① '+k+' で横軸を作る'],
+  [shift,'② U で傾きを変える'],
+  [reset,'③ '+k+' で横軸に戻す']
+ ];
+ $('invariantHistory').innerHTML='<ol class="invariant-steps">'+steps.map(([i,label])=>{
+  const direction=i<0?null:image(snapshots[i+1]);
+  return '<li'+(i>=0?' class="done"':'')+'>'+label+(direction?' ✓ · 傾き '+ratio(direction[1],direction[0]):'')+'</li>';
+ }).join('')+'</ol><p>'+ (first<0?'最初の K までは正則な U しか使っていないため、像は平面のままです。': '最初の K で像が横軸になりました。ここが傾き0の出発点です。')+'</p>';
+ invariantObserved=reset>=0;
+ $('invariantReasons').disabled=!invariantObserved;
+ $('proofPrompt').textContent=invariantObserved?'数直線で範囲を選び、U と K でその範囲に留まる理由を答えましょう。':'行列カードで①〜③を観察すると、範囲と理由を提出できます。';
+ if(!invariantObserved){
+  $('proofWin').hidden=true;
+  $('proofResult').replaceChildren();
+ }
+ renderInvariantDiagram(count);
+}
+function renderInvariantDiagram(count){
+ const c=invariantBoundary, t=stage().cards[0].m[0];
+ const product=snapshots[count];
+ const direction=rank(product)===1?image(product):null;
+ const slope=direction?direction[1]/direction[0]:null;
+ const axis=s=>42+Number(s<-4n?0n:s>3n?7n:s+4n)*43;
+ const cut=axis(c), kernelPoint=axis(t), origin=axis(0n);
+ const current=slope===null?'まだ平面':nstr(slope);
+ $('invariantSlider').setAttribute('aria-valuetext',nstr(c)+' 以上');
+ $('invariantDiagram').innerHTML='<svg viewBox="0 0 385 113" role="img" aria-label="核 '+nstr(t)+'、出発点0、現在の傾き '+current+'、選んだ範囲 '+nstr(c)+' 以上">'+
+  '<path d="M23 55H366" stroke="#8a9e93" stroke-width="2"/><path d="M'+cut+' 55H364l-8 -5m8 5l-8 5" fill="none" stroke="#168c75" stroke-width="5"/>'+
+  Array.from({length:8},(_,i)=>'<text x="'+axis(BigInt(i-4))+'" y="76" text-anchor="middle" font-size="12">'+nstr(i-4)+'</text>').join('')+
+  '<circle cx="'+kernelPoint+'" cy="55" r="6" fill="#a34b20"/><text x="'+kernelPoint+'" y="96" text-anchor="middle" fill="#943f16" font-size="12">核</text>'+
+  '<path d="M'+origin+' 50v10" stroke="#234235" stroke-width="2"/><text x="'+origin+'" y="96" text-anchor="middle" font-size="12">出発点</text>'+
+  '<path d="M'+cut+' 28v22" stroke="#146958" stroke-width="2"/><text x="'+cut+'" y="20" text-anchor="middle" font-size="12">境界 c</text>'+
+  (slope===null?'':'<circle cx="'+axis(slope)+'" cy="40" r="6" fill="#2056a0"/>')+'</svg>';
+ $('invariantRegion').textContent='選んだ範囲 s ≥ '+nstr(c)+' ／ 現在の傾き '+current+(slope!==null&&slope>3n?'（図の右外）':'');
+}
+function renderInvariantProof(c){
+ const [k,u]=stage().cards.map(({m})=>m);
+ const [start,shift,reset,excludesKernel]=invariantConditions(k,u,c);
+ const conditions=[
+  [start,'出発点0が範囲に入る','境界が0より大きいので、出発点0が範囲から外れます。'],
+  [shift&&$('shiftReason').value==='increase','U は傾きを1増やすので、境界以上に留まる','U は傾きをどう変えるか、②の観察を見直しましょう。'],
+  [excludesKernel,'核の傾き '+nstr(k[0])+' は範囲の外','範囲に核の傾き '+nstr(k[0])+' が含まれています。'],
+  [reset&&$('returnReason').value==='outside','K は零化せず、範囲内の傾き0に戻す',excludesKernel&&start?'K を使っても零化しない理由を見直しましょう。':'K が零化せず、傾き0に戻ったあとも範囲内に留まるか確かめましょう。']
+ ];
+ $('proofResult').innerHTML='<ul>'+conditions.map(([ok,good,bad])=>'<li>'+(ok?'✓ '+good:'✗ '+bad)+'</li>').join('')+'</ul>';
+ const valid=conditions.every(([ok])=>ok);
+ $('proofWin').hidden=!valid;
+ if(valid)completeProof('最初の K の前は正則な U だけです。K の直後は傾き0。その後、U と K のどちらを何回使っても、像は零化せず傾き s ≥ '+nstr(c)+' に留まります。');
+}
+$('reuseYes').onclick=()=>{
+ if(stage().number!=='3-1'||moves.length)return;
+ const cards=$('cards').querySelectorAll('.card');
+ stage().solution.forEach(i=>cards[i].click());
+};
+function renderFamily(){
+ const t=$('familyT').valueAsNumber,n=$('familyN').valueAsNumber;
+ if(!Number.isInteger(t)||t<-3||t>3||!Number.isInteger(n)||n<0||n>4){
+  $('familyResult').textContent='t は −3〜3、n は 0〜4 の整数を選んでください。';return;
+ }
+ const k=proofK(t).m;
+ let power=I;
+ for(let i=0;i<n;i++)power=mul(proofU.m,power);
+ const result=mul(k,mul(power,k));
+ $('familyResult').innerHTML='<math><msub><mi>K</mi><mi>t</mi></msub><msup><mi>U</mi><mi>n</mi></msup><msub><mi>K</mi><mi>t</mi></msub><mo>=</mo><mo>(</mo><mi>t</mi><mo>−</mo><mi>n</mi><mo>)</mo><msub><mi>K</mi><mi>t</mi></msub><mo>=</mo>'+mathMatrix(result)+'</math>'+
+  '。'+(rank(result)===0?'核に到達し、零化しました。':'今回の傾き '+n+' では零化しません。')+
+  (t<0?' t が負なら、n ≥ 0 なのでこの核には届きません。':' n = '+t+' のとき零化します。');
+}
+$('familyT').oninput=renderFamily;
+$('familyN').oninput=renderFamily;
+$('compareEncoding').onclick=()=>{
+ const [a,b]=dominoTiles;
+ const product=mul(wordMatrix(a.upper,a.lower),wordMatrix(b.upper,b.lower));
+ const encoded=wordMatrix(a.upper+b.upper,a.lower+b.lower);
+ $('encodingComparison').innerHTML='<p>ドミノ①の行列 × ドミノ②の行列</p><math>'+mathMatrix(product,true)+'</math>'+
+  '<p>上下ともに 232 として直接作った行列</p><math>'+mathMatrix(encoded,true)+'</math>'+
+  '<p>'+ (product.every((x,i)=>x===encoded[i])?'✓ 2つの行列は一致しました。':'2つの行列は一致しません。')+'</p>';
+};
+
+// Decisions use their own history. Each entry is one reversible UI action.
+let decisionHistory=[], labSelected=0, labButtons=new Map();
+const labState=()=>decisionHistory.at(-1);
+const patternKey=m=>m.map(value=>value>0n?'1':'0').join('');
+const labMath=m=>'<math>'+mathMatrix(m)+'</math>';
+const cardPath=path=>path.map(index=>stage().cards[index].id).join(' → ');
+function openDecisionLab(){
+ $('decisionNumber').textContent='第'+stage().chapter+'章 · '+stage().number;
+ $('decisionTitle').textContent=stage().title;
+ $('decisionGoal').textContent=stage().goal;
+ const next=stageOrder[stageOrder.indexOf(stageIndex)+1];
+ $('decisionNext').href=stageHref(next);
+ $('decisionNext').textContent=next===undefined?'ステージ一覧に戻る':'次へ · '+stages[next].title+' →';
+ $('supportLab').hidden=stage().lab!=='support';
+ $('triangleLab').hidden=stage().lab!=='triangle';
+ resetDecision();
+ navigation();
+}
+function resetDecision(){
+ const support=stage().lab==='support';
+ labSelected=support?0:null;
+ decisionHistory=[support?{nodes:[{matrix:I,path:[],edges:stage().cards.map(()=>null)}],last:null}
+  :{product:I3,path:[],picks:[null,null,null],block:null,runs:0}];
+ renderDecision();
+}
+function undoDecision(){
+ if(decisionHistory.length<2)return;
+ decisionHistory.pop();
+ if(stage().lab==='support'&&!labState().nodes[labSelected])labSelected=0;
+ renderDecision();
+}
+function labButton(label,action,key){
+ const button=document.createElement('button');
+ button.type='button';
+ button.textContent=label;
+ if(key!==undefined)labButtons.set(key,button);
+ button.onclick=()=>{action();labButtons.get(key)?.focus()};
+ return button;
+}
+function decisionMessage(message){
+ const feedback=$(stage().lab==='support'?'supportFeedback':'triangleFeedback');
+ feedback.hidden=!message;
+ feedback.textContent=message;
+}
+function renderDecision(){
+ labButtons=new Map();
+ decisionMessage('');
+ $('decisionWin').hidden=true;
+ $('undo').disabled=decisionHistory.length<2;
+ $('reset').disabled=decisionHistory.length<2&&labSelected===(stage().lab==='support'?0:null);
+ if(stage().lab==='support')renderSupport();
+ else renderTriangle();
+}
+function finishDecision(verdict,certificate){
+ $('decisionWinTitle').textContent=verdict==='YES'?'YES · 零積を作れました':'NO · 零化できないと証明できました';
+ $('decisionCertificate').textContent=certificate;
+ $('decisionWin').hidden=false;
+ decisionMessage('');
+ completed.add(stageIndex);
+ navigation();
+ $('decisionNext').focus();
+}
+function supportPattern(m){
+ return '<span class="support-pattern" aria-hidden="true">'+Array.from(patternKey(m),bit=>
+  '<span class="support-bit'+(bit==='1'?' on':'')+'">'+bit+'</span>').join('')+'</span>';
+}
+function supportName(index,nodes=labState().nodes){
+ if(index===0)return '出発点';
+ if(!nodes[index].matrix.some(Boolean))return '全消灯';
+ return '状態 '+(index+1);
+}
+function selectSupport(index){
+ labSelected=index;
+ renderDecision();
+}
+function exploreSupport(cardIndex){
+ const {nodes}=labState(), from=labSelected;
+ const node=nodes[from], result=mul(stage().cards[cardIndex].m,node.matrix), key=patternKey(result);
+ let to=nodes.findIndex(item=>patternKey(item.matrix)===key);
+ const discovered=to===-1;
+ const updated=nodes.slice();
+ if(discovered){
+  to=updated.length;
+  updated.push({matrix:result,path:[...node.path,cardIndex],edges:stage().cards.map(()=>null)});
+ }
+ const edges=node.edges.slice();
+ edges[cardIndex]=to;
+ updated[from]={...node,edges};
+ decisionHistory.push({nodes:updated,last:{from,cardIndex,result,to,discovered}});
+ renderDecision();
+}
+function renderSupport(){
+ const {nodes,last}=labState();
+ const zero=nodes.findIndex(node=>!node.matrix.some(Boolean));
+ const remaining=nodes.reduce((count,node)=>count+node.edges.filter(target=>target===null).length,0);
+ $('supportProgress').textContent='発見した状態 '+nodes.length+' ／ 未確認の行き先 '+remaining;
+ $('supportMap').replaceChildren(...nodes.map((node,index)=>{
+  const row=document.createElement('div');row.className='support-row';
+  const name=supportName(index);
+  const entry=labButton(name,()=>selectSupport(index),'node-'+index);entry.className='support-node';
+  entry.innerHTML='<span>'+name+'</span>'+supportPattern(node.matrix);
+  entry.setAttribute('aria-label',name+'。点灯模様 '+patternKey(node.matrix).split('').join(' '));
+  entry.setAttribute('aria-pressed',String(index===labSelected));
+  const edges=document.createElement('div');edges.className='support-edges';
+  node.edges.forEach((to,i)=>{
+   const label=stage().cards[i].id;
+   if(to===null){
+    const mark=document.createElement('span');mark.className='support-edge-open';mark.textContent=label+' 未確認';
+    edges.append(mark);
+   }else{
+    const link=labButton(label+' → '+supportName(to),()=>selectSupport(to),'edge-'+index+'-'+i);
+    link.setAttribute('aria-label',name+' から '+label+' を掛けた先、'+supportName(to)+'を選ぶ');
+    edges.append(link);
+   }
+  });
+  row.append(entry,edges);
+  return row;
+ }));
+ const node=nodes[labSelected];
+ $('supportSelected').textContent=supportName(labSelected)+(node.path.length?' · この模様への一例 '+cardPath(node.path):' · 単位行列 I');
+ $('supportCards').replaceChildren(...stage().cards.map(({id,m},i)=>{
+  const button=labButton(id,()=>exploreSupport(i),'support-card-'+i);
+  button.innerHTML='<span class="lab-card-label">'+id+' を掛ける</span>'+labMath(m)+
+   (node.edges[i]===null?'':'<small>確認済み</small>');
+  return button;
+ }));
+ $('supportWitness').hidden=zero===-1;
+ $('supportWitness').textContent=zero===-1?'':'見つかった道 '+cardPath(nodes[zero].path)+' → 全消灯';
+ $('supportYes').hidden=zero===-1;
+ $('supportNo').disabled=zero!==-1;
+ if(!last||last.from!==labSelected){
+  $('supportCalculation').innerHTML=labMath(node.matrix)+'<span>この模様を持つ積の一例</span>';
+  return;
+ }
+ const card=stage().cards[last.cardIndex];
+ const note=last.discovered?'新しい模様を地図に追加':last.to===0?'出発点と同じ模様に戻った':'既知の模様につながった';
+ $('supportCalculation').innerHTML=labMath(card.m)+'<span>×</span>'+labMath(node.matrix)+'<span>=</span>'+
+  labMath(last.result)+supportPattern(last.result)+'<strong class="support-change">'+note+'</strong>';
+}
+$('supportYes').onclick=()=>{
+ const zero=labState().nodes.find(node=>!node.matrix.some(Boolean));
+ if(!zero)return;
+ finishDecision('YES','操作順 '+cardPath(zero.path)+'。このカード列の積は零行列です。');
+};
+$('supportNo').onclick=()=>{
+ const {nodes}=labState();
+ if(nodes.some(node=>!node.matrix.some(Boolean)))return;
+ const firstMissing=nodes.findIndex(node=>node.edges.includes(null));
+ if(firstMissing!==-1){
+  selectSupport(firstMissing);
+  const index=nodes[firstMissing].edges.indexOf(null);
+  decisionMessage(supportName(firstMissing)+'から '+stage().cards[index].id+' を使った先が未確認です。');
+  labButtons.get('support-card-'+index)?.focus();
+  return;
+ }
+ finishDecision('NO','全 '+nodes.length+' 状態で '+(nodes.length*stage().cards.length)+' 本の行き先を確認しました。どのカードでも地図の中に留まり、全消灯は含まれません。');
+};
+function chooseDiagonal(position,index){
+ labSelected=position;
+ if(index!==undefined){
+  const state=labState(), picks=state.picks.slice();
+  if(picks[position]!==index){
+   picks[position]=index;
+   decisionHistory.push({...state,picks});
+  }
+ }
+ renderDecision();
+}
+function triangleCube(m){
+ const points=cubeCorners.map(corner=>[0,3,6].map(start=>
+  corner.reduce((sum,value,i)=>sum+m[start+i]*BigInt(value),0n)));
+ const extent=points.flat().reduce((max,value)=>{
+  const magnitude=value<0n?-value:value;
+  return magnitude>max?magnitude:max;
+ },1n);
+ const unit=value=>Number(1000n*value/extent)/1000;
+ const project=([x,y,z])=>[126+50*x-26*y,132-13*x-24*y-68*z];
+ const axes=[[1.4,0,0],[0,1.4,0],[0,0,1.4]].map(project);
+ let drawing=axes.map(([x,y],i)=>'<path d="M126 132L'+x+' '+y+'" stroke="#a4b4aa"/><text x="'+(x+3)+'" y="'+(y-4)+'" fill="#486359" font-size="12">e'+(i+1)+'</text>').join('');
+ if(m.some(Boolean)){
+  const vertices=points.map(point=>project(point.map(unit)));
+  drawing+=cubeFaces.map(face=>'<polygon points="'+face.map(i=>vertices[i].join(',')).join(' ')+'" fill="#68c7a9" fill-opacity=".12"/>').join('');
+  drawing+=cubeEdges.map(([i,j])=>'<path d="M'+vertices[i].join(' ')+'L'+vertices[j].join(' ')+'" fill="none" stroke="#087865" stroke-width="2.5" stroke-linecap="round"/>').join('');
+ }else drawing+='<circle cx="126" cy="132" r="5" fill="#087865"/>';
+ $('triangleImage').innerHTML=drawing;
+}
+function renderTriangle(){
+ const {product,path,picks,block,runs}=labState();
+ const cards=stage().cards;
+ const r=rank(product), shape=['原点','直線','平面','空間全体'][r];
+ $('triangleRank').textContent='像：'+shape+' ／ 階数 '+r+
+  (product[0]===0n&&product[4]===0n&&product[8]===0n?' ／ 全対角が零':'');
+ $('triangleImage').setAttribute('aria-label','単位立方体の像：'+shape);
+ triangleCube(product);
+ const rows=[0,1,2].map(row=>'<mtr>'+[0,1,2].map(col=>
+  '<mtd'+(row===col&&row===labSelected?' class="active-diagonal"':'')+'>'+mathNumber(product[3*row+col])+'</mtd>').join('')+'</mtr>').join('');
+ $('triangleProduct').innerHTML='<math><mi>P</mi><mo>=</mo><mo>[</mo><mtable>'+rows+'</mtable><mo>]</mo></math>'+
+  (labSelected===null?'':'<span>第'+(labSelected+1)+'対角の現在値 '+nstr(product[4*labSelected])+'</span>');
+ $('triangleHistory').textContent=(path.length?'操作順 '+cardPath(path):'単位行列から出発')+(block?' ／ 同じ列を '+runs+' 回適用':'');
+ const table=document.createElement('table');table.className='triangle-table';
+ table.innerHTML='<thead><tr><th scope="col">位置</th>'+cards.map(({id})=>'<th scope="col">'+id+'</th>').join('')+'</tr></thead>';
+ const body=document.createElement('tbody');
+ for(let position=0;position<3;position++){
+  const row=document.createElement('tr');
+  if(position===labSelected)row.className='selected-row';
+  const heading=document.createElement('th');heading.setAttribute('scope','row');
+  const focus=labButton('第'+(position+1)+'対角',()=>chooseDiagonal(position),'position-'+position);
+  focus.setAttribute('aria-pressed',String(position===labSelected));
+  heading.append(focus);row.append(heading);
+  cards.forEach(({id,m},index)=>{
+   const cell=document.createElement('td');
+   const value=m[4*position];
+   const button=labButton(nstr(value),()=>chooseDiagonal(position,index),'diagonal-'+position+'-'+index);
+   if(value===0n)button.className='zero-entry';
+   button.setAttribute('aria-label','第'+(position+1)+'対角に '+id+' を選ぶ。値 '+nstr(value));
+   button.setAttribute('aria-pressed',String(picks[position]===index));
+   cell.append(button);row.append(cell);
+  });
+  body.append(row);
+ }
+ table.append(body);
+ $('triangleTable').replaceChildren(table);
+ $('triangleSelection').textContent='カード列 '+picks.map(i=>i===null?'未選択':cards[i].id).join(' → ');
+ $('triangleNo').disabled=labSelected===null||r===0;
+ $('triangleApply').disabled=r===0;
+ $('triangleRepeat').disabled=!block||r===0;
+ $('triangleRepeat').textContent=block?'同じ列（'+cardPath(block)+'）をもう一度使う':'同じ列をもう一度使う';
+ $('triangleCards').replaceChildren(...cards.map(({id,m},i)=>{
+  const button=labButton(id,()=>applyTriangle([i]),'triangle-card-'+i);
+  button.innerHTML='<span class="lab-card-label">'+id+' を掛ける</span>'+labMath(m);
+  button.disabled=r===0;
+  return button;
+ }));
+}
+function applyTriangle(indices,startOver=false,repeat=false){
+ const state=labState();
+ if(rank(state.product)===0)return;
+ const product=indices.reduce((acc,i)=>mul(stage().cards[i].m,acc),startOver?I3:state.product);
+ const path=[...(startOver?[]:state.path),...indices];
+ const block=startOver?indices:repeat?state.block:null;
+ const runs=startOver?1:repeat?state.runs+1:0;
+ decisionHistory.push({...state,product,path,block,runs});
+ renderDecision();
+ if(rank(product)===0)finishDecision('YES','操作順 '+cardPath(path)+'。立方体の像は原点だけになりました。');
+}
+$('triangleApply').onclick=()=>{
+ const {picks}=labState();
+ const missing=picks.findIndex((index,position)=>index===null||stage().cards[index].m[4*position]!==0n);
+ if(missing!==-1){
+  chooseDiagonal(missing);
+  decisionMessage('第'+(missing+1)+'対角を零にするカードを表から選んでください。');
+  labButtons.get('position-'+missing)?.focus();
+  return;
+ }
+ applyTriangle(picks,true);
+};
+$('triangleRepeat').onclick=()=>{
+ const {block}=labState();
+ if(block)applyTriangle(block,false,true);
+};
+$('triangleNo').onclick=()=>{
+ if(labSelected===null||rank(labState().product)===0)return;
+ const eraser=stage().cards.find(({m})=>m[4*labSelected]===0n);
+ if(eraser){
+  decisionMessage(eraser.id+' の第'+(labSelected+1)+'対角は 0 です。このカードでその位置を消せます。');
+  return;
+ }
+ finishDecision('NO','第'+(labSelected+1)+'対角はどのカードでも非零です。積でもこの位置は非零なので、零積は存在しません。');
+};
+
+// Each domino supplies an ordinary matrix and a marked version with 1 at the start of its lower word.
+const extractionCards=[
+ {...gateCard,label:'ゲート B'},
+ ...[false,true].flatMap(marked=>dominoTiles.map(({name,upper,lower})=>({
+  id:name+(marked?'★':''),label:'ドミノ '+name+(marked?' 開始用':' 普通版'),
+  upper,lower,codedLower:(marked?'1':'')+lower,marked,
+  m:wordMatrix(upper,(marked?'1':'')+lower)
+ })))
+];
+const extractionExample=[2,0,0,2,0,3,2,0,3,4,0,1];
+const extractionLimit=20;
+let extractionProduct=[], extractionHistory=[], freeExtraction=[];
+const extractionState=()=>extractionHistory.at(-1);
+const factorProduct=indices=>indices.reduce((product,i)=>mul(product,extractionCards[i].m),I3);
+function gatePositions(indices){
+ return indices.flatMap((card,index)=>card===0?[index]:[]);
+}
+function checkGateInterval(indices){
+ const cards=indices.map(index=>extractionCards[index]);
+ const upper=cards.map(card=>card.upper).join('');
+ const lower=cards.map(card=>card.lower).join('');
+ const encodedLower=cards.map(card=>card.codedLower).join('');
+ const product=factorProduct(indices);
+ const sandwich=mul(mul(gateCard.m,product),gateCard.m);
+ return {upper,lower,encodedLower,sandwich,coefficient:sandwich[0]};
+}
+function openExtract(){
+ freeExtraction=[];
+ $('extractMatrices').open=false;
+ $('extractProof').open=false;
+ $('extractSandbox').open=false;
+ loadExtraction(extractionExample);
+ renderFreeExtraction();
+ navigation();
+}
+function loadExtraction(indices){
+ extractionProduct=indices.slice();
+ extractionHistory=[{cuts:[],choice:null,witness:null}];
+ $('extractCardMatrices').innerHTML=extractionCards.map(({id,m})=>'<span><strong>'+id+'</strong> '+labMath(m)+'</span>').join('');
+ $('extractTotal').innerHTML='<p>表示順に掛けた積</p><div class="equation"><math display="block">'+mathMatrix(factorProduct(indices))+'</math></div>';
+ renderExtraction();
+}
+function undoExtract(){
+ if(extractionHistory.length>1)extractionHistory.pop();
+ renderExtraction();
+}
+function extractionToken(index){
+ const card=extractionCards[index];
+ return '<span class="extract-token'+(index===0?' gate':card.marked?' marked':'')+'">'+card.id+'</span>';
+}
+function selectExtractionCard(position){
+ if(extractionProduct[position]!==0){
+  $('extractHint').textContent='カード '+(position+1)+' はドミノです。区切りにはゲート B を選びます。';
+  return;
+ }
+ const {cuts}=extractionState();
+ const adding=!cuts.includes(position);
+ const next=adding?[...cuts,position]:cuts.filter(cut=>cut!==position);
+ extractionHistory.push({cuts:next,choice:null,witness:null});
+ renderExtraction();
+ if(adding&&next.length===gatePositions(extractionProduct).length)$('extractIntervalTitle').focus();
+ else $('extractStrip').children[position].focus();
+}
+function renderExtraction(){
+ const {cuts,choice,witness}=extractionState();
+ const gates=gatePositions(extractionProduct);
+ const ready=cuts.length===gates.length;
+ $('extractHint').textContent='';
+ $('extractCutCount').textContent='選んだゲート '+cuts.length+' / '+gates.length+' 枚';
+ $('extractIntervals').hidden=!ready;
+ $('extractWin').hidden=witness===null;
+ $('extractMore').hidden=witness===null;
+ $('undo').disabled=extractionHistory.length<2;
+ $('reset').disabled=false;
+ $('extractStrip').replaceChildren(...extractionProduct.map((index,position)=>{
+  const card=extractionCards[index], gate=index===0;
+  const button=document.createElement('button');
+  button.type='button';
+  const inInterval=choice!==null&&position>=gates[choice]&&position<=gates[choice+1];
+  button.className='extract-card'+(gate?' gate':'')+(inInterval?' in-interval':'');
+  button.innerHTML=card.id+'<small>'+(position+1)+'</small>';
+  button.setAttribute('aria-label',(position+1)+'番目、'+card.label);
+  if(gate)button.setAttribute('aria-pressed',String(cuts.includes(position)));
+  button.onclick=()=>selectExtractionCard(position);
+  return button;
+ }));
+ $('extractChoices').replaceChildren(...(ready?gates.slice(0,-1).map((left,i)=>{
+  const right=gates[i+1], indices=extractionProduct.slice(left+1,right);
+  const button=document.createElement('button');
+  button.type='button';
+  button.innerHTML='<strong>区間 '+(i+1)+'</strong> <small>（'+(left+1)+'番 ↔ '+(right+1)+'番）</small><br>'+
+   extractionToken(0)+' '+(indices.length?indices.map(extractionToken).join(' '):'<span class="muted">空</span>')+' '+extractionToken(0);
+  button.setAttribute('aria-pressed',String(choice===i));
+  button.onclick=()=>inspectExtraction(i);
+  return button;
+ }):[]));
+ $('extractCheck').innerHTML=choice===null?'':renderExtractionCheck(
+  extractionProduct.slice(gates[choice]+1,gates[choice+1]));
+ if(witness!==null){
+  const indices=extractionProduct.slice(gates[witness]+1,gates[witness+1]);
+  const {upper}=checkGateInterval(indices);
+  const names=indices.map(index=>extractionCards[index].id.replace('★','')).join(' → ');
+  $('extractSolution').textContent='区間 '+(witness+1)+' から開始記号を除くと、上段も下段も「'+upper+'」です。ドミノ列 '+names+' が取り出せました。';
+ }
+}
+function inspectExtraction(interval){
+ const state=extractionState(), gates=gatePositions(extractionProduct);
+ if(state.cuts.length!==gates.length||interval<0||interval>=gates.length-1)return;
+ const indices=extractionProduct.slice(gates[interval]+1,gates[interval+1]);
+ const {upper,lower,coefficient}=checkGateInterval(indices);
+ const solved=indices.length>0&&coefficient===0n&&upper===lower;
+ extractionHistory.push({...state,choice:interval,witness:solved?interval:state.witness});
+ renderExtraction();
+ if(solved){
+  completed.add(stageIndex);
+  navigation();
+  $('extractWinTitle').focus();
+ }else $('extractChoices').children[interval].focus();
+}
+function renderExtractionCheck(indices){
+ const {upper,lower,encodedLower,sandwich,coefficient}=checkGateInterval(indices);
+ const upperCode='1'+upper;
+ const firstMarker=encodedLower.indexOf('1');
+ const note=indices.length===0?'空の区間では M = I。ゲートを2枚続けても B² = B なので零化しません。':
+  coefficient===0n?'係数が0です。下段の先頭にある開始記号を外すと、ドミノの上下が一致します。':
+  firstMarker===-1?'下段に開始記号がありません。比較する上段には先頭に 1 があるので、一致しません。':
+  firstMarker>0||encodedLower.lastIndexOf('1')!==firstMarker?'下段の開始記号が「先頭に一つだけ」になっていません。この区間では零化しません。':
+  '開始記号の位置はそろっていますが、その後の文字列が違います。別の区間を調べましょう。';
+ const numeral=word=>word?'<msub><mrow><mo>(</mo><mn>'+word+'</mn><mo>)</mo></mrow><mn>4</mn></msub>':'<mn>0</mn>';
+ return '<div class="word-board"><strong>ゲートが比較する上段</strong><div class="word-row">'+wordDigits(upperCode)+'</div>'+
+  '<strong>ゲートが比較する下段</strong><div class="word-row">'+wordDigits(encodedLower)+'</div></div>'+
+  '<div class="equation" tabindex="0"><math display="block"><mi>λ</mi><mo>=</mo>'+numeral(upperCode)+'<mo>−</mo>'+numeral(encodedLower)+'<mo>=</mo>'+mathNumber(coefficient)+'</math></div>'+
+  '<div class="equation" tabindex="0"><math display="block"><mi>B</mi><mi>M</mi><mi>B</mi><mo>=</mo><mi>λ</mi><mi>B</mi><mo>=</mo>'+mathMatrix(sandwich)+'</math></div>'+
+  '<p class="extract-check-note">'+note+'</p>'+
+  (coefficient===0n?'<p>開始記号を外した上下の語：<strong>'+upper+' = '+lower+'</strong></p>':'');
+}
+function renderFreeExtraction(){
+ const full=freeExtraction.length>=extractionLimit;
+ $('extractPalette').replaceChildren(...extractionCards.map(({id,label},index)=>{
+  const button=document.createElement('button');
+  button.type='button';
+  button.textContent=id+' を足す';
+  button.setAttribute('aria-label',label+' を右端に足す');
+  button.disabled=full;
+  button.onclick=()=>{
+   freeExtraction.push(index);
+   renderFreeExtraction();
+   if(freeExtraction.length===extractionLimit)$('extractFreeUndo').focus();
+   else $('extractPalette').children[index].focus();
+  };
+  return button;
+ }));
+ $('extractFreeStrip').innerHTML=freeExtraction.length?freeExtraction.map(extractionToken).join(' '):'<span class="muted">カード列は空です。</span>';
+ const product=factorProduct(freeExtraction), zero=rank(product)===0;
+ $('extractFreeResult').innerHTML='<strong>'+(zero?'積は零行列':freeExtraction.length?'積は非零':'空の積は単位行列')+'</strong>'+
+  '<div class="equation"><math display="block">'+mathMatrix(product)+'</math></div>';
+ $('extractFreeUse').hidden=!zero;
+ $('extractFreeUndo').disabled=!freeExtraction.length;
+ $('extractFreeReset').disabled=!freeExtraction.length;
+}
+$('extractFreeUndo').onclick=()=>{freeExtraction.pop();renderFreeExtraction()};
+$('extractFreeReset').onclick=()=>{freeExtraction=[];renderFreeExtraction()};
+$('extractFreeUse').onclick=()=>{
+ if(rank(factorProduct(freeExtraction))!==0)return;
+ loadExtraction(freeExtraction);
+ $('extractTitle').focus();
+};
+
+window.addEventListener('hashchange',()=>route(true));
+route();
+</script>
+</body></html>
