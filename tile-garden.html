@@ -363,6 +363,9 @@ table.ev{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed;m
 .sevtree{margin:10px 0 4px;border:1px solid var(--rule);border-radius:10px;padding:6px 8px;background:var(--paper)}
 .sevtree .sthead{margin:0 0 2px;text-align:left}
 #sev-tb tr[data-sn]:hover td{background:var(--head-soft)}
+.newbie{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 18px;padding:12px 16px;border:1px solid var(--rule);border-left:4px solid var(--head);border-radius:10px;background:var(--panel)}
+.newbie p{margin:0;font-size:15px;flex:1;min-width:220px}
+.newbie button{border-color:var(--head);background:var(--head-soft)}
 .msg{min-height:1.7em;margin:10px 0 0;font-size:15px;text-align:center}
 .ghost{position:absolute;left:0;top:0;pointer-events:none;z-index:20;line-height:0;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
 .ghost.fly{transition:transform .22s ease-out,opacity .22s}
@@ -748,7 +751,7 @@ let VIEW='select',STG=null,P=null,G=[],UNDO=[],SEL=null,SELCELL=null,FEAT={},SHO
 function setHash(h){if(location.hash.slice(1)!==h){SUPPRESS=true;location.hash=h}}
 function go(view,arg,fromHash){killGhosts();PROOF=null;if(typeof stopEvAuto==='function')stopEvAuto();if(typeof stopSevAuto==='function')stopSevAuto();$('clear').hidden=true;$('tut').hidden=true;TU=null;if(GD)endGd(true);VIEW=view;
   $('scr-select').hidden=view!=='select';$('scr-stage').hidden=view!=='stage';$('scr-book').hidden=view!=='book';document.body.classList.toggle('stage-on',view==='stage');
-  if(view==='select'){renderSelect();if(!fromHash)setHash('');setTimeout(()=>{if(VIEW==='select')welcome(false)},60)}
+  if(view==='select'){renderSelect();if(!fromHash)setHash('')}
   else if(view==='book'){const b=BOOKS[arg];if(!b||!layerOpen(b.L)||(b.need&&!cleared(b.need)&&!PROG.teacher)){go('select');return}$('bk-title').textContent=b.title;$('bk-body').innerHTML=bookHTML(arg);if(!PROG.books[arg]){PROG.books[arg]=true;saveP()}if(!fromHash)setHash('b-'+arg)}
   else{if(!openStage(arg)){go('select');return}if(!fromHash)setHash('s-'+arg)}
   try{window.scrollTo(0,0)}catch(e){}}
@@ -760,7 +763,7 @@ function stIcon(s){const p=s.P;if(p.srs||p.rw){let g='<svg width="40" height="40
   return g+'</svg>'}
 function renderSelect(){$('progline').textContent='クリア '+STAGES.filter(s=>cleared(s.id)).length+' / '+STAGES.length;
   const nx=nextStage();
-  $('layers').innerHTML=LAYERS.map(L=>{
+  $('layers').innerHTML=((!PROG.tut.rules&&!cleared('1-1'))?'<div class="newbie"><p><b>はじめての方へ</b>　まずは第 1 層の 1-1 から．遊び方の説明は，ステージに入ると表示される．</p><button type="button" data-stage="1-1">1-1 をはじめる</button></div>':'')+LAYERS.map(L=>{
     if(L.soon){const firstSoon=LAYERS.find(x=>x.soon),last=STAGES[STAGES.length-1],prevOk=cleared(last.id)||PROG.teacher;
       return '<section class="layer locked"><div class="lhead"><span class="lno">第 '+L.id+' 層</span><h2>？？？</h2></div><p class="lintro">'+(L===firstSoon?(prevOk?'準備中．次の版で開く．':last.id+' をクリアすると開く（準備中）．'):'準備中．')+'</p></section>'}
     if(!stageOpen(STAGES.find(s=>s.L===L.id).id)){const f=STAGES.find(s=>s.L===L.id),prev=STAGES[sidx(f.id)-1];return '<section class="layer locked"><div class="lhead"><span class="lno">第 '+L.id+' 層</span><h2>？？？</h2></div><p class="lintro">'+prev.id+' をクリアすると開く．</p></section>'}
@@ -1468,7 +1471,7 @@ const TUTORIALS={
     ()=>'<h3>四辺に色のある正方形</h3><p>ワンのタイルは，四つの辺に色が付いた正方形．回転させずに使う．</p><div class="demo">'+tileSVG([0,1,2,3],64,PROG.sym)+tileSVG([2,2,0,1],64,PROG.sym)+tileSVG([1,0,1,0],64,PROG.sym)+'</div>',
     ()=>'<h3>隣り合う辺の色を合わせる</h3><p>並べたタイルは，隣り合う辺の色がそろっていなければならない．</p><div class="demo">'+pairHTML([0,1,2,3],[2,2,0,1],true)+pairHTML([0,1,2,3],[1,2,0,3],false)+'<p class="cap">左：境目が朱と朱でそろっている．右：朱と紫で食い違っている．</p></div>',
     ()=>'<h3>額縁と，何度でも使えるタイル</h3><p>庭のまわりには色の付いた額縁がある．外側の辺は額縁の色と合わせる．手持ちのタイルは減らないので，同じタイルを何度でも使ってよい．すべてのマスを埋めればクリア．</p>',
-    ()=>'<h3>ステージを進む</h3><p>ステージをクリアすると，次のステージが開く．小さな額縁の庭から始めて，やがて額縁のない，果てのない平面へ進んでいく．</p><p>まずは 1-1 から．</p>']},
+    ()=>'<h3>ステージを進む</h3><p>ステージをクリアすると，次のステージが開く．小さな額縁の庭から始めて，やがて額縁のない，果てのない平面へ進んでいく．</p><p>さっそく，この 1-1 から始めよう．</p>']},
   place:{kicker:'操作',title:'タイルの置き方',pages:[
     ()=>'<h3>マスへドラッグする</h3><p>手持ちのタイルを，庭のマスへドラッグして置く．</p><div class="demo"><span class="mover" style="line-height:0">'+tileSVG([0,1,2,3],60,PROG.sym)+'</span><span class="dslot" style="width:64px;height:64px;border:2px dashed var(--rule-strong);border-radius:4px;margin-left:60px"></span></div>',
     ()=>'<h3>重ねると，辺の合否が分かる</h3><p>マスに重ねると，合う辺は緑，合わない辺は赤で示される．合わない辺があるタイルは置けずに手元へ戻る．まだ空いている隣の辺は，あとで合わせればよい．</p><div class="demo">'+pairHTML([0,1,2,3],[2,2,0,1],true)+pairHTML([0,1,2,3],[1,2,0,3],false)+'</div>',
@@ -1592,7 +1595,7 @@ $('gd-next').addEventListener('click',()=>{if(!GD)return;if(GD.i<GD.steps.length
 $('gd-skip').addEventListener('click',()=>endGd());
 window.addEventListener('resize',posGd);
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!$('tut').hidden)closeTu(true);else if(GD)endGd();else if(!$('clear').hidden)$('clear').hidden=true});
-function stageTutIds(st){const ids=[];if(st.L===5)ids.push('case5');if(st.L===6)ids.push('case6');if(st.id==='1-1')ids.push('place');if(st.id==='1-4')ids.push('trial');if(st.newf&&TUTORIALS[st.newf])ids.push(st.newf);return ids}
+function stageTutIds(st){const ids=[];if(st.L===5)ids.push('case5');if(st.L===6)ids.push('case6');if(st.id==='1-1')ids.push('rules','place');if(st.id==='1-4')ids.push('trial');if(st.newf&&TUTORIALS[st.newf])ids.push(st.newf);return ids}
 function runTutorials(list,force){const todo=force?list.slice():list.filter(id=>!PROG.tut[id]);const step=()=>{if(!todo.length||VIEW!=='stage')return;const id=todo.shift();showTutorial(id,skipped=>{const fin=()=>{PROG.tut[id]=true;saveP();step()};if(skipped)fin();else runGuide(id,fin)},{finalLabel:'やってみる'})};step()}
 function stageIntro(){if(STG)runTutorials(stageTutIds(STG),false)}
 $('s-help').addEventListener('click',()=>{if(STG)runTutorials(stageTutIds(STG),true)});
