@@ -354,6 +354,17 @@ table.ev{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed;m
 .stopt.expect{box-shadow:0 0 0 3px var(--ok);background:var(--ok-soft);border-color:var(--ok)}
 @media (prefers-reduced-motion: no-preference){@keyframes expp{0%,100%{box-shadow:0 0 0 3px var(--ok)}50%{box-shadow:0 0 0 6px var(--ok-soft)}}.stopt.expect{animation:expp 1.4s infinite}}
 .cpic{margin:10px 0 0;font-family:var(--font-mono)}
+.hypfig{display:flex;flex-direction:column;align-items:center;gap:4px;width:150px;padding:10px;border-radius:12px;border:1px solid var(--rule);background:var(--panel);font-size:12px;text-align:center;line-height:1.5}
+.hypfig b{font-size:13px}.hypfig.a{border-color:#F09595}.hypfig.b{border-color:#5DCAA5}.hypfig.c{border-color:#AFA9EC}
+.cp-list{font-size:13px;line-height:1.8;text-align:left;width:100%}
+.cpz{zoom:.72;max-width:100%}
+@media (prefers-reduced-motion: no-preference){@keyframes fgshift{0%,15%{transform:translateX(0)}45%,100%{transform:translateX(var(--sx))}}.fg-shiftov{animation:fgshift 6s ease-in-out infinite}@keyframes fgbar{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}.fg-bar{transform-origin:left;animation:fgbar 1.6s ease-out both}@keyframes fgpulse{0%,100%{stroke-width:1.6}50%{stroke-width:3.2}}.fg-pulse{animation:fgpulse 1.6s infinite}}
+.cpsnap{max-height:420px;overflow:hidden;border:1px solid var(--rule);border-radius:10px;padding:8px;background:var(--paper);font-family:var(--font-ui);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.cpsnap .garden{transform-origin:top center}
+.cpsnap .cmaps{width:100%}
+.cpsnap .wkver{width:100%;font-size:13px}
+.wkclear{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--ok-soft);display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.wkclear button{border-color:var(--ok)}
 .cp-h{font-family:var(--font-ui);font-size:12px;color:var(--graphite);margin-bottom:4px}
 .cp-stack{display:flex;flex-direction:column;align-items:center;gap:2px;max-height:260px;overflow:hidden}
 .cp-row{font-size:15px;padding:1px 14px;border-radius:6px;min-width:150px;text-align:center}
@@ -366,6 +377,93 @@ table.ev{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed;m
 .newbie{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 18px;padding:12px 16px;border:1px solid var(--rule);border-left:4px solid var(--head);border-radius:10px;background:var(--panel)}
 .newbie p{margin:0;font-size:15px;flex:1;min-width:220px}
 .newbie button{border-color:var(--head);background:var(--head-soft)}
+.rleg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;margin:0 0 4px;align-items:center}
+.rleg span{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono)}
+.rleg i{display:inline-block;width:18px;height:4px;border-radius:2px}
+.rleg .hint{font-family:var(--font-ui)}
+.treewrap{position:relative}
+.treetip{position:absolute;left:6px;top:6px;max-width:300px;background:var(--panel);border:1.5px solid var(--head);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.7;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.sevpath{min-height:30px;margin-top:6px;padding:6px 10px;border-radius:8px;background:var(--panel);font-family:var(--font-mono);font-size:13px;line-height:1.9}
+.sevpath .hint{font-family:var(--font-ui)}
+.rtag{display:inline-block;font-size:11px;padding:0 6px;border-radius:8px;color:#fff;margin:0 4px}
+.evvis{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.mgd{display:inline-grid;line-height:0;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.mgc{display:block;line-height:0}
+.mgc.emp{background:var(--paper)}
+.mgc.stuck{background:var(--broken-soft);box-shadow:inset 0 0 0 2px var(--broken)}
+@media (prefers-reduced-motion: no-preference){@keyframes mgin{0%{opacity:0}100%{opacity:1}}.mgc{animation:mgin .2s ease-out both}}
+.trb{display:inline-flex;flex-wrap:wrap;gap:3px;align-items:flex-end;max-width:120px}
+.tbx{display:inline-block;border:1px solid var(--rule-strong);background:var(--paper);position:relative;border-radius:1px}
+.tbx::after{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 45%,var(--broken) 45%,var(--broken) 55%,transparent 55%)}
+.tbx.ok{border-color:var(--ok);background:var(--ok-soft)}
+.tbx.ok::after{display:none}
+.evcost{display:flex;align-items:center;gap:6px;margin-top:3px}
+.costbar{display:inline-block;width:70px;height:6px;border-radius:3px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule)}
+.costbar span{display:block;height:100%;border-radius:3px;background:var(--indigo)}
+.cmaps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.cmap{border:1px solid var(--rule);border-radius:10px;padding:6px 8px;background:var(--panel)}
+.cmap h6{margin:0;font-size:12px}
+.cmap p{margin:2px 0 0;font-size:12px;line-height:1.5;color:var(--graphite)}
+.wkpred{margin:8px 0;padding:8px 10px;border-radius:10px;background:var(--head-soft);text-align:center}
+.linkish{min-height:0;border:none;background:none;text-decoration:underline;font-size:12px;color:var(--graphite);padding:2px}
+.wkmaster{margin-top:10px;padding:8px 12px;border-radius:10px;border:1px dashed var(--indigo);font-size:13px;line-height:1.7}
+.mono{font-family:var(--font-mono)}
+@media (max-width:759px){.cmaps{grid-template-columns:1fr}}
+.wkch{font-size:14px;line-height:1.7;margin:4px 0 10px;padding:8px 12px;border-radius:10px;background:var(--paper);border-left:4px solid var(--head)}
+.wktiles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:6px 0}
+.wktw{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--graphite)}
+.wktw polygon:hover{opacity:.82}
+.wkrun{border-color:var(--head);background:var(--head-soft);font-weight:700}
+.wkev{margin-top:8px}
+.wkver{margin-top:8px;padding:10px 12px;border-radius:10px;font-size:14px;line-height:1.7;background:var(--paper)}
+.wkver.r{background:var(--broken-soft)}.wkver.g{background:var(--ok-soft)}
+.wkver .mono{font-family:var(--font-mono);font-size:13px}
+.wkstars{font-size:18px;letter-spacing:2px;color:#EF9F27}.wkstars .off{color:var(--rule-strong)}
+.wkrec{font-size:14px;margin:10px 0 0;line-height:1.7}
+.rwplay{margin:8px 0;padding:8px;border:1px solid var(--rule);border-radius:10px;background:var(--paper)}
+.rwlist{display:flex;flex-direction:column;gap:2px}
+.rwli{display:grid;grid-template-columns:76px minmax(0,1fr) 64px;align-items:center;gap:6px;border-bottom:1px solid var(--rule);padding:2px 0}
+.rwli:last-child{border-bottom:none}
+.rwln{font-size:12px;color:var(--graphite);line-height:1.3;text-align:right}
+.rwlr{font-family:var(--font-mono);font-size:11px}
+.rwlw svg{max-height:84px}
+.rwlc{font-size:12px;text-align:left}
+.rwlc b{font-size:16px;color:#BA7517}
+.rwcnt{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0}
+.rcn{font-size:12px;padding:3px 10px;border-radius:10px;border:1.5px solid var(--rule-strong);background:var(--panel)}
+.rcn b{font-size:16px;margin-left:6px}
+.rwopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px}
+.rwoptw{border:1px solid var(--rule);border-radius:8px;background:var(--panel)}
+.rwoptw.best{border:2px solid var(--ok);background:var(--ok-soft)}
+.rwoc{font-size:12px;text-align:center;padding:2px 4px 4px}
+.rwgrow{font-size:12px;border-collapse:collapse;margin:6px 0;width:100%}
+.rwgrow th,.rwgrow td{padding:3px 6px;border-bottom:1px solid var(--rule);text-align:center}
+.rwgrow td.mono{text-align:left}
+.rwed{display:flex;flex-direction:column;gap:8px;align-items:center;margin:6px 0}
+.rwrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:16px}
+.rwrow .rnum{display:inline-flex;width:22px;height:22px;border-radius:50%;color:#fff;align-items:center;justify-content:center;font-size:12px}
+.rwrow .arr{font-size:18px;color:var(--graphite)}
+.rwrow .rlab{font-family:var(--font-ui);font-size:13px;color:var(--graphite)}
+.wkword{display:inline-flex;gap:3px;align-items:center}
+.lc.sm{width:32px;height:36px;font-size:17px;cursor:pointer}
+.wkpm{min-height:0;width:26px;height:26px;padding:0;border-radius:50%;font-size:14px;line-height:1}
+.wkempty{font-family:var(--font-ui);font-size:12px;color:var(--graphite)}
+.endbox{max-width:820px}
+.en-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.en-head button{min-height:0;width:34px;height:34px;padding:0;border-radius:50%;font-size:18px;line-height:1}
+.en-tag{display:inline-block;margin-right:8px;padding:1px 10px;border-radius:10px;background:var(--head-soft);color:var(--ink);font-size:12px}
+.en-page{font-size:15px;line-height:1.85;min-height:280px}
+.en-page p{margin:8px 0}
+.en-q{padding:8px 12px;border-left:4px solid var(--indigo);background:var(--indigo-soft);border-radius:0}
+.en-fig{margin:10px 0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border:1px solid var(--rule);border-radius:12px;background:var(--paper)}
+.en-chain{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;max-width:520px}
+.en-node{width:100%;padding:6px 12px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);font-size:14px;line-height:1.5;text-align:left}
+.en-node .en-l{display:inline-block;min-width:64px;font-size:11px;color:var(--graphite)}
+.en-node.on{border:2px solid var(--head);background:var(--head-soft)}
+.en-node.key{font-weight:700}
+.en-arr{font-size:14px;color:var(--graphite);line-height:1}
+.en-thanks{text-align:center;font-size:18px;font-weight:700;margin-top:16px}
+.endcard{border:1.5px solid var(--head);border-radius:14px;padding:14px 16px;background:var(--panel)}
 .msg{min-height:1.7em;margin:10px 0 0;font-size:15px;text-align:center}
 .ghost{position:absolute;left:0;top:0;pointer-events:none;z-index:20;line-height:0;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
 .ghost.fly{transition:transform .22s ease-out,opacity .22s}
@@ -428,7 +526,7 @@ footer{border-top:1px solid var(--rule);padding:18px 20px 28px;font-size:13px;co
   <main class="wrap" id="layers"></main>
   <footer class="wrap">
     <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center">
-      <span>試作版 v0.7（第 1〜6 層）．進み具合はこのブラウザにだけ保存されます．</span>
+      <span>試作版 v0.8（第 1〜7 層）．進み具合はこのブラウザにだけ保存されます．</span>
       <label class="opt"><input type="checkbox" id="teacher">すべて開放（教員用）</label>
       <button type="button" id="resetp">進み具合をリセット</button>
     </div>
@@ -478,6 +576,7 @@ footer{border-top:1px solid var(--rule);padding:18px 20px 28px;font-size:13px;co
           <p class="shstat" id="shstat" aria-live="polite"></p>
           <div class="controls" style="justify-content:center"><button type="button" data-nudge="l" aria-label="左へずらす">←</button><button type="button" data-nudge="r" aria-label="右へずらす">→</button><button type="button" data-nudge="u" aria-label="上へずらす">↑</button><button type="button" data-nudge="d" aria-label="下へずらす">↓</button><button type="button" id="sh-zero">重ねた位置に戻す</button><button type="button" id="sh-scan">全部のずらし方を調べる</button></div>
         </div>
+        <div class="wkbox" id="wkbox" hidden></div>
         <div class="rwbox" id="rwbox" hidden>
           <div class="setbox" id="rw-tabs"></div>
           <p class="rwgoal" id="rw-goal"></p>
@@ -502,7 +601,7 @@ footer{border-top:1px solid var(--rule);padding:18px 20px 28px;font-size:13px;co
           <p class="evq">このタイルの組で，平面を埋められるか判定したい．手がかりは，これまでに集めた二種類の証拠．</p>
           <div class="evset" id="ev-set"></div>
           <div class="evchips"><div class="evchip r"><b>行き止まりの証拠（第 3 層）</b>n×n の庭が埋まらない → 平面は埋められない</div><div class="evchip g"><b>周期の証拠（第 4 層）</b>トーラスが埋まる → 平面を周期的に埋められる</div></div>
-          <table class="ev"><thead><tr><th>n</th><th>n×n の庭は埋まる？</th><th>縦横 n 以下のトーラスはある？</th></tr></thead><tbody id="ev-tb"></tbody></table>
+          <table class="ev"><thead><tr><th>n</th><th>n×n の庭は埋まる？</th><th>縦横 n 以下のトーラスの盤を埋められる？</th></tr></thead><tbody id="ev-tb"></tbody></table>
           <div class="evverdict" id="ev-v"></div>
           <div class="controls" id="ev-choice" hidden style="justify-content:center;margin-top:10px"><button type="button" data-judge="r">仮説 A が正しい（埋められない）</button><button type="button" data-judge="g">仮説 B が正しい（周期的に埋められる）</button><button type="button" data-judge="x">どちらの証拠もない（C の可能性が浮上）</button></div>
           <div class="controls" style="justify-content:center;margin-top:10px"><button type="button" id="ev-judge" hidden>判定する</button><button type="button" id="ev-auto" hidden>残りを自動で調べる（ワンの機械）</button><button type="button" id="ev-reset">この組の表をやり直す</button></div>
@@ -543,7 +642,7 @@ footer{border-top:1px solid var(--rule);padding:18px 20px 28px;font-size:13px;co
     <p class="mnote" id="c-note"></p>
     <div class="ccase" id="c-case" hidden></div>
     <p class="mopen" id="c-open" hidden></p>
-    <div class="controls" style="margin-top:16px"><button type="button" id="c-select">ステージ一覧へ</button><button type="button" id="c-next">次のステージへ</button><button type="button" id="c-stay">庭を眺める</button></div>
+    <div class="controls" style="margin-top:16px"><button type="button" id="c-end" class="wkrun" hidden>エンディングを見る</button><button type="button" id="c-select">ステージ一覧へ</button><button type="button" id="c-next">次のステージへ</button><button type="button" id="c-stay">庭を眺める</button></div>
   </div>
 </div>
 <div class="modal" id="tut" hidden role="dialog" aria-modal="true" aria-labelledby="tu-title">
@@ -552,6 +651,14 @@ footer{border-top:1px solid var(--rule);padding:18px 20px 28px;font-size:13px;co
     <h2 id="tu-title" style="font-family:var(--font-head);font-size:22px;margin:10px 0 2px"></h2>
     <div class="tu-page" id="tu-page"></div>
     <div class="tu-foot"><span class="tu-dots" id="tu-dots" aria-hidden="true"></span><div class="controls"><button type="button" id="tu-skip">スキップ</button><button type="button" id="tu-prev">前へ</button><button type="button" id="tu-next">次へ</button></div></div>
+  </div>
+</div>
+<div class="modal" id="ending" hidden role="dialog" aria-modal="true" aria-labelledby="en-title">
+  <div class="mbox endbox">
+    <div class="en-head"><p class="tu-kicker" id="en-kicker"></p><button type="button" id="en-close" aria-label="エンディングを閉じる">×</button></div>
+    <h2 id="en-title" style="font-family:var(--font-head);font-size:24px;margin:6px 0 4px"></h2>
+    <div class="en-page" id="en-page"></div>
+    <div class="tu-foot"><span class="tu-dots" id="en-dots" aria-hidden="true"></span><div class="controls"><button type="button" id="en-prev">前へ</button><button type="button" id="en-next">次へ</button></div></div>
   </div>
 </div>
 <div class="guide" id="guide" hidden role="dialog" aria-live="polite"><p id="gd-text"></p><div class="controls"><span class="gd-count" id="gd-count"></span><button type="button" id="gd-skip">閉じる</button><button type="button" id="gd-next">次へ</button></div></div>
@@ -575,7 +682,7 @@ const LAYERS=[
   {id:4,name:'周期',intro:'端と端をつなぐ．有限の盤から，平面全体を埋められる証拠を作る．'},
   {id:5,name:'非周期の世界',intro:'どこまでも広げられるのに，決して繰り返さない．二つの証拠のどちらも出てこないタイルの組．'},
   {id:6,name:'計算するタイル',intro:'タイルに計算をさせる．敷き詰めが上へ永遠に続くかは，書換えが永遠に続くかと同じ問題になる．'},
-  {id:7,name:'自分で作る',soon:true}
+  {id:7,name:'自分で作る',intro:'作る側に回る．止まる組でも，止まるまでの長さに上限はあるだろうか．'}
 ];
 const STAGES=[
   {id:'1-1',L:1,name:'一枚だけ',P:{N:1,frame:{top:[0],right:[1],bottom:[2],left:[3]},T:[[0,1,2,1],[0,1,2,3],[2,1,0,3]]},
@@ -642,6 +749,7 @@ STAGES.push(
   {id:'4-5',L:4,name:'ワンの作戦',boss:true,newf:'wang',goal:'classify',P:{torus:true,R:2,C:2,sets:[{name:'組 A',T:S45A},{name:'組 B',T:SDEAD},{name:'組 C（おまけ）',T:SJR,bonus:true}]},
    lesson:'二組のタイルについて，平面を埋められるかを判定しよう．証拠探しの表を上の行から順に調べ，どちらかの証拠が出たら「判定する」．',hints:['組 A は，表を上から順に調べていくと，n = 4 で証拠が出る．','組 B は，ワンの機械に任せてみよう．'],
    done:'ワンの機械は，二種類の証拠を交互に探し，どちらかが見つかった時点で止まる．どんなタイルの組でもこの機械が必ず止まるなら，敷き詰め問題は機械で解けることになる．本当にそうだろうか．表に加わったおまけの組 C で，機械を動かしてみよう．'});
+const S45AREF=null;
 const S44TOR=[[0,5],[2,2],[3,3],[5,4],[2,3]];
 const JRBLOCK=['00011111001110000011','74566666756667457566','3a574572875743a28757','3873a2873873a3873873','99998739999999999999','00001110000000000000','45756667457574574575','a2875743a2873a43a287','873873a3873999a38739','11111111111000111110'].map(r=>[...r].map(c=>parseInt(c,16)));
 STAGES.push(
@@ -686,8 +794,32 @@ STAGES.push(
    quest:{q:'機械は答えを出せるか',why:'二種類の証拠（同じ語の再来，すべての道の行き止まり）を，深さを増やしながら交互に探す．第 4 層のワンの機械の，書換え版．'},
    lesson:'三組の書換えについて，証拠探しの表を調べ，判定を下そう．',hints:['組 A と組 B は，これまでのステージと同じ書換え．','組 C は，語が 1 文字ずつ伸び続ける．'],
    done:'組 C では，同じ語は二度と現れず，行き止まりも来ない．どちらの証拠も出ないまま，書換えは永遠に続く．そして，書換えが永遠に続くかどうかを機械で判定できない書換系が存在する．だから，タイルを上へ永遠に敷けるかどうかも，機械では判定できない．'});
-const BOOKS={compact:{L:3,title:'どこまでも広げられるなら'},torus:{L:4,title:'周期とトーラス'},wang:{L:4,title:'ワンの予想',need:'4-5'},berger:{L:5,title:'周期的にならないタイル'},nostop:{L:5,title:'止まらない機械',need:'5-3'},tilesim:{L:6,title:'タイルは書換えをまねる'},seeded:{L:6,title:'種付きの敷き詰めは決定不能',need:'6-6'}};
-function bookHTML(k){if(k==='tilesim')return '<p>各段の上辺を左から読むと語になるように，タイルを作る．タイルの左右の辺の色は，「書換え前（灰）」「書き換えている所（黄）」「書換え済み（緑）」「文字を送っている（紫）」を表す．</p>'+
+STAGES.push(
+  {id:'7-1',L:7,name:'色の地図を読む',newf:'wk',goal:'wk',P:{wk:{mode:'limit',steps:true,start:[[3,1,3,0],[3,2,3,1],[3,0,3,2]],colors:[0,1,2,3,4],tieV:true,maxT:3,th:[1,2,3],task:'',thText:'★ 行き止まる組にする　★★ 2×2 まで　★★★ 3×3 まで持ちこたえる'}},
+   quest:{q:'地図を見れば，組の運命が分かるか',why:'タイルの左右の色を矢印として描いた「色の地図」から，周期的になるか，どこで行き止まるかを予想できる．'},
+   lesson:'色の地図を読んで答え，予想してから機械で確かめよう．',hints:['横の地図で，青の点から矢印をたどってみよう．','タイル 3 の右の辺を，紫か桃に変えてみよう．'],
+   done:'横の地図の輪の長さがトーラスの幅になり，輪を断ち切ると，一番長い道の長さで行き止まった．地図を読めば，組の運命を理由をもって予想できる．'},
+  {id:'7-2',L:7,name:'一本道で長く',goal:'wk',P:{wk:{mode:'limit',start:[[3,0,3,0]],colors:[0,1,2,3,4],tieV:true,maxT:6,th:[2,3,4],task:'5 色・6 枚以下で，横の地図をできるだけ長い一本道にして，長く持ちこたえる組を作ろう．',thText:'★ 2×2 まで　★★ 3×3 まで　★★★ 4×4 まで埋まって行き止まる',
+     master:{mode:'limit',start:[[0,0,0,0]],colors:[0,1,2],tieV:false,maxT:5,th:[4,5,6],task:'3 色・5 枚以下・上下自由で，できるだけ長く持ちこたえる組を作ろう．',thText:'★ 4×4 まで　★★ 5×5 まで　★★★ 6×6 まで埋まって行き止まる',sample:{label:'3-2 の組を地図で見る',T:SDEAD},teaser:'3 色だけで，4×4 以上持ちこたえる組は作れるだろうか．地図の決まりだけでは届かない工夫が要る．',hint:'3-2 の組は，横の地図にも縦の地図にも輪があるのに，5×5 で行き止まる．輪があっても，横と縦の決まりが「かみ合わない」と行き止まる．',record:'計算機が見つけた記録：3 色・5 枚で，6×6 まで埋まって 7×7 で行き止まる組がある．'}}},
+   quest:{q:'5 色で，どこまで持ちこたえられるか',why:'決まり 1・2：横の地図に輪がなく，一番長い道が矢印 k 本なら，k×k まで埋まって (k+1)×(k+1) で行き止まる．'},
+   lesson:'横の地図で，色から色へ一本道をつなごう．輪ができないように気をつける．',hints:['青 → 朱 → 緑 … と，矢印を一本ずつ足していこう．','5 色なら，一本道は矢印 4 本まで伸ばせる．'],
+   done:'一本道の長さが，そのまま持ちこたえる大きさになった．色を増やせば道も伸びる．では，色を増やさずに長く持ちこたえるには？'},
+  {id:'7-3',L:7,name:'輪で周期を伸ばす',goal:'wk',P:{wk:{mode:'torus',start:[[3,0,3,0]],colors:[0,1,2,3,4],tieV:true,maxT:6,th:[3,4,5],task:'5 色・6 枚以下で，横の地図を一つの長い輪にして，埋められるトーラスの盤（端と端がつながった盤）ができるだけ大きくないと埋まらない組を作ろう．',thText:'縦も横も n マス以下のトーラスの盤を埋められる最小の n が，★ 3　★★ 4　★★★ 5',
+     master:{mode:'torus',start:[[0,0,0,0]],colors:[0,1,2,3],tieV:false,maxT:6,th:[5,6,7],task:'4 色・6 枚以下・上下自由で，埋められる最小のトーラスの盤ができるだけ大きい組を作ろう．',thText:'最小の n が，★ 5　★★ 6　★★★ 7',sample:{label:'4-4 の組を地図で見る',T:S44},teaser:'色を 4 色以下に減らしても，最小の n が 5 以上の組を作れるだろうか．',hint:'4-4 の組は，横の地図の輪は短いのに，縦の決まりと組み合わさって，5 行 × 2 列のトーラスの盤より小さくは埋まらない．',record:'計算機が見つけた記録：3 色・5 枚で，最小の n が 8 の組がある．'}}},
+   quest:{q:'周期は，どこまで長くできるか',why:'決まり 3：横の地図の輪がちょうど長さ p の一つだけで，縦に積めるなら，埋められるトーラスの盤の最小の n は p になる．'},
+   lesson:'横の地図で，色を一周する長い輪を作ろう．余計な近道の輪ができないように気をつける．',hints:['青 → 朱 → 緑 → 青 なら，輪の長さは 3．','5 色を全部通る輪なら，長さは 5．'],
+   done:'輪の長さが，そのまま周期になった．では，色を増やさずに周期を伸ばすには？'},
+  {id:'7-4',L:7,name:'書換えで長く',boss:true,newf:'rwk',goal:'wk',P:{wk:{mode:'rw',steps:true,rules:[['a','bb'],['ab','ba']],word:'aaaa',th:[9,12,16],vmax:2,wmax:4,task:'2 つの規則（右辺 2 文字以下）と 4 文字以下の最初の語で，どの道も必ず止まり，一番長い道ができるだけ長くなる組を作ろう．',thText:'★ 9 回　★★ 12 回　★★★ 16 回',
+     master:{mode:'rw',rules:[['a','bb'],['ab','ba']],word:'aaaaa',th:[35,57,83],vmax:3,wmax:5,task:'制限をゆるめる：右辺 3 文字まで，最初の語 5 文字まで．回数をどこまで伸ばせるだろう．',thText:'★ 35 回　★★ 57 回　★★★ 83 回',teaser:'規則の右辺を 3 文字まで，最初の語を 5 文字まで使えるとしたら，回数はどこまで伸びるだろう．',hint:'考える手がかり：(1) a が変身して作る b を増やす（a → bbb）．(2) 追い越すたびに b を増やす（ab → bba：a が b を一つ追い越すと，b が 1 個増える）．(3) その両方．',record:'計算機が見つけた記録：83 回（a → bbb，ab → bba，[aaaaa]）．'}}},
+   quest:{q:'止まる書換えでも，止まるまでをどこまで延ばせるか',why:'回数を「追い越しの回数」と「変身の回数」に分けて数えると，一番長い道の回数を予想できる．法則を見つけてから，記録に挑む．'},
+   lesson:'問いに答えながら，回数の数え方と法則を見つけよう．最後に自由に記録に挑む．',hints:['オレンジの線（a から右の b へ）を数えよう．','右の a から順に変身させると，左の a ほど多くの b を追い越す．'],
+   done:'回数は「変身の回数 ＋ 追い越しの回数」．a が n 個なら n × n 回．規則を少し強めると，伸び方は倍々にまで変わる．枚数や規則を少し増やすだけで，止まるまでの長さには上限がなくなる．その理由を，書で確かめよう．'});
+const BOOKS={compact:{L:3,title:'どこまでも広げられるなら'},torus:{L:4,title:'周期とトーラス'},wang:{L:4,title:'ワンの予想',need:'4-5'},berger:{L:5,title:'周期的にならないタイル'},nostop:{L:5,title:'止まらない機械',need:'5-3'},tilesim:{L:6,title:'タイルは書換えをまねる'},seeded:{L:6,title:'種付きの敷き詰めは決定不能',need:'6-6'},nobound:{L:7,title:'止まるまでの長さに上限はない',need:'7-2'}};
+function bookHTML(k){if(k==='nobound')return '<p>埋められないタイルの組なら，ワンの機械はいつか必ず行き止まりを見つけて止まる．では，「k 枚の組なら，遅くとも n = f(k) までに止まる」という上限 f を，計算で求められるだろうか．</p>'+
+  '<p>もしそんな f が計算できたら，次の手順で敷き詰め問題が解けてしまう．k 枚の組を受け取ったら f(k) を計算し，n = f(k) までワンの機械を動かす．それまでに行き止まりが出なければ，その組は平面を埋められる．</p>'+
+  '<p>ところが敷き詰め問題は，機械では判定できない（第 6 層）．だから，そのような計算できる上限 f は存在しない．k 枚の組が止まるまでの長さの最大値は，どんな計算できる関数よりも速く伸びうる．</p>'+
+  '<p>これは，チューリング機械で「止まるまでに最も長く動く機械」を競う<b>ビジービーバー</b>と同じ考え方だ．第 7 層の挑戦で記録を伸ばすのが急に難しくなるのは，その影を見ているのかもしれない．</p>';
+  if(k==='tilesim')return '<p>各段の上辺を左から読むと語になるように，タイルを作る．タイルの左右の辺の色は，「書換え前（灰）」「書き換えている所（黄）」「書換え済み（緑）」「文字を送っている（紫）」を表す．</p>'+
   '<p>色の決まりから，一つの段の中では，灰 → 黄 → 緑（または紫）の順にしか進めず，後戻りできない．しかも右端の ] のタイルは，緑か紫の信号を受け取らないと置けない．だから写すだけの段は作れず，どの段も，ちょうど一か所だけ書き換えた語になる．</p>'+
   '<p>語の長さが変わる書換えでは，書き換えた場所より右の文字を，紫の信号が一つずつ運んでずらす．</p>'+
   '<p>こうして，「タイルを上へ永遠に敷けること」と「書換えを永遠に続けられること」が，同じことになる．</p>';
@@ -698,7 +830,7 @@ function bookHTML(k){if(k==='tilesim')return '<p>各段の上辺を左から読�
   '<p>バーガー（1966）は，非周期的な組を初めて作り，敷き詰め問題が決定不能であることを証明した．最初の組は 2 万枚を超え，バーガー自身がのちに 104 枚まで減らした．その後，ロビンソン（1971）が 56 枚，カリ（1996）が 14 枚，クリック（1996）が 13 枚の組を作った．</p>'+
   '<p>2015 年，ジャンデルとラオは計算機による網羅的な探索を使って 11 枚の組を見つけ，しかも 10 枚以下の非周期的な組は存在しないことを示した．第 5 層で使っている 11 枚が，その組だ．</p>'+
   '<p>注意：5-4 の模様 2 がどうずらしても一致しないことは，その一枚の模様の性質にすぎない．「どう埋めても周期的にならない」ことは，ジャンデルとラオが証明した定理による．</p>';
-  if(k==='nostop')return '<p>ワンの機械は，次の三つの場合に分かれる．</p><p>・平面を埋められない組：いつか n×n が埋まらなくなるので（第 3 層），止まる．<br>・周期的に埋められる組：いつかトーラスが見つかるので（第 4 層），止まる．<br>・非周期的な組：n×n はいつまでも埋まり，トーラスは一つもないので，<b>永遠に止まらない</b>．</p>'+
+  if(k==='nostop')return '<p>ワンの機械は，次の三つの場合に分かれる．</p><p>・平面を埋められない組：いつか n×n が埋まらなくなるので（第 3 層），止まる．<br>・周期的に埋められる組：いつか埋められるトーラスの盤が見つかるので（第 4 層），止まる．<br>・非周期的な組：n×n はいつまでも埋まり，どのトーラスの盤も埋められないので，<b>永遠に止まらない</b>．</p>'+
   '<p>ワンの議論を裏返すと，次のことが分かる．もし非周期的な組がなければ，ワンの機械はどんな組でも止まり，敷き詰め問題は機械で解けてしまう．ところがバーガーは，敷き詰め問題が機械では解けない（決定不能）ことを証明した．だから，非周期的な組は必ず存在する．</p>'+
   '<p>では，なぜ敷き詰め問題は機械で解けないのか．その理由は「タイルが計算をまねできる」ことにある．これが次の層の話．</p>';
   if(k==='torus')return '<p>p 行 q 列のトーラスが埋まったら，そのブロックを縦横に並べればよい．トーラスでは右端と左端，下端と上端の辺が合っているので，並べた境目もすべて合う．こうして平面全体が埋まり，しかもその埋め方は，縦に p，横に q ずらしても変わらない（周期的）．</p>'+
@@ -719,7 +851,7 @@ const GOALTXT={torus:'目標：トーラスを埋める',dual:'目標：無理�
 
 // ---------- progress ----------
 const KEY='tile-garden-v1';
-function loadP(){try{const s=localStorage.getItem(KEY);if(s){const v=JSON.parse(s);if(v&&typeof v==='object')return{clear:v.clear||{},tut:v.tut||{},books:v.books||{},fig:v.fig||{},case:v.case||{st:{},clues:[],ans:{}},teacher:!!v.teacher,sym:!!v.sym}}}catch(e){}return{clear:{},tut:{},books:{},fig:{},case:{st:{},clues:[],ans:{}},teacher:false,sym:false}}
+function loadP(){try{const s=localStorage.getItem(KEY);if(s){const v=JSON.parse(s);if(v&&typeof v==='object')return{clear:v.clear||{},tut:v.tut||{},books:v.books||{},fig:v.fig||{},case:v.case||{st:{},clues:[],ans:{}},wk:v.wk||{},teacher:!!v.teacher,sym:!!v.sym}}}catch(e){}return{clear:{},tut:{},books:{},fig:{},case:{st:{},clues:[],ans:{}},wk:{},teacher:false,sym:false}}
 let PROG=loadP();
 function saveP(){try{localStorage.setItem(KEY,JSON.stringify(PROG))}catch(e){}}
 function sidx(id){return STAGES.findIndex(s=>s.id===id)}
@@ -758,9 +890,10 @@ function go(view,arg,fromHash){killGhosts();PROOF=null;if(typeof stopEvAuto==='f
 function routeHash(){const h=location.hash.slice(1);if(h.startsWith('s-'))go('stage',h.slice(2),true);else if(h.startsWith('b-'))go('book',h.slice(2),true);else go('select',null,true)}
 function layerOpen(L){const f=STAGES.find(s=>s.L===L);return !!f&&stageOpen(f.id)}
 window.addEventListener('hashchange',()=>{if(SUPPRESS){SUPPRESS=false;return}routeHash()});
-function stIcon(s){const p=s.P;if(p.srs||p.rw){let g='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">';for(let i=0;i<4;i++)for(let j=0;j<5;j++)g+='<rect x="'+(j*8+1)+'" y="'+(32-i*9)+'" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-opacity="'+(0.25+0.15*i)+'"/>';return g+'</svg>'}const Rr=p.R||p.N,Cc=p.C||p.N,M=Math.max(Rr,Cc),sz=40,c=sz/M;let g='<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 '+sz+' '+sz+'" aria-hidden="true">';
+function stIcon(s){const p=s.P;if(p.wk){return '<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 4H36V36H4Z M4 4L36 36 M36 4L4 36" fill="none" stroke="currentColor" stroke-opacity="0.5"/><path d="M24 30l8-8 4 4-8 8h-4z" fill="currentColor" fill-opacity="0.55"/></svg>'}if(p.srs||p.rw){let g='<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">';for(let i=0;i<4;i++)for(let j=0;j<5;j++)g+='<rect x="'+(j*8+1)+'" y="'+(32-i*9)+'" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-opacity="'+(0.25+0.15*i)+'"/>';return g+'</svg>'}const Rr=p.R||p.N,Cc=p.C||p.N,M=Math.max(Rr,Cc),sz=40,c=sz/M;let g='<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 '+sz+' '+sz+'" aria-hidden="true">';
   for(let i=0;i<Rr;i++)for(let j=0;j<Cc;j++)g+='<rect x="'+(j*c+1)+'" y="'+(i*c+1)+'" width="'+(c-2)+'" height="'+(c-2)+'" rx="2" fill="none" stroke="currentColor" stroke-opacity="0.45"/>';
   return g+'</svg>'}
+function endCard(){return (allCleared()||PROG.teacher)?'<section class="layer endcard"><div class="lhead"><span class="lno">エンディング</span><h2>タイルの庭をふりかえる</h2></div><p class="lintro">これまでのステージが，敷き詰め問題の決定不能性とどうつながっていたのかを，当時の図とともにふりかえる．</p><button type="button" class="wkrun" data-ending="1">エンディングを見る</button></section>':''}
 function renderSelect(){$('progline').textContent='クリア '+STAGES.filter(s=>cleared(s.id)).length+' / '+STAGES.length;
   const nx=nextStage();
   $('layers').innerHTML=((!PROG.tut.rules&&!cleared('1-1'))?'<div class="newbie"><p><b>はじめての方へ</b>　まずは第 1 層の 1-1 から．遊び方の説明は，ステージに入ると表示される．</p><button type="button" data-stage="1-1">1-1 をはじめる</button></div>':'')+LAYERS.map(L=>{
@@ -771,15 +904,15 @@ function renderSelect(){$('progline').textContent='クリア '+STAGES.filter(s=>
       if(!stageOpen(s.id))return '<button type="button" class="st locked" disabled aria-label="'+s.id+'（まだ開いていない）"><span class="stc">'+s.id+'</span><span class="sti">'+stIcon(s)+'</span><span class="stn">？？？</span></button>';
       return '<button type="button" class="st'+(nx&&nx.id===s.id?' next':'')+'" data-stage="'+s.id+'" aria-label="'+s.id+' '+s.name+(cleared(s.id)?'（クリア済み）':'')+'">'+(s.boss?'<span class="boss">ボス</span>':'')+(cleared(s.id)?'<span class="stamp-s"'+(['proof','limit','dual','classify','proveset','nostop','shift','srsloop','srsdead','srsclass'].includes(PROG.clear[s.id])?' style="background:var(--indigo-soft);color:var(--indigo)"':'')+'>'+(['proof','limit','dual','classify','proveset','nostop','shift','srsloop','srsdead','srsclass'].includes(PROG.clear[s.id])?'証':'済')+'</span>':'')+'<span class="stc">'+s.id+'</span><span class="sti">'+stIcon(s)+'</span><span class="stn">'+s.name+'</span></button>'}).join('');
     const books=Object.keys(BOOKS).filter(k=>BOOKS[k].L===L.id).map(k=>(BOOKS[k].need&&!cleared(BOOKS[k].need)&&!PROG.teacher)?'<button type="button" class="st book locked" disabled aria-label="書（まだ読めない）"><span class="stc">書</span><span class="stn">？？？</span></button>':'<button type="button" class="st book" data-book="'+k+'" aria-label="書 '+BOOKS[k].title+'">'+(PROG.books[k]?'':'<span class="stamp-s b-new">New</span>')+'<span class="stc">書</span><span class="stn">'+BOOKS[k].title+'</span></button>').join('');
-    return '<section class="layer"><div class="lhead"><span class="lno">第 '+L.id+' 層</span><h2>'+L.name+'</h2></div><p class="lintro">'+L.intro+'</p><div class="tiles">'+tiles+books+'</div></section>'}).join('');
+    return '<section class="layer"><div class="lhead"><span class="lno">第 '+L.id+' 層</span><h2>'+L.name+'</h2></div><p class="lintro">'+L.intro+'</p><div class="tiles">'+tiles+books+'</div></section>'}).join('')+endCard();
   $('teacher').checked=PROG.teacher}
 $('layers').addEventListener('click',e=>{const s=e.target.closest('[data-stage]');if(s){go('stage',s.dataset.stage);return}const b=e.target.closest('[data-book]');if(b)go('book',b.dataset.book)});
 document.addEventListener('click',e=>{if(e.target.closest('[data-cmd="select"]'))go('select')});
 
 // ---------- stage ----------
-function openStage(id){const st=STAGES.find(s=>s.id===id);if(!st||!stageOpen(id))return false;STG=st;if(st.P.srs||st.P.rw){P={srs:true,R:1,C:1,N:1,T:[],frame:null}}else if(st.P.shift){P={shift:true,R:2,C:2,T:st.P.pats[0].T,frame:null,free:false}}else if(st.P.torus){SETI=0;P=torusP(st,0)}else if(st.P.free)P={free:true,N:st.P.N,R:st.P.N,C:st.P.N,frame:null,T:st.P.T,goalN:st.P.goalN};else{P=st.P;if(P.N){P.R=P.C=P.N}}PROOF=null;FOUND=false;PROVED=false;BASE=null;CLASS={};FEAT=featsFor(st);SHOWN=false;HINTN=0;SEL=null;SELCELL=null;UNDO=[];FILLEDMAX=0;LIMITD=0;BUSY=false;DISP=null;
+function openStage(id){const st=STAGES.find(s=>s.id===id);if(!st||!stageOpen(id))return false;STG=st;if(st.P.wk){P={wk:true,R:1,C:1,N:1,T:[],frame:null}}else if(st.P.srs||st.P.rw){P={srs:true,R:1,C:1,N:1,T:[],frame:null}}else if(st.P.shift){P={shift:true,R:2,C:2,T:st.P.pats[0].T,frame:null,free:false}}else if(st.P.torus){SETI=0;P=torusP(st,0)}else if(st.P.free)P={free:true,N:st.P.N,R:st.P.N,C:st.P.N,frame:null,T:st.P.T,goalN:st.P.goalN};else{P=st.P;if(P.N){P.R=P.C=P.N}}PROOF=null;FOUND=false;PROVED=false;BASE=null;CLASS={};FEAT=featsFor(st);SHOWN=false;HINTN=0;SEL=null;SELCELL=null;UNDO=[];FILLEDMAX=0;LIMITD=0;BUSY=false;DISP=null;
   G=Array.from({length:P.R},()=>Array(P.C).fill(-1));if(st.P.pre)st.P.pre.forEach(([i,j,k])=>{G[i][j]=k});
-  $('s-code').textContent=st.id;$('s-name').textContent=st.name;$('s-goal').textContent=GOALTXT[st.goal||'fill'];$('s-lesson').textContent=st.lesson;renderHints();$('wave').hidden=!FEAT.wave;$('declare').hidden=!FEAT.proof||!!P.free||!!P.torus;$('splitbtn').hidden=!(FEAT.split&&P.torus);$('sizebox').hidden=!(P.torus&&FEAT.size&&!st.P.fixed);$('repbox').hidden=!(P.torus&&FEAT.repeat);$('setbox').hidden=!st.P.sets||st.P.sets.length<2;$('expand').hidden=true;$('tree').hidden=true;$('evid').hidden=!['classify','nostop'].includes(st.goal);if(st.goal==='nostop')$('colboard').insertBefore($('evid'),$('msg'));else $('colresult').insertBefore($('evid'),$('colresult').firstChild);const special=['nostop','shift'].includes(st.goal)||!!st.P.srs||!!st.P.rw;$('stbox').hidden=!st.P.srs;$('rwbox').hidden=!st.P.rw;if(!st.P.rw)RW=null;$('dcards').hidden=true;$('sev').hidden=true;if(!st.P.srs){SR=null;DT=null;SEV=null}document.querySelector('.boardrow').hidden=special;document.querySelector('.toolbar').hidden=special;$('shiftbox').hidden=st.goal!=='shift';$('ev-choice').hidden=true;SH=null;if(st.P.sets){EV={};renderSets();renderEvid()}if(st.goal==='shift')setupShift();if(st.P.srs)setupST(st);if(st.P.rw)setupRW(st);updTorusUI();$('grow').hidden=$('shrink').hidden=$('size').hidden=!P.free;$('machine').hidden=!(FEAT.machine&&P.free);$('limit').hidden=!(FEAT.search&&P.free);updSize();
+  $('s-code').textContent=st.id;$('s-name').textContent=st.name;$('s-goal').textContent=GOALTXT[st.goal||'fill'];$('s-lesson').textContent=st.lesson;renderHints();$('wave').hidden=!FEAT.wave;$('declare').hidden=!FEAT.proof||!!P.free||!!P.torus;$('splitbtn').hidden=!(FEAT.split&&P.torus);$('sizebox').hidden=!(P.torus&&FEAT.size&&!st.P.fixed);$('repbox').hidden=!(P.torus&&FEAT.repeat);$('setbox').hidden=!st.P.sets||st.P.sets.length<2;$('expand').hidden=true;$('tree').hidden=true;$('evid').hidden=!['classify','nostop'].includes(st.goal);if(st.goal==='nostop')$('colboard').insertBefore($('evid'),$('msg'));else $('colresult').insertBefore($('evid'),$('colresult').firstChild);const special=['nostop','shift'].includes(st.goal)||!!st.P.srs||!!st.P.rw||!!st.P.wk;$('wkbox').hidden=!st.P.wk;if(!st.P.wk){WK=null;clearTimeout(WKT)}$('stbox').hidden=!st.P.srs;$('rwbox').hidden=!st.P.rw;if(!st.P.rw)RW=null;$('dcards').hidden=true;$('sev').hidden=true;if(!st.P.srs){SR=null;DT=null;SEV=null}document.querySelector('.boardrow').hidden=special;document.querySelector('.toolbar').hidden=special;$('shiftbox').hidden=st.goal!=='shift';$('ev-choice').hidden=true;SH=null;if(st.P.sets){EV={};renderSets();renderEvid()}if(st.goal==='shift')setupShift();if(st.P.srs)setupST(st);if(st.P.rw)setupRW(st);if(st.P.wk)setupWK(st);updTorusUI();$('grow').hidden=$('shrink').hidden=$('size').hidden=!P.free;$('machine').hidden=!(FEAT.machine&&P.free);$('limit').hidden=!(FEAT.search&&P.free);updSize();
   $('o-sym').checked=PROG.sym;$('s-help').hidden=!stageTutIds(st).length;updNext();
   PROVEDSZ=[];sizeCells();renderAll();$('msg').innerHTML='';updTorusUI();setupFig(st);renderCasePanel();renderGoals();updRes();const tcn=$('trayc');tcn.classList.remove('pulse');void tcn.offsetWidth;tcn.classList.add('pulse');$('splitbtn').textContent='全部の場合を調べる';
   setTimeout(()=>{if(VIEW==='stage'&&STG===st)stageIntro()},80);return true}
@@ -852,9 +985,9 @@ function shakeCell(i,j){const el=cellEl(i,j);if(!el)return;el.classList.remove('
 function complete(kind){kind=kind||'fill';if((kind==='fill'&&!filled())||SHOWN)return;SHOWN=true;renderGoals();if(kind==='fill'){$('garden').classList.add('done');setTimeout(()=>$('garden').classList.remove('done'),700);beep('win')}
   const nxIdx=sidx(STG.id)+1,nxs=STAGES[nxIdx],wasOpen=nxs?stageOpen(nxs.id):true;
   if(!PROG.clear[STG.id]||kind!=='fill'&&PROG.clear[STG.id]==='fill'){PROG.clear[STG.id]=kind;saveP()}updNext();
-  setTimeout(()=>{if(VIEW!=='stage')return;$('c-title').textContent=STG.id+' '+STG.name;$('c-how').textContent=kind==='rw'?'二つの課題で，語の書換えを体験した．':kind==='srs1'?'1 段目を手で敷き，行き止まるまで書き換えた．':kind==='srsloop'?'同じ語が再び現れる積み方を見つけ，そのくり返しが永遠に続くことを確かめた．':kind==='srstall'?STG.P.target+' 段まで敷いた．':kind==='srsdead'?'全部の選び方を調べ，どれも行き止まると示した．':kind==='srsclass'?STG.P.systems.map((x,i)=>x.name+' は'+({loop:'永遠に続く',dead:'どの道も行き止まる',none:'決着がつかない'})[SEV.res[i].judged]).join('，')+'．':kind==='nostop'?'n = '+(STG.P.rows||6)+' まで調べても，A の証拠も B の証拠も出なかった．':kind==='proveset'?STG.P.need.map(k=>k.replace('×',' 行 × ')+' 列').join('と ')+'のトーラスが無理なことを確かめた．':kind==='nostop'?'n = '+(STG.P.rows||6)+' まで調べても証拠は出ず，この表からは判定できないと見極めた．':kind==='shift'?'模様 1 の周期を見つけ，模様 2 はどうずらしても全部は一致しないことを確かめた．':kind==='dual'?'無理な大きさ（'+PROVEDSZ.join('，')+'）を全部の場合を調べて確かめ，'+FOUNDSZ+'のトーラスを見つけた．':kind==='square'?P.R+'×'+P.C+' の正方形のトーラスを作った．':kind==='classify'?STG.P.sets.map((x,i)=>(x.bonus||!CLASS[i])?null:x.name+' は'+(CLASS[i].kind==='periodic'?'周期的に平面を埋められる（'+CLASS[i].how+'）':'平面を埋められない（'+CLASS[i].how+'）')).filter(Boolean).join('．')+'．':kind==='proof'?'確定の手だけで候補 0 のマスを作り，埋められないことを示した．':kind==='limit'?'埋められる最大は '+(LIMITD-1)+'×'+(LIMITD-1)+'．'+LIMITD+'×'+LIMITD+' の埋め方は一つもないと突き止めた．':(P.torus?'トーラスを埋めた．':'庭をすべて埋めた．');$('c-note').textContent=STG.done;
-    let open='';if(nxs&&!wasOpen)open=nxs.id+'「'+nxs.name+'」が開いた．';if(nxs&&!wasOpen&&nxs.L!==STG.L){const L=LAYERS.find(x=>x.id===nxs.L);open='第 '+L.id+' 層「'+L.name+'」が開いた．新しい道具が待っている．'}if(!nxs){const L=LAYERS.find(x=>x.soon);open='第 '+STG.L+' 層をすべてクリアした．第 '+L.id+' 層「'+L.name+'」は準備中．'}if(STG.goal==='classify')open+=(open?' ':'')+'表に，おまけの組 C が加わった．';
-    $('c-open').hidden=!open;$('c-open').textContent=open;renderCaseModal();const pic=clearPic(kind);$('c-pic').hidden=!pic;$('c-pic').innerHTML=pic;$('c-next').hidden=!nxs;if(nxs)$('c-next').textContent='次のステージへ（'+nxs.id+'）';$('clear').hidden=false;(nxs?$('c-next'):$('c-select')).focus()},650)}
+  setTimeout(()=>{if(VIEW!=='stage')return;$('c-title').textContent=STG.id+' '+STG.name;$('c-how').textContent=kind==='wk'?'あなたの記録：'+(wkBest(STG.id)?wkBest(STG.id).label+'（'+'★'.repeat(wkBest(STG.id).stars)+'）':'')+'．このステージは，クリアした後も記録を伸ばせる．':kind==='rw'?'二つの課題で，語の書換えを体験した．':kind==='srs1'?'1 段目を手で敷き，行き止まるまで書き換えた．':kind==='srsloop'?'同じ語が再び現れる積み方を見つけ，そのくり返しが永遠に続くことを確かめた．':kind==='srstall'?STG.P.target+' 段まで敷いた．':kind==='srsdead'?'全部の選び方を調べ，どれも行き止まると示した．':kind==='srsclass'?STG.P.systems.map((x,i)=>x.name+' は'+({loop:'永遠に続く',dead:'どの道も行き止まる',none:'決着がつかない'})[SEV.res[i].judged]).join('，')+'．':kind==='nostop'?'n = '+(STG.P.rows||6)+' まで調べても，A の証拠も B の証拠も出なかった．':kind==='proveset'?STG.P.need.map(k=>k.replace('×',' 行 × ')+' 列').join('と ')+'のトーラスが無理なことを確かめた．':kind==='nostop'?'n = '+(STG.P.rows||6)+' まで調べても証拠は出ず，この表からは判定できないと見極めた．':kind==='shift'?'模様 1 の周期を見つけ，模様 2 はどうずらしても全部は一致しないことを確かめた．':kind==='dual'?'無理な大きさ（'+PROVEDSZ.join('，')+'）を全部の場合を調べて確かめ，'+FOUNDSZ+'のトーラスを見つけた．':kind==='square'?P.R+'×'+P.C+' の正方形のトーラスを作った．':kind==='classify'?STG.P.sets.map((x,i)=>(x.bonus||!CLASS[i])?null:x.name+' は'+(CLASS[i].kind==='periodic'?'周期的に平面を埋められる（'+CLASS[i].how+'）':'平面を埋められない（'+CLASS[i].how+'）')).filter(Boolean).join('．')+'．':kind==='proof'?'確定の手だけで候補 0 のマスを作り，埋められないことを示した．':kind==='limit'?'埋められる最大は '+(LIMITD-1)+'×'+(LIMITD-1)+'．'+LIMITD+'×'+LIMITD+' の埋め方は一つもないと突き止めた．':(P.torus?'トーラスを埋めた．':'庭をすべて埋めた．');$('c-note').textContent=STG.done;
+    let open='';if(nxs&&!wasOpen)open=nxs.id+'「'+nxs.name+'」が開いた．';if(nxs&&!wasOpen&&nxs.L!==STG.L){const L=LAYERS.find(x=>x.id===nxs.L);open='第 '+L.id+' 層「'+L.name+'」が開いた．新しい道具が待っている．'}if(!nxs){const L=LAYERS.find(x=>x.soon);open=L?'第 '+STG.L+' 層をすべてクリアした．第 '+L.id+' 層「'+L.name+'」は準備中．':'すべての層をクリアした．おめでとう！ 第 7 層の挑戦では，これからも記録を伸ばせる．'}if(STG.goal==='classify')open+=(open?' ':'')+'表に，おまけの組 C が加わった．';
+    $('c-open').hidden=!open;$('c-open').textContent=open;$('c-end').hidden=!allCleared();renderCaseModal();const pic=clearPic(kind)||snapPic();$('c-pic').hidden=!pic;$('c-pic').innerHTML=pic;$('c-next').hidden=!nxs;if(nxs)$('c-next').textContent='次のステージへ（'+nxs.id+'）';$('clear').hidden=false;(nxs?$('c-next'):$('c-select')).focus()},650)}
 $('c-select').addEventListener('click',()=>go('select'));
 $('c-next').addEventListener('click',()=>{if(caseNeedsAnswer()){const f=$('c-fb');if(f){f.innerHTML='<span class="ng">先に，手がかりを調査ファイルに綴じよう（上の問いに答える）．</span>'}return}const nxs=STAGES[sidx(STG.id)+1];if(nxs)go('stage',nxs.id)});
 $('c-stay').addEventListener('click',()=>{$('clear').hidden=true;updNext();if(STG&&STG.P&&STG.P.sets)renderSets();if(!$('s-next').hidden)$('s-next').focus()});
@@ -1123,6 +1256,30 @@ function manualDone(){const M=SR.manual,X0=-1,X1=srX1();for(let x=X0;x<=X1;x++)i
   if(!launch)return false;const w=SR.rows[0].word,step={i:launch.x,ri:launch.ri};const [u,v]=SR.R[step.ri];
   M.done=true;SR.rows.push({word:w.slice(0,step.i)+v+w.slice(step.i+u.length),step});SR.fresh=true;
   msg('<span class="ok">1 段目が敷けた．</span>上辺を読むと ['+SR.rows[1].word+']．写すだけの行は作れず，ちょうど一か所 '+u+' → '+v+' と書き換わった．ここからは，書き換える場所を選ぶと自動で敷かれる．');return true}
+function boardSnap(){const Rr=P.R,Cc=P.C,F=P.frame,grid=DISP||G,s=Math.max(18,Math.min(40,Math.floor(300/(Cc+(F?1:0))))),fw=F?Math.max(8,Math.round(s*0.32)):0;
+  const bar=(c,v)=>{const L=CLABEL[c];return '<span style="display:flex;align-items:center;justify-content:center;'+(v?'width:'+fw+'px;height:'+s+'px':'width:'+s+'px;height:'+fw+'px')+'"><span style="display:flex;align-items:center;justify-content:center;'+(v?'width:60%;height:72%':'width:84%;height:'+(L?'100%':'60%'))+';background:'+COLORS[c]+';border-radius:2px;color:'+(L?L[1]:'#fff')+';font:700 '+Math.max(9,Math.round(fw*0.8))+'px var(--font-mono);line-height:1">'+(L?L[0]:'')+'</span></span>'};
+  let h='<div style="display:inline-grid;grid-template-columns:'+(F?fw+'px ':'')+'repeat('+Cc+','+s+'px)'+(F?' '+fw+'px':'')+';line-height:0">';
+  if(F){h+='<span></span>';for(let j=0;j<Cc;j++)h+=bar(F.top[j],false);h+='<span></span>'}
+  for(let i=0;i<Rr;i++){if(F)h+=bar(F.left[i],true);for(let j=0;j<Cc;j++){const k=grid[i][j];let dead=false;if(k<0){try{dead=candsOn(grid,i,j).length===0}catch(e){}}
+      h+='<span style="display:block;width:'+s+'px;height:'+s+'px;box-sizing:border-box;'+(k<0?'border:1px dashed var(--rule-strong);background:'+(dead?'var(--broken-soft);box-shadow:inset 0 0 0 2px var(--broken)':'var(--panel)')+';':'')+'">'+(k>=0?tileSVG(P.T[k],s,PROG.sym):'')+'</span>'}if(F)h+=bar(F.right[i],true)}
+  if(F){h+='<span></span>';for(let j=0;j<Cc;j++)h+=bar(F.bottom[j],false);h+='<span></span>'}
+  h+='</div>';if(P.torus)h='<div style="display:inline-block;line-height:0;outline:2px dashed var(--ok);outline-offset:4px">'+h+'</div><p class="hint" style="margin:8px 0 0">端と端がつながった盤（トーラスの盤）</p>';
+  const empty=grid.flat().filter(k=>k<0).length;if(empty&&grid.flat().some(k=>k>=0)){const d=[];for(let i=0;i<Rr;i++)for(let j=0;j<Cc;j++)if(grid[i][j]<0){try{if(!candsOn(grid,i,j).length)d.push(1)}catch(e){}}if(d.length)h+='<p class="hint" style="margin:6px 0 0">赤いマス：置けるタイルがない（行き止まり）</p>'}
+  return h}
+function snapPic(){const strip=el=>{const c=el.cloneNode(true);c.removeAttribute&&c.removeAttribute('id');c.querySelectorAll('[id]').forEach(x=>x.removeAttribute('id'));c.querySelectorAll('button,input').forEach(b=>{b.setAttribute('tabindex','-1');b.disabled=true});return c.outerHTML};
+  const vis=id=>{const e=$(id);if(!e||e.hidden)return false;let p=e.parentElement;while(p){if(p.hidden)return false;p=p.parentElement}return true};const parts=[];
+  if(STG.P.wk&&WK){if(WK.cfg.mode==='rw')parts.push(['達成したときの結果',WK.rwHTML||'']);else{const res=WK.res?'<div class="wkver '+WK.res.cls+'">'+WK.res.html.replace(/<div class="wkclear">[\s\S]*?<\/div>/,'')+'</div>':'';parts.push(['達成したときの組と結果','<div class="wktiles">'+WK.T.map(t=>tileSVG(t,34,false)).join('')+'</div>'+cmPanel()+res])}}
+  else{const br=document.querySelector('.boardrow');
+    if(STG.goal==='classify'){parts.push(['判定の結果','<div class="cp-list">'+STG.P.sets.map((x,i)=>x.bonus||!CLASS[i]?'':'<div><b>'+x.name+'</b>：'+(CLASS[i].kind==='periodic'?'周期的に埋められる':'平面を埋められない')+'（'+CLASS[i].how+'）</div>').join('')+'</div>'])}
+    if(vis('evid'))parts.push(['証拠探しの表','<div class="cpz">'+strip($('evid').querySelector('table'))+'</div>']);
+    if(vis('tree'))parts.push(['全部の場合を調べた結果','<div class="cpz">'+strip($('tree'))+'</div>']);
+    if(vis('dcards'))parts.push(['全部の選び方を調べた結果','<div class="cpz">'+strip($('dcards'))+'</div>']);
+    if(vis('sev')){parts.push(['三組の判定','<div class="cp-list">'+STG.P.systems.map((x,i)=>'<div><b>'+x.name+'</b>（'+x.R.map(r=>r[0]+'→'+(r[1]||'消す')).join('，')+'，['+x.w+']）：'+({loop:'永遠に続く（同じ語の再来）',dead:'どの道も行き止まる',none:'決着がつかない'})[SEV.res[i].judged]+'</div>').join('')+'</div>']);if($('sev-tree'))parts.push(['語の木（最後に調べた組）','<div class="cpz">'+strip($('sev-tree').querySelector('svg'))+'</div>'])}
+    if(br&&!br.hidden&&$('garden'))parts.unshift(['達成したときの盤',boardSnap()]);
+    if(vis('st-board'))parts.push(['達成したときの盤','<div class="cpz">'+strip($('st-board'))+'</div>']);
+    if(vis('shiftbox')&&$('shwrap'))parts.push(['達成したときの模様',strip($('shwrap'))+'<p class="hint">'+$('shstat').textContent+'</p>']);
+    if(vis('rwbox')&&$('rw-hist'))parts.push(['書換えの記録',strip($('rw-hist'))])}
+  if(!parts.length)return '';return parts.slice(0,3).map(([h,c])=>'<div class="cp-h">'+h+'</div><div class="cpsnap">'+c+'</div>').join('')}
 function clearPic(kind){if(!SR)return '';if(kind==='srsloop'&&SR.loop){const LP=SR.loop,rows=SR.rows;let h='<div class="cp-h">書換えの記録（下から上へ）</div><div class="cp-stack"><div class="cp-row ok">⋮ この先も同じ '+LP.L+' 段が永遠に続く</div>';
     for(let k=rows.length-1;k>=0;k--){const band=k>LP.j?' cyc'+(Math.floor((k-LP.j-1)/LP.L)%2):'';const back=k>LP.j&&(k-LP.j)%LP.L===0?' ↻':'';h+='<div class="cp-row'+band+'"><span class="cp-n">'+(k===0?'種':k)+'</span>['+rows[k].word+']'+back+'</div>'}return h+'</div>'}
   if(kind==='srstall'){const rows=SR.rows;let h='<div class="cp-h">書換えの記録（下から上へ）</div><div class="cp-stack">';for(let k=rows.length-1;k>=0;k--)h+='<div class="cp-row"><span class="cp-n">'+(k===0?'種':k)+'</span>['+rows[k].word+']</div>';return h+'</div>'}return ''}
@@ -1180,30 +1337,41 @@ $('dcards').addEventListener('click',e=>{if(!DT)return;const a=e.target.closest(
 // ---- 6-5: evidence table for rewriting (a Wang-style machine) ----
 $('sev-tb').addEventListener('mouseover',e=>{const tr=e.target.closest('[data-sn]');if(!tr||!SEV)return;const n=+tr.dataset.sn,r=SEV.res[SEV.i];if(n>Math.ceil(r.done.length/2))return;if(SEV.hl!==n){SEV.hl=n;renderSevTree()}});
 $('sev-tb').addEventListener('mouseleave',()=>{if(SEV&&SEV.hl!=null){SEV.hl=null;renderSevTree()}});
-function sevBuild(sys,n){const levels=[[{w:sys.w,anc:new Set(),par:[],st:'open'}]],loops=[];
-  for(let d=1;d<=n;d++){const L=[];for(const nd of levels[d-1]){if(nd.st!=='open')continue;const ch=srSteps(nd.w,sys.R).map(o=>o.w2);if(!ch.length){nd.st='dead';continue}nd.st='exp';
-      for(const c of ch){const anc=new Set(nd.anc);anc.add(nd.w);if(anc.has(c)){loops.push({from:nd,w:c,d});continue}let m=L.find(x=>x.w===c);if(!m){m={w:c,anc:new Set(),par:[],st:'open'};L.push(m)}anc.forEach(a=>m.anc.add(a));if(!m.par.includes(nd))m.par.push(nd)}}
+const RCOL=['#D85A30','#378ADD','#1D9E75'];const RNUM='①②③';
+function sevBuild(sys,n){let id=0;const root={id:id++,w:sys.w,anc:new Set(),par:[],st:'open'},levels=[[root]],loops=[];
+  for(let d=1;d<=n;d++){const L=[];for(const nd of levels[d-1]){if(nd.st!=='open')continue;const ch=srSteps(nd.w,sys.R);if(!ch.length){nd.st='dead';continue}nd.st='exp';
+      for(const c of ch){const anc=new Set(nd.anc);anc.add(nd.w);if(anc.has(c.w2)){loops.push({from:nd,c});continue}let m=L.find(x=>x.w===c.w2);if(!m){m={id:id++,w:c.w2,anc:new Set(),par:[],st:'open'};L.push(m)}anc.forEach(x=>m.anc.add(x));m.par.push({p:nd,c})}}
     levels.push(L);if(!L.length)break}
   levels[levels.length-1].forEach(nd=>{if(nd.st==='open'&&!srSteps(nd.w,sys.R).length)nd.st='dead'});
-  levels.forEach(L=>L.forEach(nd=>{if(nd.st==='open'&&levels.indexOf(L)<n&&!srSteps(nd.w,sys.R).length)nd.st='dead'}));
-  return{levels,loops}}
-function sevTreeSVG(sys,n,hl){const T=sevBuild(sys,n),W=620,LH=52,H=Math.max(80,T.levels.length*LH+(T.loops.length?40:16)),pos=new Map();
+  return{levels,loops,root}}
+function sevTreeSVG(sys,n,hl,selId){const T=sevBuild(sys,n),full=!!sys.full,W=620,LH=full?70:54,H=Math.max(80,T.levels.length*LH+(T.loops.length?44:16)),pos=new Map(),all=T.levels.flat(),sel=selId!=null?all.find(x=>x.id===selId):null,onPath=new Set();
+  if(sel){let x=sel;while(x&&x.par.length){onPath.add(x.id+'<'+x.par[0].p.id);x=x.par[0].p}}
+  const lab=c=>c.u+'→'+(c.v||'（消す）')+'（'+(c.i+1)+(c.u.length>1?'〜'+(c.i+c.u.length):'')+'）';
   let g='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="語の木（深さ '+n+' まで）"><defs><marker id="sva" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#3B6D11" stroke-width="1.5"/></marker></defs>';
   T.levels.forEach((L,d)=>{const y=22+d*LH;if(hl===d)g+='<rect x="0" y="'+(y-20)+'" width="'+W+'" height="40" rx="8" fill="var(--head-soft)"/>';L.forEach((nd,k)=>pos.set(nd,{x:60+(W-80)*(k+1)/(L.length+1),y}));g+='<text x="6" y="'+(y+4)+'" font-size="11" fill="var(--graphite)" font-family="var(--font-ui)">深さ '+d+'</text>'});
-  T.levels.forEach(L=>L.forEach(nd=>nd.par.forEach(p=>{const a=pos.get(p),b=pos.get(nd);g+='<line x1="'+a.x+'" y1="'+(a.y+11)+'" x2="'+b.x+'" y2="'+(b.y-11)+'" stroke="var(--rule-strong)" stroke-width="1"/>'})));
-  T.loops.forEach(lp=>{const a=pos.get(lp.from),tgt=[...pos.keys()].find(x=>x.w===lp.w),b=pos.get(tgt),yy=a.y+LH*0.62,xx=Math.min(W-80,a.x+44);
-    g+='<line x1="'+a.x+'" y1="'+(a.y+11)+'" x2="'+xx+'" y2="'+(yy-10)+'" stroke="#639922" stroke-width="1.5"/><rect x="'+(xx-24)+'" y="'+(yy-10)+'" width="48" height="20" rx="10" fill="#EAF3DE" stroke="#639922" stroke-dasharray="4 3"/><text x="'+xx+'" y="'+(yy+4)+'" font-size="12" text-anchor="middle" fill="#27500A" font-family="var(--font-mono)">'+lp.w+'</text>'+
+  T.levels.forEach(L=>L.forEach(nd=>nd.par.forEach(({p,c})=>{const a=pos.get(p),b=pos.get(nd),on=onPath.has(nd.id+'<'+p.id),mx=(a.x+b.x)/2,my=(a.y+b.y)/2,col=RCOL[c.ri%3];
+    g+='<line x1="'+a.x+'" y1="'+(a.y+11)+'" x2="'+b.x+'" y2="'+(b.y-11)+'" stroke="'+col+'" stroke-width="'+(on?4:1.6)+'" stroke-opacity="'+(sel&&!on?0.3:1)+'"/>';
+    if(full){const t=lab(c),lw=t.length*7+10;g+='<rect x="'+(mx-lw/2)+'" y="'+(my-9)+'" width="'+lw+'" height="18" rx="9" fill="var(--panel)" stroke="'+col+'"/><text x="'+mx+'" y="'+(my+4)+'" font-size="11" text-anchor="middle" fill="'+col+'" font-family="var(--font-mono)">'+t+'</text>'}
+    else g+='<circle cx="'+mx+'" cy="'+my+'" r="8" fill="'+col+'" fill-opacity="'+(sel&&!on?0.35:1)+'"/><text x="'+mx+'" y="'+(my+4)+'" font-size="10" text-anchor="middle" fill="#fff">'+RNUM[c.ri]+'</text>'})));
+  T.loops.forEach(lp=>{const a=pos.get(lp.from),tgt=all.find(x=>x.w===lp.c.w2),b=pos.get(tgt),yy=a.y+LH*0.62,xx=Math.min(W-90,a.x+50),col=RCOL[lp.c.ri%3];
+    g+='<line x1="'+a.x+'" y1="'+(a.y+11)+'" x2="'+xx+'" y2="'+(yy-10)+'" stroke="'+col+'" stroke-width="1.6"/>'+(full?'<text x="'+((a.x+xx)/2-34)+'" y="'+((a.y+yy)/2+2)+'" font-size="11" fill="'+col+'" font-family="var(--font-mono)">'+lab(lp.c)+'</text>':'<circle cx="'+((a.x+xx)/2)+'" cy="'+((a.y+11+yy-10)/2)+'" r="8" fill="'+col+'"/><text x="'+((a.x+xx)/2)+'" y="'+((a.y+11+yy-10)/2+4)+'" font-size="10" text-anchor="middle" fill="#fff">'+RNUM[lp.c.ri]+'</text>')+
+      '<rect x="'+(xx-24)+'" y="'+(yy-10)+'" width="48" height="20" rx="10" fill="#EAF3DE" stroke="#639922" stroke-dasharray="4 3"/><text x="'+xx+'" y="'+(yy+4)+'" font-size="12" text-anchor="middle" fill="#27500A" font-family="var(--font-mono)">'+lp.c.w2+'</text>'+
       '<path d="M'+(xx+24)+' '+yy+' C '+(xx+110)+' '+yy+', '+(b.x+100)+' '+b.y+', '+(b.x+34)+' '+b.y+'" fill="none" stroke="#3B6D11" stroke-width="1.8" marker-end="url(#sva)"/><text x="'+(xx+60)+'" y="'+(yy+18)+'" font-size="11" fill="#3B6D11" font-family="var(--font-ui)">↻ 同じ語に戻る</text>'});
-  T.levels.forEach(L=>L.forEach(nd=>{const p=pos.get(nd),w=Math.max(40,nd.w.length*9+20),dead=nd.st==='dead',open=nd.st==='open';
-    g+='<rect x="'+(p.x-w/2)+'" y="'+(p.y-11)+'" width="'+w+'" height="22" rx="11" fill="'+(dead?'#FCEBEB':'var(--panel)')+'" stroke="'+(dead?'#E24B4A':'var(--rule-strong)')+'"'+(open?' stroke-dasharray="4 3"':'')+'/><text x="'+p.x+'" y="'+(p.y+4)+'" font-size="12" text-anchor="middle" fill="'+(dead?'#791F1F':'var(--ink)')+'" font-family="var(--font-mono)">'+nd.w+'</text>';
+  T.levels.forEach(L=>L.forEach(nd=>{const p=pos.get(nd),w=Math.max(40,nd.w.length*9+20),dead=nd.st==='dead',open=nd.st==='open',isSel=sel&&sel.id===nd.id;
+    g+='<g data-tn="'+nd.id+'" style="cursor:pointer"><rect x="'+(p.x-w/2)+'" y="'+(p.y-11)+'" width="'+w+'" height="22" rx="11" fill="'+(dead?'#FCEBEB':'var(--panel)')+'" stroke="'+(isSel?'var(--head)':dead?'#E24B4A':'var(--rule-strong)')+'" stroke-width="'+(isSel?3:1)+'"'+(open&&!isSel?' stroke-dasharray="4 3"':'')+'/><text x="'+p.x+'" y="'+(p.y+4)+'" font-size="12" text-anchor="middle" fill="'+(dead?'#791F1F':'var(--ink)')+'" font-family="var(--font-mono)">'+nd.w+'</text></g>';
     if(dead)g+='<text x="'+(p.x+w/2+7)+'" y="'+(p.y+5)+'" font-size="13" fill="#E24B4A">✕</text>';
     if(open)g+='<text x="'+p.x+'" y="'+(p.y+25)+'" font-size="12" text-anchor="middle" fill="var(--graphite)">⋮</text>'}));
-  return g+'</svg>'}
-function renderSevTree(){if(!SEV||!$('sev-tree'))return;const sys=STG.P.systems[SEV.i],r=SEV.res[SEV.i],n=Math.ceil(r.done.length/2);
-  $('sev-tree').innerHTML='<p class="sthead">語の木（深さ '+n+' まで調べた）　<span class="hint" style="font-weight:400">✕ 行き止まり　↻ 同じ語に戻る　⋮ まだ続く</span></p>'+sevTreeSVG(sys,n,SEV.hl)}
-
+  return {svg:g+'</svg>',T,sel}}
+function renderSevTree(){if(!SEV||!$('sev-tree'))return;const sys=STG.P.systems[SEV.i],r=SEV.res[SEV.i],n=Math.ceil(r.done.length/2),out=sevTreeSVG(sys,n,SEV.hl,SEV.sel);
+  const leg='<div class="rleg">'+sys.R.map((x,k)=>'<span><i style="background:'+RCOL[k%3]+'"></i>'+RNUM[k]+' '+x[0]+' → '+(x[1]||'（消す）')+'</span>').join('')+'<span class="hint">線の色と番号が，使った規則</span></div>';
+  let path='<span class="hint">木の語を押すと，最初の語からそこまでの書換えの記録が，ここに出る．</span>';
+  if(out.sel){const steps=[];let x=out.sel;while(x&&x.par.length){steps.unshift({w:x.w,c:x.par[0].c});x=x.par[0].p}path='書換えの記録：['+sys.w+']'+steps.map(s=>'<span class="rtag" style="background:'+RCOL[s.c.ri%3]+'">'+RNUM[s.c.ri]+' '+s.c.u+'→'+(s.c.v||'（消す）')+'</span>['+s.w+']').join('')}
+  const tip=(n>0&&!PROG.tut.treeTip)||SEV.tip;
+  $('sev-tree').innerHTML='<p class="sthead">語の木（深さ '+n+' まで調べた）<button type="button" class="q" data-ttip="1" aria-label="木の見方">？</button>　<span class="hint" style="font-weight:400">✕ 行き止まり　↻ 同じ語に戻る　⋮ まだ続く</span></p>'+leg+'<div class="treewrap">'+out.svg+(tip?'<div class="treetip"><b>木の見方</b><br>一番上が最初の語．<br>線一本が，書換え一回．線の色と番号は，使った規則．<br>下へ一段進むたびに，書換えが一回増える（深さ）．<br>6-5 で一枚ずつ調べた「もしもカード」を，一枚の図にまとめたもの．<div style="text-align:right;margin-top:6px"><button type="button" data-ttok="1">分かった</button></div></div>':'')+'</div><div class="sevpath">'+path+'</div>'}
+$('sev').addEventListener('click',e=>{if(!SEV)return;const tn=e.target.closest('[data-tn]');if(tn){SEV.sel=SEV.sel===+tn.dataset.tn?null:+tn.dataset.tn;renderSevTree();return}
+  if(e.target.closest('[data-ttok]')){PROG.tut.treeTip=true;saveP();SEV.tip=false;renderSevTree();return}if(e.target.closest('[data-ttip]')){SEV.tip=true;renderSevTree()}});
 function renderSysTabs(){const sp=STG.P;$('st-sys').innerHTML=sp.systems.map((x,i)=>'<button type="button" data-sys="'+i+'" aria-pressed="'+(i===SEV.i)+'">'+x.name+(SEV.res[i].judged?'：判定済み':'')+'</button>').join('')}
-$('st-sys').addEventListener('click',e=>{const b=e.target.closest('[data-sys]');if(!b||!SEV)return;stopSevAuto();SEV.i=+b.dataset.sys;SR=srState(STG,SEV.i);renderSysTabs();renderSev();renderST()});
+$('st-sys').addEventListener('click',e=>{const b=e.target.closest('[data-sys]');if(!b||!SEV)return;stopSevAuto();SEV.i=+b.dataset.sys;SEV.sel=null;SR=srState(STG,SEV.i);renderSysTabs();renderSev();renderST()});
 function sevCompute(sys,n){const R=sys.R;let lo=0,cyc=false;const memo=new Map();
   const dfs=(w,d,stack)=>{if(d>n)return;if(stack.has(w)){cyc=true;return}const opts=srSteps(w,R);if(!opts.length){lo=Math.max(lo,d);return}stack.add(w);for(const o of opts){if(cyc)break;dfs(o.w2,d+1,stack)}stack.delete(w)};
   let over=false;const dfs2=(w,d,stack)=>{if(over)return;if(stack.has(w))return;const opts=srSteps(w,R);if(!opts.length)return;if(d>=n){over=true;return}stack.add(w);opts.forEach(o=>dfs2(o.w2,d+1,stack));stack.delete(w)};
@@ -1254,6 +1422,185 @@ $('rw-word').addEventListener('click',e=>{const b=e.target.closest('[data-rwi]')
 $('rw-undo').addEventListener('click',()=>{if(!RW)return;const T=RW.tasks[RW.task];if(T.done)return msg('この課題はもう達成した．');if(T.hist.length>1){T.hist.pop();renderRW();msg('1 回戻した．')}else msg('戻せる所がない．')});
 $('rw-reset').addEventListener('click',()=>{if(!RW)return;const T=RW.tasks[RW.task];if(T.done)return msg('この課題はもう達成した．');T.hist=[{w:T.w,at:null}];renderRW();msg('最初からやり直す．')});
 
+// ---------- layer 7: workshop (designing with colour maps) ----------
+let WK=null,WKT=null;
+function wkBest(id){return (PROG.wk&&PROG.wk[id])||null}
+function wkKey(){return STG.id+(WK&&WK.master?'m':'')}
+function wkCfg(){return WK.master?WK.cfg.master:WK.cfg}
+function setupWK(st){const c=st.P.wk;WK={cfg:c,master:false,step:c.steps?0:9,T:(c.start||[]).map(t=>t.slice()),R:c.rules?c.rules.map(r=>r.slice()):null,w:c.word||'',rows:[],res:null,running:false,pred:null,asking:false,hits:0,rwHTML:''};
+  if(c.mode==='rw'&&c.steps){WK.step=0;WK.R=[['ab','ba']];WK.w='aabb';WK.qdone=false;WK.play=null}P.T=WK.T;renderWK()}
+function wkStars(v){const th=wkCfg().th;return v>=th[2]?3:v>=th[1]?2:v>=th[0]?1:0}
+function starHTML(n){return '<span class="wkstars">'+'★'.repeat(n)+'<span class="off">'+'★'.repeat(3-n)+'</span></span>'}
+// colour maps
+function cmArrows(dir){return WK.T.map((t,i)=>dir==='h'?{a:t[3],b:t[1],i}:{a:t[0],b:t[2],i})}
+function cmAnalyze(A,NC){const adj=Array.from({length:NC},()=>[]);A.forEach(x=>adj[x.a].push(x.b));let girth=Infinity;
+  for(let s=0;s<NC;s++){const dist=Array(NC).fill(-1),q=[];adj[s].forEach(v=>{if(dist[v]<0){dist[v]=1;q.push(v)}});while(q.length){const u=q.shift();if(u===s){girth=Math.min(girth,dist[u]);break}adj[u].forEach(v=>{if(dist[v]<0){dist[v]=dist[u]+1;q.push(v)}})}}
+  if(girth<Infinity)return{cyc:true,girth};const memo={},L=u=>{if(memo[u]!=null)return memo[u];let b=0;adj[u].forEach(v=>b=Math.max(b,1+L(v)));return memo[u]=b};let lp=0;for(let s=0;s<NC;s++)lp=Math.max(lp,L(s));return{cyc:false,lp}}
+function cmSVG(A,cols,key){const cx=100,cy=84,r=56,n=cols.length,pos=k=>{const q=cols.indexOf(k);return[cx+r*Math.cos(-Math.PI/2+2*Math.PI*q/n),cy+r*Math.sin(-Math.PI/2+2*Math.PI*q/n)]};const used=new Set();A.forEach(x=>{used.add(x.a);used.add(x.b)});
+  let g='<svg viewBox="0 0 200 168" width="100%" role="img" aria-label="色の地図"><defs><marker id="cm'+key+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="var(--ink)" stroke-width="1.5"/></marker></defs>';const cnt={},grp={},gi={};A.forEach(x=>{if(x.a!==x.b){const k=Math.min(x.a,x.b)+'|'+Math.max(x.a,x.b);grp[k]=(grp[k]||0)+1}});
+  A.forEach(x=>{const k=x.a+'-'+x.b;cnt[k]=(cnt[k]||0)+1;const nth=cnt[k]-1;
+    if(x.a===x.b){const[px,py]=pos(x.a),dx=px-cx,dy=py-cy,l=Math.hypot(dx,dy)||1,ox=px+dx/l*18,oy=py+dy/l*18;g+='<circle cx="'+ox+'" cy="'+oy+'" r="'+(9+nth*4)+'" fill="none" stroke="var(--ink)" stroke-width="1.2"/><text x="'+(ox+dx/l*17)+'" y="'+(oy+dy/l*17+4)+'" font-size="10" text-anchor="middle" fill="var(--graphite)" font-family="var(--font-ui)">'+(x.i+1)+'</text>';return}
+    const gk=Math.min(x.a,x.b)+'|'+Math.max(x.a,x.b),gn=grp[gk],gix=(gi[gk]=(gi[gk]||0)+1)-1,lo=Math.min(x.a,x.b),hi=Math.max(x.a,x.b);const[ax,ay]=pos(lo),[bx,by]=pos(hi),ll=Math.hypot(bx-ax,by-ay),nx=-(by-ay)/ll,ny=(bx-ax)/ll,off=(gix-(gn-1)/2)*9;
+    const[x1,y1]=pos(x.a),[x2,y2]=pos(x.b),dx=x2-x1,dy=y2-y1,l=Math.hypot(dx,dy),sx=x1+dx/l*12+nx*off,sy=y1+dy/l*12+ny*off,ex=x2-dx/l*13+nx*off,ey=y2-dy/l*13+ny*off;
+    const lsg=off>=0?1:-1;g+='<line x1="'+sx+'" y1="'+sy+'" x2="'+ex+'" y2="'+ey+'" stroke="var(--ink)" stroke-width="1.2" marker-end="url(#cm'+key+')"/><text x="'+((sx+ex)/2+nx*8*lsg)+'" y="'+((sy+ey)/2+ny*8*lsg+4)+'" font-size="10" text-anchor="middle" fill="var(--graphite)" font-family="var(--font-ui)">'+(x.i+1)+'</text>'});
+  cols.forEach(k=>{const[px,py]=pos(k);g+='<circle cx="'+px+'" cy="'+py+'" r="10" fill="'+COLORS[k]+'" opacity="'+(used.has(k)?1:0.25)+'"/>'});return g+'</svg>'}
+function cmPanel(){const c=wkCfg(),cols=c.colors,H=cmArrows('h'),V=cmArrows('v'),ah=cmAnalyze(H,5),av=cmAnalyze(V,5);
+  const txt=(a,dir)=>a.cyc?'輪がある（一番短い輪：矢印 '+a.girth+' 本）→ '+dir+'にはいくらでも続けられる．':'輪がない．一番長い道は矢印 '+a.lp+' 本 → '+dir+'には '+a.lp+' 枚までしか続かない．';
+  return '<div class="cmaps"><div class="cmap"><h6>横の地図（左の色 → 右の色）</h6>'+cmSVG(H,cols,'h')+'<p>'+txt(ah,'横')+'</p></div><div class="cmap"><h6>縦の地図（上の色 → 下の色）</h6>'+cmSVG(V,cols,'v')+'<p>'+txt(av,'縦')+(c.tieV?'<br>（このステージでは，タイルの上と下はいつも同じ色．縦にはいくらでも積める）':'')+'</p></div></div>'}
+function wkTileEd(t,i,s){const h=s/2,pts=[[0,0,s,0,h,h],[s,0,s,s,h,h],[0,s,s,s,h,h],[0,0,0,s,h,h]],nm=['上','右','下','左'];return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 '+s+' '+s+'" role="group" aria-label="タイル '+(i+1)+'">'+pts.map((p,e)=>'<polygon data-wt="'+i+'" data-we="'+e+'" points="'+p[0]+','+p[1]+' '+p[2]+','+p[3]+' '+p[4]+','+p[5]+'" fill="'+COLORS[t[e]]+'" stroke="#fff" stroke-width="1.5" style="cursor:pointer"><title>タイル '+(i+1)+' の'+nm[e]+'の辺</title></polygon>').join('')+'</svg>'}
+function wkPredOpts(){const c=wkCfg(),m=c.mode==='torus'||(STG.P.wk.steps&&WK.step===1)?'torus':'limit',o=[];
+  if(m==='limit'){for(let k=1;k<=5;k++)o.push(['L'+k,'n = '+k]);o.push(['T','いくらでも大きく埋められる'])}else{for(let k=1;k<=5;k++)o.push(['T'+k,'n = '+k]);o.push(['L','どの n でも埋められない'])}return o}
+function wkPredQ(){const c=wkCfg(),m=c.mode==='torus'||(STG.P.wk.steps&&WK.step===1)?'torus':'limit';return m==='limit'?'n×n の庭（ふつうの盤）を埋められる，<b>最大の n</b> は？':'端と端がつながった盤（トーラスの盤）を，縦も横も n マス以下で埋められる，<b>最小の n</b> は？'}
+function renderWK(){if(!WK)return;const c=WK.cfg,cc=wkCfg(),b=wkBest(wkKey());let h='';
+  if(c.mode==='rw'){renderRWK();return}
+  // instruction for the current step
+  let ins=cc.task;if(c.steps){ins=['横の地図をよく見よう．ぐるっと元に戻る輪は，矢印何本だろう？','この組は周期的なはず．端と端がつながった盤（トーラスの盤）を埋められる最小の大きさを予想してから，機械で確かめよう．','矢印を一本だけ，<b>横の地図でまだ使っていない色</b>へ向け直して（タイルの右か左の辺の色を変える），輪を断ち切ろう．そして，ふつうの盤を何×何まで埋められるかを予想してから確かめよう．'][Math.min(WK.step,2)]}
+  h+='<div class="wkch"><b>'+(WK.master?'達人の挑戦：':'挑戦：')+'</b>'+ins+(cc.thText&&(!c.steps||WK.step>=2)?'<br>'+cc.thText:'')+'</div>';
+  if(c.steps&&WK.step===0)h+='<div class="controls wkquiz" style="justify-content:center">'+[1,2,3,4].map(k=>'<button type="button" data-wq="'+k+'">矢印 '+k+' 本</button>').join('')+'</div>';
+  h+='<div class="wktiles">'+WK.T.map((t,i)=>'<div class="wktw">'+wkTileEd(t,i,58)+'<span>'+(i+1)+'</span></div>').join('')+'</div>';
+  h+='<p class="hint" style="text-align:center">'+(c.steps&&WK.step<2?'（いまはまだ辺を変えずに，地図を読もう）':'辺を押すと，'+cc.colors.map(k=>CNAME[k]).join(' → ')+' → … と色が変わる．'+(cc.tieV?'上か下を押すと，両方が一緒に変わる．':'')+'いま '+WK.T.length+' 枚（最大 '+cc.maxT+' 枚）．')+'</p>';
+  h+=cmPanel();
+  h+='<div class="controls" style="justify-content:center">'+(!c.steps?'<button type="button" data-wk="add">タイルを足す</button><button type="button" data-wk="del">最後のタイルを消す</button>':'')+'<button type="button" data-wk="reset">最初の組に戻す</button>'+(b&&b.d?'<button type="button" data-wk="best">最高記録の組を呼び出す</button>':'')+(cc.sample?'<button type="button" data-wk="sample">'+cc.sample.label+'</button>':'')+(!(c.steps&&WK.step===0)?'<button type="button" class="wkrun" data-wk="run">機械で確かめる</button>':'')+'</div>';
+  if(WK.asking)h+='<div class="wkpred"><p class="sthead">まず予想しよう（地図の読み取りから考える）：'+wkPredQ()+'</p><div class="controls" style="justify-content:center">'+wkPredOpts().map(o=>'<button type="button" data-wpr="'+o[0]+'">'+o[1]+'</button>').join('')+'</div><button type="button" class="linkish" data-wpr="none">予想せずに調べる</button></div>';
+  h+='<div id="wk-out">'+wkOutHTML()+'</div>';
+  if(!c.steps||WK.step>=2)h+='<p class="wkrec">あなたの最高記録'+(WK.master?'（達人）':'')+'：'+(b?b.label+' '+starHTML(b.stars):'まだない')+(WK.hits?'　<span class="hint">予想的中 '+WK.hits+' 回</span>':'')+'</p>';
+  if(c.master&&!WK.master){const bm=wkBest(STG.id);if(bm&&bm.stars===3)h+='<div class="wkmaster"><b>達人の挑戦が開いた（任意）</b>　'+c.master.teaser+'<br><button type="button" data-wk="master">達人の挑戦に切り替える</button></div>'}
+  if(WK.master)h+='<div class="wkmaster"><b>ヒント</b>　'+c.master.hint+'<br><button type="button" data-wk="normal">ふつうの挑戦に戻る</button>'+(wkBest(wkKey())?'<br><span class="hint">'+c.master.record+'</span>':'')+'</div>';
+  $('wkbox').innerHTML=h;renderGoals()}
+function wkOutHTML(){if(!WK.rows.length&&!WK.res)return '';let h='<table class="ev wkev"><thead><tr><th>n</th><th>n×n の庭は埋まる？</th><th>縦横 n 以下のトーラスの盤を埋められる？</th></tr></thead><tbody>';
+  WK.rows.forEach(r=>{h+='<tr><td>'+r.n+'</td><td><div class="evvis">'+(r.sq.sol?miniGarden(r.sq.sol):r.sq.part?miniGarden(r.sq.part.G,r.sq.part.stuck):'')+(r.sq.ok?'<span class="no">'+(r.sq.unknown?'調べきれない':'埋まる')+'</span>':'<span class="evr">埋まらない → 行き止まり</span>')+'</div></td><td>'+(r.to?'<div class="evvis">'+(r.to.tried?triedBoxes(r.to.tried):'')+(r.to.found?'<span class="evg">'+miniTorus(r.to.found.sol)+r.to.found.a+'×'+r.to.found.b+' の盤を埋められた</span>':r.to.unknown?'<span class="no">調べきれない</span>':'<span class="no">ない</span>')+'</div>':'<span class="no">—</span>')+'</td></tr>'});
+  h+='</tbody></table>';if(WK.res)h+='<div class="wkver '+WK.res.cls+'">'+WK.res.html+'</div>';else if(WK.running)h+='<p class="hint" style="text-align:center">機械が調べている…</p>';return h}
+function wkRun(pred){if(WK.running)return;WK.pred=pred;WK.asking=false;P.T=WK.T;WK.rows=[];WK.res=null;WK.running=true;renderWK();let n=1;const N=8;
+  const step=()=>{if(!WK||!WK.running)return;const sq=evRun({kind:'sq',n}),row={n,sq,to:null};if(sq.ok&&!sq.unknown)row.to=evRun({kind:'to',n});WK.rows.push(row);
+    let done=null;if(!sq.ok)done={k:'limit',v:n-1};else if(row.to&&row.to.found)done={k:'torus',v:n,ab:row.to.found.a+' 行 × '+row.to.found.b+' 列'};else if(sq.unknown||(row.to&&row.to.unknown))done={k:'unk',v:n};else if(n>=N)done={k:'none',v:N};
+    if(done){WK.running=false;wkVerdict(done);return}n++;$('wk-out').innerHTML=wkOutHTML();WKT=setTimeout(step,240)};WKT=setTimeout(step,120)}
+function wkVerdict(r){const c=WK.cfg,cc=wkCfg();let html='',cls='',v=null;const key=r.k==='limit'?'L'+r.v:r.k==='torus'?'T'+r.v:'?';
+  if(r.k==='limit'){html='<b>'+(r.v>0?r.v+'×'+r.v+' までは埋まり，'+(r.v+1)+'×'+(r.v+1)+' で行き止まる．':'1×1 も置けない．')+'</b>';cls='r'}
+  else if(r.k==='torus'){html='<b>端と端がつながった '+r.ab+' の盤（トーラスの盤）を埋められた：周期的．</b><br>縦も横も '+r.v+' マス以下で埋められる盤は，これが初めて（最小の n = '+r.v+'）．';cls='g'}
+  else if(r.k==='none')html='<b>n = 8 まで調べても，決着がつかない．</b>';else html='<b>機械が調べきれなかった．</b>';
+  if(WK.pred&&WK.pred!=='none'){const ok=WK.pred===key||(WK.pred==='T'&&r.k==='torus')||(WK.pred==='L'&&r.k==='limit');const lab=wkPredOpts().find(o=>o[0]===WK.pred);html='<span class="'+(ok?'ok':'ng')+'">予想「'+(lab?lab[1].replace(/<[^>]+>/g,''):'')+'」→ '+(ok?'予想どおり！':'予想と違った．')+'</span><br>'+html;if(ok){WK.hits++;beep('win')}}
+  // stage logic
+  if(c.steps){if(WK.step===1){if(r.k==='torus'){html+='<br>決まり 3 のとおり，横の輪の長さが，そのままトーラスの盤の幅になった．次は，輪を断ち切ってみよう．';WK.step=2;setTimeout(()=>showTutorial('rule12x',null,{finalLabel:'やってみる'}),600)}}
+    else if(r.k==='limit'&&r.v>0)v=r.v;else if(r.k==='torus')html+='<br>まだ輪が残っている．横の地図をもう一度見よう．'}
+  else if(cc.mode==='limit'){if(r.k==='limit'&&r.v>0)v=r.v;else if(r.k==='torus')html+='<br>行き止まらないので，記録にならない．横の地図に輪が残っていないか見よう．'}
+  else if(cc.mode==='torus'){if(r.k==='torus')v=r.v;else if(r.k==='limit')html+='<br>どのトーラスの盤も埋められない（周期的ではない）ので，記録にならない．'}
+  if(v!=null&&WK.sample){html+='<br>お手本の組なので，記録にはならない．地図を読んで，辺を変えて工夫してみよう．';v=null}
+  if(v!=null){const st=wkStars(v),k=wkKey(),b=wkBest(k),label=cc.mode==='torus'?'最小の n = '+v:v+'×'+v+' まで';html+='<br>記録：'+label+' '+starHTML(st);
+    if(st>0&&(!b||v>b.v)){PROG.wk=PROG.wk||{};PROG.wk[k]={v,stars:st,label,d:{T:WK.T.map(t=>t.slice())}};saveP();if(b)html+='　<b class="ok">記録更新！</b>'}
+    if(st===0)html+='<br>星まで，あと少し．';if(st>0&&!WK.master&&!SHOWN&&!cleared(STG.id))html+=wkClearBtn();WK.res={html,cls};renderWK();if(WK.master&&st>0&&(!b||v>b.v))beep('win');return}
+  WK.res={html,cls};renderWK()}
+function wkClearBtn(){return '<div class="wkclear"><b>達成！</b>　結果を確かめたら，ここから進もう．<button type="button" data-wk="clear">クリア画面へ</button></div>'}
+function wkWord(w,key,mn,mx){return '<span class="wkword">'+[...w].map((ch,i)=>'<button type="button" class="lc '+ch+' sm" data-wl="'+key+'" data-wi="'+i+'" aria-label="'+ch+'（押すと入れ替わる）">'+ch+'</button>').join('')+(w.length===0?'<span class="wkempty">（消す）</span>':'')+'<button type="button" class="wkpm" data-wp="'+key+'" aria-label="文字を足す"'+(w.length>=mx?' disabled':'')+'>＋</button><button type="button" class="wkpm" data-wm="'+key+'" aria-label="文字を減らす"'+(w.length<=mn?' disabled':'')+'>−</button></span>'}
+// ---- 7-4: guided rewriting (count crossings, playback, discover n×n) ----
+function rwLongest(R,w,maxLen){const memo=new Map(),state=new Map();let cnt=0;const ML=maxLen||14;
+  const L=x=>{if(memo.has(x))return memo.get(x);if(state.get(x)===1)throw 'cycle';if(++cnt>200000||x.length>ML)throw 'grow';state.set(x,1);let b=0;for(const o of srSteps(x,R))b=Math.max(b,1+L(o.w2));state.set(x,2);memo.set(x,b);return b};
+  try{const v=L(w),path=[{w,o:null}];let x=w;while(memo.get(x)>0){const o=srSteps(x,R).find(q=>memo.get(q.w2)===memo.get(x)-1);path.push({w:o.w2,o});x=o.w2}return{k:'fin',v,path}}catch(e){return{k:e==='cycle'?'cycle':'grow'}}}
+function rwWordSVG(w,hl){const n=w.length,cw=Math.max(14,Math.min(36,Math.floor(560/Math.max(n,1)))),W2=Math.max(240,n*cw+30),x=k=>15+k*cw+cw/2,top=Math.min(70,30+n*4);let g='<svg width="100%" viewBox="0 0 '+W2+' '+(top+40)+'" role="img" aria-label="語 '+w+'">',lines=0;
+  for(let i=0;i<n;i++)if(w[i]==='a')for(let j=i+1;j<n;j++)if(w[j]==='b'){lines++;if(n<=24){const h=8+((j-i)*7)%(top-12);g+='<path d="M'+x(i)+' '+top+' C '+x(i)+' '+(top-h-10)+', '+x(j)+' '+(top-h-10)+', '+x(j)+' '+top+'" fill="none" stroke="#EF9F27" stroke-width="1.4" opacity=".8"/>'}}
+  for(let k=0;k<n;k++){const c=w[k],isH=hl&&k>=hl[0]&&k<hl[1];g+='<rect x="'+(x(k)-cw*0.42)+'" y="'+top+'" width="'+(cw*0.84)+'" height="30" rx="6" fill="'+(c==='a'?'#E6F1FB':'#FAECE7')+'" stroke="'+(isH?'#EF9F27':'var(--rule-strong)')+'" stroke-width="'+(isH?3:1)+'"/><text x="'+x(k)+'" y="'+(top+20)+'" font-size="'+Math.min(16,cw*0.55)+'" text-anchor="middle" font-family="var(--font-mono)" fill="'+(c==='a'?'#0C447C':'#712B13')+'">'+c+'</text>'}
+  return{svg:g+'</svg>',lines}}
+function rwListHTML(){const P=WK.play,n=P.path.length-1;let h='<div class="rwlist">';
+  P.path.forEach((st,k)=>{const nx=P.path[k+1],hl=nx?[nx.o.i,nx.o.i+nx.o.u.length]:null,ws=rwWordSVG(st.w,hl);
+    h+='<div class="rwli"><span class="rwln">'+(k===0?'最初':k+' 回目')+(st.o?'<br><span class="rwlr" style="color:'+RCOL[st.o.ri%3]+'">'+RNUM[st.o.ri]+' '+st.o.u+'→'+(st.o.v||'消す')+'</span>':'')+'</span><span class="rwlw">'+ws.svg+'</span><span class="rwlc">線 <b>'+ws.lines+'</b> 本</span></div>'});
+  return h+'</div><p class="hint" style="text-align:center;margin:4px 0 0">黄色の枠：次に書き換える所．各段の右の数が，オレンジの線（a から右の b へ）の本数．</p>'}
+function rwPlayHTML(){const P=WK.play;if(!P)return '';const n=P.path.length-1,view=WK.view||(n<=10?'list':'play');
+  const tog='<div class="controls" style="justify-content:center;margin-bottom:4px"><button type="button" data-rv="list" aria-pressed="'+(view==='list')+'">並べて見る</button><button type="button" data-rv="play" aria-pressed="'+(view==='play')+'">一手ずつ再生</button></div>';
+  if(view==='list')return '<div class="rwplay"><p class="sthead">一番長い道（全 '+n+' 回）を並べて見る</p>'+tog+rwListHTML()+'</div>';
+  const cur=P.path[P.pos],nx=P.path[P.pos+1],hl=nx?[nx.o.i,nx.o.i+nx.o.u.length]:null,ws=rwWordSVG(cur.w,hl),cnt=P.R.map(()=>0);for(let k=1;k<=P.pos;k++)cnt[P.path[k].o.ri]++;
+  return '<div class="rwplay"><p class="sthead">一番長い道を一手ずつ再生する（'+P.pos+' / '+n+' 回目）</p>'+tog+ws.svg+'<div class="rwcnt"><span class="rcn">オレンジの線（a から右の b へ）<b>'+ws.lines+'</b> 本</span>'+P.R.map((r,k)=>'<span class="rcn" style="border-color:'+RCOL[k%3]+'">'+RNUM[k]+' '+r[0]+' → '+(r[1]||'（消す）')+'<b>'+cnt[k]+'</b> 回</span>').join('')+'</div><p class="hint" style="text-align:center">'+(nx?'次の一手：'+RNUM[nx.o.ri]+' '+nx.o.u+' → '+(nx.o.v||'（消す）')+'（'+(nx.o.i+1)+' 文字目）':'もう書き換えられない（止まった）．')+'</p><div class="controls" style="justify-content:center"><button type="button" data-rp="0">最初へ</button><button type="button" data-rp="1">次の一手</button><button type="button" data-rp="2">自動で再生</button></div></div>'}
+function rwSetPlay(R,w,res){WK.view=null;WK.play=res&&res.k==='fin'?{R:R.map(r=>r.slice()),path:res.path,pos:0}:null}
+const RWQ={0:{q:'規則が ab → ba だけのとき，[aabb] は何回書き換えられるだろう？ どこから書き換えても，回数は同じになる．<br><span class="hint">ヒント：オレンジの線は「a から，その右にある b へ」引いた線．ab → ba を一回すると，線はどうなる？</span>',R:[['ab','ba']],w:'aabb',opts:[['2','2 回'],['3','3 回'],['4','4 回'],['5','5 回']],ans:'4',ok:'その通り．線は 4 本．ab → ba を一回するたびに，線がちょうど 1 本減るので，どこから書き換えても 4 回で止まる．<br>下に，書換えの各段階を並べた．黄色の枠の ab が ba になるたびに，右の線の本数が 4 → 3 → 2 → 1 → 0 と 1 本ずつ減っている．線が 0 本になると，ab がどこにもなくなって止まる．',ng:'線を数えてみよう．一回の書換えで，線はちょうど 1 本減る．',play:true},
+  1:{q:'ab → ba だけのとき，4 文字の語で，回数が一番多くなるのはどれだろう？',R:[['ab','ba']],w:'abab',opts:[['abab','[abab]'],['aabb','[aabb]'],['abba','[abba]'],['baab','[baab]']],ans:'aabb',ok:'その通り．a を全部左に，b を全部右に寄せると，線が一番多い（2 × 2 = 4 本）．下の図で，それぞれの語の線の数を比べよう．',ng:'それぞれの語で，a から右の b への線を数えてみよう．'},
+  2:{q:'規則に ① a → bb（a が b 2 個に変身）を加える．[aa] の一番長い道は何回だろう？ 予想してから，再生して確かめよう．',R:[['a','bb'],['ab','ba']],w:'aa',opts:[['2','2 回'],['3','3 回'],['4','4 回'],['5','5 回']],ans:'4',ok:'予想どおり．一番長い道は 4 回（変身 2 回＋追い越し 2 回）．下に並べた各段階で，どの順に書き換えたかを見てみよう．',ng:'予想と違った．一番長い道は 4 回．下に並べた各段階で，どの順に書き換えたかを見てみよう．',play:true,keepOnWrong:true},
+  3:{q:'下に並べた各段階をよく見よう．一番長い道では，右と左，どちらの a が先に変身した？',R:[['a','bb'],['ab','ba']],w:'aa',opts:[['R','右の a'],['L','左の a']],ans:'R',ok:'その通り．右の a が先に b 2 個に変身し，左の a はその 2 個を追い越してから変身する．先に変身した a の b を，左の a が追い越す分だけ回数が増える．',ng:'もう一度，並べた各段階を見てみよう．「最初」の段の黄色の枠（最初に書き換える所）はどちらの a？',play:true},
+  4:{q:'同じ規則で，[aaa] の一番長い道は何回だろう？<br><span class="hint">考え方：変身は a 1 個につき 1 回．右の a から順に変身させると，左の a ほど多くの b を追い越す（真ん中の a は 2 個，左の a は 4 個）．</span>',R:[['a','bb'],['ab','ba']],w:'aaa',opts:[['6','6 回'],['7','7 回'],['9','9 回'],['12','12 回']],ans:'9',ok:'予想どおり．変身 3 回＋追い越し 0 + 2 + 4 = 6 回で，9 回．',ng:'予想と違った．変身 3 回＋追い越し 0 + 2 + 4 = 6 回で，9 回．',play:true,keepOnWrong:true,record:true},
+  5:{q:'では，[aaaa] は何回だろう？ 1, 4, 9, … と並べて考えよう．',R:[['a','bb'],['ab','ba']],w:'aaaa',opts:[['12','12 回'],['14','14 回'],['16','16 回'],['20','20 回']],ans:'16',ok:'予想どおり．変身 4 回＋追い越し 0 + 2 + 4 + 6 = 12 回で，16 回．a が n 個なら n × n 回になる．<br>16 回は，右辺 2 文字・最初の語 4 文字以下という条件で作れる<b>最高記録</b>（計算機で全部の組を調べて確かめた）．',ng:'予想と違った．変身 4 回＋追い越し 0 + 2 + 4 + 6 = 12 回で，16 回．a が n 個なら n × n 回になる．<br>16 回は，右辺 2 文字・最初の語 4 文字以下という条件で作れる<b>最高記録</b>（計算機で全部の組を調べて確かめた）．',play:true,keepOnWrong:true,record:true}};
+function renderRWK(){const c=WK.cfg,cc=wkCfg(),s=WK.step,b=wkBest(wkKey());let h='';const Q=RWQ[s];
+  if(Q&&!WK.master){const titles=['① 追い越しを数える','① 追い越しを数える','② 変身を加える','② 変身を加える','③ 法則を見つける','③ 法則を見つける'];
+    h+='<div class="wkch"><b>'+titles[s]+'：</b>'+Q.q+'</div><div class="rwed"><div class="rwrow">'+Q.R.map((r,k)=>'<span class="rnum" style="background:'+RCOL[k]+'">'+RNUM[k]+'</span><span class="mono">'+r[0]+' → '+r[1]+'</span>').join('　')+'</div>'+(s!==1?'<div class="rwrow"><span class="rlab">最初の語</span><span class="mono">['+Q.w+']</span></div>':'')+'</div>';
+    if(s===0&&!WK.qdone)h+='<div class="rwplay">'+rwWordSVG('aabb').svg+'</div>';if(s===1)h+='<div class="rwplay"><div class="rwopts">'+Q.opts.map(o=>{const r=rwWordSVG(o[0]);return '<div class="rwoptw'+(WK.qdone&&o[0]==='aabb'?' best':'')+'">'+r.svg+(WK.qdone?'<div class="rwoc">['+o[0]+']：線 <b>'+r.lines+'</b> 本'+(o[0]==='aabb'?'（最多）':'')+'</div>':'')+'</div>'}).join('')+'</div>'+(WK.qdone?'<p class="hint" style="text-align:center;margin:6px 0 0">線の数 ＝ 各 a について「その右にある b の数」の合計．<br>a を全部左に寄せると，どの a も b を 2 個ずつ追い越すので 2 × 2 ＝ 4 本で最多．書換えの回数も，この線の数と同じ．</p>':'')+'</div>';
+    if(!WK.qdone)h+='<div class="controls wkquiz" style="justify-content:center">'+Q.opts.map(o=>'<button type="button" data-rq="'+o[0]+'">'+o[1]+'</button>').join('')+'</div>';
+    else h+='<div class="wkver '+(WK.qok?'r':'')+'">'+WK.qmsg+'</div><div class="controls" style="justify-content:center"><button type="button" class="wkrun" data-rnext="1">'+(s===5?'達人の挑戦へ進む（任意）':'次へ進む')+'</button></div>';
+    h+='<div id="wk-out">'+(WK.rwHTML||'')+rwPlayHTML()+'</div>';
+    if(s>=4)h+='<p class="wkrec">あなたの最高記録：'+(b?b.label+' '+starHTML(b.stars):'まだない')+'</p>'}
+  else{h+='<div class="wkch"><b>'+(WK.master?'達人の挑戦：':'自由に試す（この条件で作れる最高は 16 回）：')+'</b>'+cc.task+'<br>'+cc.thText+'<br><span class="hint">'+(WK.master?cc.hint:'考える手がかり：回数 = 変身の回数 ＋ 追い越しの回数．a が n 個なら n × n 回．「最長の道を再生」で，どこで回数を稼いでいるかを確かめられる．')+'</span></div>'+
+    '<div class="rwed">'+WK.R.map((r,k)=>'<div class="rwrow"><span class="rnum" style="background:'+RCOL[k]+'">'+RNUM[k]+'</span>'+wkWord(r[0],'u'+k,1,2)+'<span class="arr">→</span>'+wkWord(r[1],'v'+k,0,cc.vmax||2)+'</div>').join('')+'<div class="rwrow"><span class="rlab">最初の語</span>['+wkWord(WK.w,'w',1,cc.wmax||4)+']</div></div><p class="hint" style="text-align:center">文字を押すと a ↔ b が入れ替わる．＋／−で文字を増やしたり減らしたりできる．</p>'+
+    '<div class="controls" style="justify-content:center"><button type="button" data-wk="reset">最初の組に戻す</button>'+(b&&b.d?'<button type="button" data-wk="best">最高記録の組を呼び出す</button>':'')+'<button type="button" class="wkrun" data-wk="run">機械で確かめる</button></div>'+
+    '<div id="wk-out">'+(WK.rwHTML||'')+rwPlayHTML()+'</div><p class="wkrec">あなたの最高記録'+(WK.master?'（達人）':'')+'：'+(b?b.label+' '+starHTML(b.stars):'まだない')+'</p>';
+    if(c.master&&!WK.master){const bm=wkBest(STG.id);if(bm&&bm.stars===3)h+='<div class="wkmaster"><b>達人の挑戦が開いた（任意）</b>　'+c.master.teaser+'<br><button type="button" data-wk="master">達人の挑戦に切り替える</button></div>'}
+    if(WK.master)h+='<div class="wkmaster"><b>伸び方の比べ（a を n 個並べた語）</b>'+rwGrowth()+'<button type="button" data-wk="normal">ふつうの挑戦に戻る</button>'+(wkBest(wkKey())?'<br><span class="hint">'+cc.record+'</span>':'')+'</div>'}
+  $('wkbox').innerHTML=h;renderGoals()}
+function rwGrowth(){const rows=[['a → bb，ab → ba',[1,4,9,16,25]],['a → bbb，ab → ba',[1,5,12,22,35]],['a → bb，ab → bba',[1,4,11,26,57]],['a → bbb，ab → bba',[1,5,15,37,83]]],mx=83;
+  return '<table class="rwgrow"><tr><th>規則</th>'+[1,2,3,4,5].map(n=>'<th>n='+n+'</th>').join('')+'</tr>'+rows.map((r,q)=>'<tr><td class="mono">'+r[0]+'</td>'+r[1].map((v,k)=>'<td>'+(WK.master&&(q>=1&&k===4)&&!(wkBest(wkKey())&&wkBest(wkKey()).v>=v)?'?':v)+'</td>').join('')+'</tr>').join('')+'</table><p class="hint">一段目は本編で見つけた n × n．二段目以降の n = 5 の値は，自分で記録を出すと見える．</p>'}
+function wkRunRW(Rr,ww,quiet){const R=Rr||WK.R,w=ww||WK.w,cc=wkCfg(),res=rwLongest(R,w,WK.master?400:14);
+  let tree='';if(res.k==='fin'&&res.v<=16||res.k!=='fin'){try{const out=sevTreeSVG({R,w},res.k==='fin'?res.v:6,null,null);tree='<div class="sevtree"><p class="sthead">語の木（深さ '+(res.k==='fin'?res.v:6)+' まで）　<span class="hint" style="font-weight:400">✕ 行き止まり　↻ 同じ語に戻る　⋮ まだ続く</span></p><div class="rleg">'+R.map((x,k)=>'<span><i style="background:'+RCOL[k%3]+'"></i>'+RNUM[k]+' '+x[0]+' → '+(x[1]||'（消す）')+'</span>').join('')+'</div>'+out.svg+'</div>'}catch(e){}}
+  let html='',cls='';if(res.k==='fin'){html='<b>どの道も必ず止まる．一番長い道は '+res.v+' 回．</b>';cls='r'}else if(res.k==='cycle'){html='<b>同じ語に戻る道がある：永遠に続けられる．</b>どの道も必ず止まる組でないと，記録にならない．';cls='g'}else html='<b>語が伸び続ける道がある（または長すぎて調べきれない）：決着がつかない．</b>記録にならない．';
+  rwSetPlay(R,w,res);
+  if(res.k==='fin'&&res.v>0){const st=wkStars(res.v),k=wkKey(),b=wkBest(k);html+='<br>記録：'+res.v+' 回 '+starHTML(st);if(st>0&&(!b||res.v>b.v)){PROG.wk=PROG.wk||{};PROG.wk[k]={v:res.v,stars:st,label:res.v+' 回',d:{R:R.map(r=>r.slice()),w}};saveP();if(b)html+='　<b class="ok">記録更新！</b>'}
+    if(st>0&&!WK.master&&!SHOWN&&!cleared(STG.id)&&(WK.step>=6||WK.step===5))html+=wkClearBtn();if(WK.master&&st>0)beep('win')}
+  WK.rwHTML=(quiet?'':tree)+'<div class="wkver '+cls+'">'+html+'</div>';return res}
+function rwAnswer(a){const s=WK.step,Q=RWQ[s];if(!Q||WK.qdone)return;const ok=a===Q.ans;
+  if(!ok&&!Q.keepOnWrong){beep('bad');msg('<span class="ng">'+Q.ng+'</span>');return}
+  WK.qdone=true;WK.qok=ok;WK.qmsg='<span class="'+(ok?'ok':'ng')+'">'+(ok?Q.ok:Q.ng)+'</span>';beep(ok?'win':'bad');
+  if(Q.play){const res=wkRunRW(Q.R,Q.w,!Q.record);if(!Q.record)WK.rwHTML=''}
+  renderWK();if(Q.autoPlay&&WK.play){if(WK.ptimer)clearInterval(WK.ptimer);WK.ptimer=setInterval(()=>{if(!WK||!WK.play||WK.play.pos>=WK.play.path.length-1){clearInterval(WK.ptimer);WK.ptimer=null;return}WK.play.pos++;const o=$('wk-out');if(o)o.innerHTML=(WK.rwHTML||'')+rwPlayHTML()},1000)}}
+function rwNext(){const s=WK.step;WK.qdone=false;WK.qmsg='';if(WK.ptimer){clearInterval(WK.ptimer);WK.ptimer=null}
+  if(s===2){WK.step=3;WK.qdone=false;renderWK();return}
+  WK.step=s+1;if(WK.step!==3){WK.play=null;WK.rwHTML=''}
+  if(WK.step>=6){WK.step=6;WK.master=true;const m=WK.cfg.master;WK.R=m.rules.map(r=>r.slice());WK.w=m.word;msg('ここからは任意の達人の挑戦．条件をゆるめて，回数をどこまで伸ばせるか試そう．')}renderWK()}
+
+$('wkbox').addEventListener('click',e=>{if(!WK)return;const c=WK.cfg,cc=wkCfg();
+  const q=e.target.closest('[data-wq]');if(q){if(+q.dataset.wq===3){beep('win');msg('<span class="ok">その通り．</span>青 → 朱 → 緑 → 青 と，矢印 3 本で元に戻る．');WK.step=1;showTutorial('rule3x',()=>renderWK(),{finalLabel:'確かめてみる'})}else{beep('bad');msg('<span class="ng">もう一度数えよう．</span>青の点から矢印をたどって，青に戻るまでに何本通るか．')}return}
+  const rq=e.target.closest('[data-rq]');if(rq){rwAnswer(rq.dataset.rq);return}
+  if(e.target.closest('[data-rnext]')){rwNext();return}
+  const rv=e.target.closest('[data-rv]');if(rv&&WK.play){if(WK.ptimer){clearInterval(WK.ptimer);WK.ptimer=null}WK.view=rv.dataset.rv;$('wk-out').innerHTML=(WK.rwHTML||'')+rwPlayHTML();return}
+  const rp=e.target.closest('[data-rp]');if(rp&&WK.play){const P=WK.play,m=rp.dataset.rp;if(WK.ptimer){clearInterval(WK.ptimer);WK.ptimer=null}if(m==='0')P.pos=0;else if(m==='1'){if(P.pos<P.path.length-1)P.pos++}else{P.pos=0;WK.ptimer=setInterval(()=>{if(!WK||!WK.play||WK.play.pos>=WK.play.path.length-1){clearInterval(WK.ptimer);WK.ptimer=null;return}WK.play.pos++;$('wk-out').innerHTML=(WK.rwHTML||'')+rwPlayHTML()},650)}$('wk-out').innerHTML=(WK.rwHTML||'')+rwPlayHTML();return}
+  const pr=e.target.closest('[data-wpr]');if(pr){wkRun(pr.dataset.wpr);return}
+  const pg=e.target.closest('[data-wt]');if(pg&&!WK.running){if(c.steps&&WK.step<2){msg('いまはまだ辺を変えずに，地図を読もう．');return}const i=+pg.dataset.wt,ed=+pg.dataset.we,cs=cc.colors,cur=cs.indexOf(WK.T[i][ed]),nv=cs[(cur+1+cs.length)%cs.length];WK.T[i][ed]=nv;WK.sample=false;if(cc.tieV&&(ed===0||ed===2))WK.T[i][ed===0?2:0]=nv;WK.res=null;WK.rows=[];WK.asking=false;beep('fit');renderWK();
+    if(c.steps&&WK.step===2&&!cmAnalyze(cmArrows('h'),5).cyc&&!PROG.tut.rule12){PROG.tut.rule12=true;saveP();showTutorial('rule12',null,{finalLabel:'予想してみる'})}return}
+  const wl=e.target.closest('[data-wl]');if(wl){wkEdit(wl.dataset.wl,s=>{const i=+wl.dataset.wi;return s.slice(0,i)+(s[i]==='a'?'b':'a')+s.slice(i+1)});return}
+  const wp=e.target.closest('[data-wp]');if(wp){wkEdit(wp.dataset.wp,s=>s+'a');return}const wm=e.target.closest('[data-wm]');if(wm){wkEdit(wm.dataset.wm,s=>s.slice(0,-1));return}
+  const b=e.target.closest('[data-wk]');if(!b)return;const a=b.dataset.wk;
+  if(a==='clear'){if(!SHOWN)complete('wk');return}
+  if(a==='run'){if(c.mode==='rw'){wkRunRW();renderWK();return}WK.asking=true;WK.res=null;WK.rows=[];renderWK()}
+  else if(a==='add'){if(WK.T.length>=cc.maxT)return msg('タイルは最大 '+cc.maxT+' 枚まで．');const c0=cc.colors[0];WK.T.push([c0,c0,c0,c0]);WK.res=null;WK.rows=[];renderWK()}
+  else if(a==='del'){if(WK.T.length<=1)return;WK.T.pop();WK.res=null;WK.rows=[];renderWK()}
+  else if(a==='reset'){clearTimeout(WKT);const st=WK.step,ms=WK.master;WK.T=((ms?cc.start:c.start)||[]).map(t=>t.slice());if(c.mode==='rw'&&WK.step>=6){WK.R=(ms&&cc.rules?cc.rules:c.rules).map(r=>r.slice());WK.w=ms&&cc.word?cc.word:c.word;WK.play=null}P.T=WK.T;WK.res=null;WK.rows=[];WK.rwHTML='';WK.running=false;renderWK();msg('最初の組に戻した．')}
+  else if(a==='best'){const bb=wkBest(wkKey())||wkBest(STG.id);if(!bb)return;if(bb.d.T)WK.T=bb.d.T.map(t=>t.slice());if(bb.d.R){WK.R=bb.d.R.map(r=>r.slice());WK.w=bb.d.w}P.T=WK.T;WK.res=null;WK.rows=[];WK.rwHTML='';renderWK();msg('最高記録の組を呼び出した．')}
+  else if(a==='sample'){WK.T=cc.sample.T.map(t=>t.slice());WK.sample=true;P.T=WK.T;WK.res=null;WK.rows=[];renderWK();msg(cc.sample.label+'：地図を読んでみよう（お手本の組は記録にならない）．')}
+  else if(a==='master'){WK.master=true;if(c.mode==='rw'){WK.R=c.master.rules.map(r=>r.slice());WK.w=c.master.word;WK.play=null;WK.rwHTML='';renderWK();msg('達人の挑戦に切り替えた．');return}WK.T=c.master.start.map(t=>t.slice());P.T=WK.T;WK.res=null;WK.rows=[];renderWK();msg('達人の挑戦に切り替えた．')}
+  else if(a==='normal'){WK.master=false;if(c.mode==='rw'){WK.R=c.rules.map(r=>r.slice());WK.w=c.word;WK.play=null;WK.rwHTML='';renderWK();return}WK.T=c.start.map(t=>t.slice());P.T=WK.T;WK.res=null;WK.rows=[];renderWK()}});
+function wkEdit(key,f){const k=key[0],i=+key.slice(1);if(k==='w')WK.w=f(WK.w);else{const r=WK.R[i];if(k==='u')r[0]=f(r[0]);else r[1]=f(r[1])}WK.rwHTML='';WK.play=null;beep('fit');renderWK()}
+
+// ---------- ending: looking back at the garden ----------
+function gridTilesT(T,G,s,stuck){const m=G[0].length;let h='<span style="display:inline-grid;grid-template-columns:repeat('+m+','+s+'px);line-height:0;box-shadow:0 0 0 1px var(--rule)">';
+  G.forEach((r,i)=>r.forEach((k,j)=>{const st=stuck&&stuck[0]===i&&stuck[1]===j;h+='<span style="display:block;width:'+s+'px;height:'+s+'px;'+(k<0?'background:'+(st?'var(--broken-soft);box-shadow:inset 0 0 0 2px var(--broken)':'var(--paper)'):'')+'">'+(k>=0?tileSVG(T[k],s,false):'')+'</span>'}));return h+'</span>'}
+function enFig(inner,cap){return '<div class="en-fig">'+inner+(cap?'<p class="figcap">'+cap+'</p>':'')+'</div>'}
+function enLayerTag(n,name){return '<span class="en-tag">第 '+n+' 層　'+name+'</span>'}
+function enDeadGarden(){const bp=bestPartial(SDEAD,5);return bp?gridTilesT(SDEAD,bp.G,22,bp.stuck):''}
+function enChain(hl){const B=[['fin','有限の庭なら，全部試せば必ず分かる','1・2'],['dead','埋められない → 行き止まる庭が見つかる（有限の証拠）','3'],['per','周期的に埋められる → 埋まるトーラスの盤が見つかる（有限の証拠）','4'],['wang','二つの証拠を交互に探す：ワンの機械','4'],['aper','非周期的な組では，どちらの証拠も出ず，機械は止まらない','5'],['comp','タイルは計算（書換え）をまねできる','6'],['undec','敷き詰め問題は決定不能','6'],['nob','止まるまでの長さに上限はない','7']];
+  return '<div class="en-chain">'+B.map((b,k)=>'<div class="en-node'+(hl&&hl.includes(b[0])?' on':'')+(b[0]==='undec'?' key':'')+'"><span class="en-l">第 '+b[2]+' 層</span>'+b[1]+'</div>'+(k<B.length-1?'<div class="en-arr" aria-hidden="true">↓</div>':'')).join('')+'</div>'}
+const ENDING=[
+  {k:'エンディング',t:'タイルの庭をふりかえる',h:()=>'<p>このゲームでたどってきた道は，ある有名な問いの答えへ続く道だった．</p><p class="en-q">タイルの組を一つ渡されたとき，それで平面をすき間なく埋められるかどうかを，<b>必ず正しく答えてくれる機械（手順）</b>は作れるだろうか？</p><p>1961 年にハオ・ワンが考えたこの問いは，<b>敷き詰め問題</b>と呼ばれる．答えは「作れない」．つまり敷き詰め問題は<b>決定不能</b>である．各層をふりかえりながら，その理由を確かめよう．</p>'+enFig(gridTilesT(SJR,JRBLOCK.slice(0,6).map(r=>r.slice(0,14)),24),'第 5 層で出会った，ジャンデル-ラオの 11 枚の模様')},
+  {k:enLayerTag(1,'並べる')+enLayerTag(2,'候補と行き止まり'),t:'決まりは単純，でも庭は無限',h:()=>'<p>決まりは一つだけ．隣り合う辺の色をそろえる．候補の数を数え，確定の波を流し，行き止まりを見つける推論も身につけた．</p>'+enFig(figEdge(),'')+'<p><b>決定不能性との関係：</b>庭が有限なら，置き方は有限通りしかない．全部試せば，埋まるかどうかは<b>必ず</b>分かる．問題が難しくなるのは，相手が<b>無限の平面</b>のときだ．</p>'+enFig(figWave(),'第 2 層：確定の波')},
+  {k:enLayerTag(3,'どこまで広げられる'),t:'「埋められない」には有限の証拠がある',h:()=>'<p>額縁のない庭を広げていくと，どこかの大きさで埋まらなくなる組があった（3-2 の組は 5×5 で行き止まる）．</p>'+enFig(enDeadGarden(),'3-2 の組：5×5 では，赤いマスに置けるタイルがない')+'<p><b>決定不能性との関係：</b>どの大きさの正方形も埋まるなら，平面全体も埋まる（ケーニヒの補題）．裏返すと，<b>平面を埋められない組なら，必ずどこかの n で n×n が埋まらない</b>．だから機械は n を一つずつ大きくすれば，いつか必ずこの有限の証拠を見つけて「埋められない」と答えられる．</p>'},
+  {k:enLayerTag(4,'周期'),t:'「周期的に埋められる」にも有限の証拠がある',h:()=>'<p>端と端がつながった盤（トーラスの盤）を埋められれば，それを並べて平面を周期的に埋められる．</p>'+enFig(figTorus(),'')+'<p><b>決定不能性との関係：</b>周期的に埋められる組なら，どこかの大きさのトーラスの盤が埋まる．これも<b>有限の証拠</b>だ．ワンは「埋められる組はみな周期的に埋められる」と予想し，二つの証拠を交互に探す機械（ワンの機械）で敷き詰め問題が解けると考えた．</p>'+enFig(figWang(),'第 4 層：ワンの機械')},
+  {k:enLayerTag(5,'非周期の世界'),t:'ワンの予想は外れた',h:()=>'<p>ジャンデル-ラオの 11 枚は，平面を埋められるのに，どうずらしても模様が重ならない（決して繰り返さない）．行き止まりの証拠も，周期の証拠も，永遠に出てこない．</p>'+enFig(figHyp(),'第 5 層の調査ファイル：答えは仮説 C だった')+'<p><b>決定不能性との関係：</b>このような<b>非周期的な組</b>では，ワンの機械は永遠に止まらない．ワンの予想は外れ，ワンの機械では敷き詰め問題を解けないと分かった．</p><p class="en-q">ただし，これだけではまだ「どんな機械でも解けない」とは言えない．もっと賢い機械があるかもしれないからだ．</p>'},
+  {k:enLayerTag(6,'計算するタイル'),t:'タイルは計算をまねできる',h:()=>'<p>文字のついたタイルの一段は，語の書換え一回になった．段を積めば書換えが進む．</p>'+enFig(figWordTile(),'')+'<p><b>決定不能性との関係：</b>「タイルを上へ永遠に敷けるか」は「書換えを永遠に続けられるか」と同じ問題になる．ところが，チューリング機械の動きをまねる書換系があるので，「書換えが永遠に続くか」を必ず判定する機械は作れない．<b>だから，敷き詰めを必ず判定する機械も作れない</b>．</p><p>種の行を置かない平面の場合も，バーガー（1966）やロビンソン（1971）は，非周期的な模様の入れ子の中に計算を埋め込んで，同じ結論を示した．</p>'+enFig(figLoopAnim(),'第 6 層：同じ語の再来（永遠に続く有限の証拠）')},
+  {k:'第 5 層と第 6 層のつながり',t:'非周期的な組は，決定不能性の影だった',h:()=>'<p>第 5 層の不思議な組は，偶然に見つかった珍しいものではない．</p><p>もし非周期的な組が一つもなければ，埋められる組はみな周期的なので，ワンの機械がどんな組でも必ず止まり，敷き詰め問題が解けてしまう．ところが第 6 層の議論で，敷き詰め問題は解けないと分かった．<b>だから，非周期的な組は必ず存在する</b>．</p>'+enFig(enChain(['wang','aper','undec']),'ワンの機械が止まらない組 ＝ 非周期的な組．その存在は，決定不能性から導かれる')},
+  {k:enLayerTag(7,'自分で作る'),t:'止まるまでの長さに上限はない',h:()=>'<p>作る側に回り，できるだけ長く持ちこたえる組や，長く続いて止まる書換えを作った．記録は，枚数や規則を少し増やすだけで大きく伸びた．</p>'+enFig(figBars(),'')+'<p><b>決定不能性との関係：</b>もし「k 枚の組なら n = f(k) までに必ず止まる」という計算できる上限 f があれば，そこまで調べて打ち切ることで敷き詰め問題が解けてしまう．だから，<b>止まるまでの長さに計算できる上限はない</b>．記録を伸ばす挑戦は，その影を見ていた．</p>'},
+  {k:'まとめ',t:'タイルの庭の全体図',h:()=>enFig(enChain(['undec']),'')+'<p>単純な色合わせの決まりから始まって，有限の証拠，ワンの機械，非周期的な組，計算するタイルを経て，敷き詰め問題は決定不能という一つの結論にたどり着いた．</p><p class="en-thanks">ここまで遊んでくれて，ありがとう．</p>'}];
+let EN=null;
+function showEnding(i){EN={i:i||0};$('ending').hidden=false;renderEnding();setTimeout(()=>{try{$('en-next').focus()}catch(e){}},30)}
+function renderEnding(){const sl=ENDING[EN.i],n=ENDING.length;$('en-kicker').innerHTML=sl.k;$('en-title').textContent=sl.t;$('en-page').innerHTML=sl.h();$('en-page').scrollTop=0;$('en-dots').innerHTML=ENDING.map((x,k)=>'<i class="'+(k===EN.i?'on':'')+'"></i>').join('');$('en-prev').hidden=EN.i===0;$('en-next').textContent=EN.i===n-1?'ステージ一覧へ':'次へ'}
+$('en-next').addEventListener('click',()=>{if(!EN)return;if(EN.i<ENDING.length-1){EN.i++;renderEnding()}else{$('ending').hidden=true;EN=null;$('clear').hidden=true;go('select')}});
+$('en-prev').addEventListener('click',()=>{if(EN&&EN.i>0){EN.i--;renderEnding()}});
+$('en-close').addEventListener('click',()=>{$('ending').hidden=true;EN=null});
+$('c-end').addEventListener('click',()=>{$('clear').hidden=true;showEnding(0)});
+$('layers').addEventListener('click',e=>{if(e.target.closest('[data-ending]'))showEnding(0)});
+window.addEventListener('keydown',e=>{if(!EN||$('ending').hidden)return;if(e.key==='Escape'){$('ending').hidden=true;EN=null}else if(e.key==='ArrowRight')$('en-next').click();else if(e.key==='ArrowLeft'&&EN.i>0)$('en-prev').click()});
+function allCleared(){return STAGES.every(s=>cleared(s.id))}
+
 // ---------- goal checklist ----------
 function goalItems(){const g=STG.goal||'fill',it=[],sz=n=>n+'×'+n;
   if(g==='fill')it.push({t:'庭をすべて埋める',ok:SHOWN});
@@ -1263,6 +1610,7 @@ function goalItems(){const g=STG.goal||'fill',it=[],sz=n=>n+'×'+n;
   else if(g==='torus')it.push({t:'トーラスを埋める',ok:SHOWN});
   else if(g==='dual'){it.push({t:'無理な大きさを確かめる',s:PROVEDSZ.length?'済：'+PROVEDSZ.join('，'):'',ok:PROVED});it.push({t:'埋まるトーラスを見つける',s:FOUND?FOUNDSZ:'',ok:FOUND})}
   else if(g==='square'){it.push({t:'トーラスを見つける（長方形でもよい）',s:BASE?BASE.R+' 行 × '+BASE.C+' 列':'',ok:!!BASE});it.push({t:'並べて正方形のトーラスにする',ok:SHOWN})}
+  else if(g==='wk'){const b=wkBest(STG.id),cw=STG.P.wk;if(cw.steps&&cw.mode!=='rw'){it.push({t:'横の地図の輪の長さを読む',ok:!!(WK&&WK.step>=1)||cleared(STG.id)});it.push({t:'周期を予想して確かめる',ok:!!(WK&&WK.step>=2)||cleared(STG.id)})}if(cw.steps&&cw.mode==='rw'){it.push({t:'① 追い越しの数え方を知る',ok:!!(WK&&WK.step>=2)||cleared(STG.id)});it.push({t:'② 変身を加えた一番長い道を見る',ok:!!(WK&&WK.step>=4)||cleared(STG.id)})}it.push({t:(cw.steps&&cw.mode!=='rw'?'輪を断ち切って，行き止まる組にする':'★ 以上の記録を出す'),s:b?'いまの記録 '+b.label:'',ok:!!(b&&b.stars>=1)});it.push({t:'★★★ を目指す（自由）',ok:!!(b&&b.stars===3)})}
   else if(g==='rw'){(RW?RW.tasks:STG.P.tasks).forEach((t,i)=>it.push({t:'課題 '+(i+1)+'：'+STG.P.tasks[i].gt,ok:!!(RW&&RW.tasks[i].done)}))}
   else if(g==='srs1'){it.push({t:'1 段目を手で敷く（上辺を ['+STG.P.target+'] にする）',ok:!SR||!SR.manual||SR.manual.done});it.push({t:'行き止まるまで敷く',ok:SHOWN})}
   else if(g==='srsloop'){const LP=SR&&SR.loop;it.push({t:'同じ語が再び現れる積み方を見つける',ok:!!LP||SHOWN});it.push({t:'見つけたくり返しを，自分の手で 2 回続ける',ok:!!(LP&&LP.phase!=='repeat')||SHOWN});it.push({t:'この先を機械に続けさせる',ok:!!(LP&&LP.phase==='done')||SHOWN})}
@@ -1307,9 +1655,35 @@ function figGrow(){const cells=[];const col=(i,j)=>['#378ADD','#D85A30','#1D9E75
 function figRepeat(){const base=[[0,1],[2,3],[1,0],[3,2],[0,3]],cols=['#378ADD','#D85A30','#1D9E75','#7F77DD'],cells=[];
   for(let bi=0;bi<2;bi++)for(let bj=0;bj<5;bj++){const a=bi===0&&bj===0?1:6+8*(bi*5+bj);for(let i=0;i<5;i++)for(let j=0;j<2;j++)cells.push({i:bi*5+i,j:bj*2+j,a,col:cols[base[i][j]]})}
   return '<div class="figrow"><div class="figitem">'+gridFig(10,10,16,cells)+'<p class="figcap">5 行 × 2 列のブロックを，横に 5 枚，縦に 2 枚並べると 10×10．<br>トーラスは，並べても端と端が合ったまま．</p></div></div>'}
-function figWang(){return '<div class="wangflow"><div class="fbox full hi" style="animation-delay:0s">n = 1, 2, 3, … と順に大きくする</div><div class="fbox hi" style="animation-delay:2s">n×n の庭は埋まる？</div><div class="fbox hi" style="animation-delay:4s">縦横 n 以下のトーラスはある？</div><div class="fbox stop">埋まらない<br>→ 平面は埋められない（止まる）</div><div class="fbox stop">ある<br>→ 周期的に埋められる（止まる）</div></div><p class="figcap">どちらも「いいえ」なら n を一つ増やして繰り返す．どちらかで「止まる」まで続ける．</p>'}
+function figWang(){return '<div class="wangflow"><div class="fbox full hi" style="animation-delay:0s">n = 1, 2, 3, … と順に大きくする</div><div class="fbox hi" style="animation-delay:2s">n×n の庭は埋まる？</div><div class="fbox hi" style="animation-delay:4s">縦横 n 以下のトーラスの盤を埋められる？</div><div class="fbox stop">埋まらない<br>→ 平面は埋められない（止まる）</div><div class="fbox stop">ある<br>→ 周期的に埋められる（止まる）</div></div><p class="figcap">どちらも「いいえ」なら n を一つ増やして繰り返す．どちらかで「止まる」まで続ける．</p>'}
 function figShift(){const G=[[0,1,0,1,0,1],[2,3,2,3,2,3],[0,1,0,1,0,1]],cols=['#378ADD','#D85A30','#1D9E75','#7F77DD'];const cells=[];for(let i=0;i<3;i++)for(let j=0;j<6;j++)cells.push({i,j,a:1,col:cols[G[i][j]]});
   return '<div class="figrow"><div class="figitem">'+gridFig(3,6,26,cells)+'<p class="figcap">この模様は，横に 2 マスずらすとぴったり重なる（周期的）．<br>周期的でない模様は，どうずらしてもどこかで食い違う．</p></div></div>'}
+// ---------- figures for the later layers ----------
+function figHyp(){const ic={A:'<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">'+[0,1,2].map(i=>[0,1,2].map(j=>'<rect x="'+(4+j*12)+'" y="'+(4+i*12)+'" width="11" height="11" rx="2" fill="'+(i===2&&j===2?'#F7C1C1':'#B5D4F4')+'" stroke="'+(i===2&&j===2?'#E24B4A':'none')+'"/>').join('')).join('')+'<text x="34" y="37" font-size="12" text-anchor="middle" fill="#A32D2D">✕</text></svg>',
+    B:'<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">'+[0,1,2,3].map(i=>[0,1,2,3].map(j=>'<rect x="'+(4+j*9)+'" y="'+(4+i*9)+'" width="8" height="8" rx="1.5" fill="'+((i+j)%2?'#9FE1CB':'#5DCAA5')+'"/>').join('')).join('')+'</svg>',
+    C:'<svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="#EEEDFE" stroke="#7F77DD"/><text x="22" y="29" font-size="20" text-anchor="middle" fill="#3C3489">?</text></svg>'};
+  const card=(k,t,c)=>'<div class="hypfig '+c+'">'+ic[k]+'<b>仮説 '+k+'</b><span>'+t+'</span></div>';
+  return '<div class="figrow" style="gap:10px">'+card('A','平面を埋められない<br>（どこかで行き止まる）','a')+card('B','周期的に埋められる<br>（同じ模様がくり返す）','b')+card('C','埋められるが<br>決して繰り返さない','c')+'</div>'}
+function figJudge(){let h='<table class="ev" style="max-width:380px;margin:0 auto;font-size:12px"><thead><tr><th>n</th><th>n×n の庭は埋まる？</th><th>トーラスの盤を埋められる？</th></tr></thead><tbody>';
+  for(let n=1;n<=4;n++){const a=4+n*16,b=a+8;h+='<tr><td>'+n+'</td><td><span class="fg-wv" style="--kf:'+fgKF(a)+'">埋まる</span></td><td><span class="fg-wv" style="--kf:'+fgKF(b)+'">埋められない</span></td></tr>'}
+  return h+'<tr><td>⋮</td><td colspan="2"><span class="fg-wv hint" style="--kf:'+fgKF(80)+'">どちらの証拠も出てこない……</span></td></tr></tbody></table>'}
+function figShiftAnim(){const pat=[0,1,2,0,1,2,0,1],s=24,cols=['#378ADD','#D85A30','#1D9E75'];const row=pat.map((c,j)=>'<span style="position:absolute;left:'+(j*s)+'px;top:0;width:'+(s-2)+'px;height:'+(s-2)+'px;background:'+cols[c]+';border-radius:3px"></span>').join('');
+  return '<div class="figitem"><div style="position:relative;width:'+(8*s+3*s)+'px;height:'+(s+6)+'px"><div style="position:absolute;left:0;top:0">'+row+'</div><div class="fg-shiftov" style="position:absolute;left:0;top:0;opacity:.55;--sx:'+(3*s)+'px">'+row+'</div></div><p class="figcap">半透明の写しを右へ 3 マスずらすと，重なった所の色がすべて一致する．<span class="fg-wv ok" style="--kf:'+fgKF(55)+'"><b>✓ ぴったり（周期的）</b></span></p></div>'}
+function figLoopAnim(){const W=[['ab',''],['aa',''],['ab','↻ 最初と同じ語'],['aa',''],['ab','↻ また同じ']];
+  return '<div class="figitem"><div style="display:flex;flex-direction:column-reverse;gap:3px;align-items:flex-start">'+W.map((w,k)=>'<span class="fg-wv" style="--kf:'+fgKF(4+k*14)+';font-family:var(--font-mono);font-size:15px;padding:1px 10px;border-radius:6px;background:'+(k>=1?(Math.floor((k-1)/2)%2?'#FAEEDA':'#EAF3DE'):'var(--paper)')+'"><span class="hint" style="font-size:11px;margin-right:8px">'+k+' 段</span>['+w[0]+']<span class="ok" style="font-size:12px;margin-left:8px">'+w[1]+'</span></span>').join('')+'<span class="fg-wv hint" style="--kf:'+fgKF(78)+'">⋮ 永遠に続く</span></div></div>'}
+function figSignal(){const tiles=rowTiles('ab',{i:0,ri:0},[['a','bb']],-1,4);return '<div class="figitem"><span style="display:inline-flex;line-height:0">'+tiles.map(t=>srTile(t,40,true)).join('')+'</span><p class="figcap">a → bb：下の段 [ab] → 上の段 [bbb]．書き換えた所より右の文字（b と ]）は，<br>紫の信号に乗って一つずつ右へ送られる（左右の辺の小さな文字が運ばれている文字）．</p></div>'}
+function figTreeMini(sys,dep,cap){return '<div class="figitem" style="max-width:440px;margin:0 auto">'+sevTreeSVG(sys,dep,null,null).svg+'<p class="figcap">'+cap+'</p></div>'}
+function figBars(){const D=[['3 枚',2],['4 枚',4],['5 枚',6]];return '<div class="figitem" style="width:100%;max-width:360px;margin:0 auto">'+D.map((d,k)=>'<div style="display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px"><span style="width:36px">'+d[0]+'</span><span style="flex:1;background:var(--paper);border-radius:4px;height:16px;overflow:hidden"><span class="fg-bar" style="display:block;height:100%;width:'+(d[1]/7*100)+'%;background:var(--indigo);animation-delay:'+(k*0.5)+'s"></span></span><span style="width:52px" class="mono">'+d[1]+'×'+d[1]+'</span></div>').join('')+'<p class="figcap">計算機が見つけた「行き止まるまで持ちこたえる」記録．枚数とともに伸びる．</p></div>'}
+function figTileArrow(){return '<div class="figrow" style="align-items:center;gap:14px">'+tileSVG([3,1,3,0],60,false)+'<span class="figarrow">→</span><svg width="150" height="60" viewBox="0 0 150 60" aria-hidden="true"><defs><marker id="fta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="var(--ink)" stroke-width="1.5"/></marker></defs><circle cx="25" cy="30" r="12" fill="#378ADD"/><circle cx="125" cy="30" r="12" fill="#D85A30"/><line x1="40" y1="30" x2="110" y2="30" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#fta)" class="fg-pulse"/><text x="25" y="56" font-size="10" text-anchor="middle" fill="var(--graphite)">左の色</text><text x="125" y="56" font-size="10" text-anchor="middle" fill="var(--graphite)">右の色</text></svg></div><p class="figcap">左が青・右が朱のタイルは，横の地図では「青 → 朱」の矢印になる．</p>'}
+function figRule3(){const A=[{a:0,b:1,i:0},{a:1,b:2,i:1},{a:2,b:0,i:2}];return '<div class="figrow" style="align-items:center;gap:12px"><div style="width:180px">'+cmSVG(A,[0,1,2,3,4],'r3')+'</div><div class="figitem"><span style="display:inline-flex;line-height:0;outline:2px dashed var(--ok);outline-offset:3px">'+[[3,1,3,0],[3,2,3,1],[3,0,3,2]].map(t=>tileSVG(t,40,false)).join('')+'</span><p class="figcap">右端のタイルの右の色（青）は，左端のタイルの左の色（青）と同じ．<br>だから右端の右隣に左端をつなげられる（一周する）．</p></div></div>'}
+function figRule12(){const A=[{a:0,b:1,i:0},{a:1,b:2,i:1},{a:2,b:3,i:2}];return '<div class="figrow" style="align-items:center;gap:12px"><div style="width:180px">'+cmSVG(A,[0,1,2,3,4],'r12')+'</div><div class="figitem"><span style="display:inline-flex;line-height:0;align-items:center">'+[[3,1,3,0],[3,2,3,1],[3,3,3,2]].map(t=>tileSVG(t,40,false)).join('')+'<span style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:2px dashed var(--broken);color:var(--broken);font-size:18px;box-sizing:border-box;margin-left:2px">✕</span></span><p class="figcap">一本道は矢印 3 本 → 横には 3 枚まで．<br>4 枚目に置けるタイルはない．</p></div></div>'}
+function figStack(){let g='<span style="display:inline-grid;grid-template-columns:repeat(3,36px);line-height:0">';for(let i=0;i<3;i++)[[3,1,3,0],[3,2,3,1],[3,3,3,2]].forEach(t=>{g+='<span class="fg-wv" style="--kf:'+fgKF(4+i*18)+'">'+tileSVG(t,36,false)+'</span>'});return '<div class="figitem">'+g+'</span><p class="figcap">上と下が同じ色なので，同じ列をそのまま上へ積める → 3×3 はちょうど埋まる．</p></div>'}
+function figCount(){const L=['a','a','b','b'],x=k=>30+k*50;let g='<svg width="230" height="96" viewBox="0 0 230 96" aria-hidden="true">';
+  [[0,2],[0,3],[1,2],[1,3]].forEach(([i,j],q)=>{const h=18+q*7;g+='<path class="fg-wv" style="--kf:'+fgKF(8+q*16)+'" d="M'+x(i)+' 58 C '+x(i)+' '+(58-h*1.6)+', '+x(j)+' '+(58-h*1.6)+', '+x(j)+' 58" fill="none" stroke="#EF9F27" stroke-width="2"/>'});
+  L.forEach((c,k)=>{g+='<rect x="'+(x(k)-16)+'" y="58" width="32" height="34" rx="7" fill="'+(c==='a'?'#E6F1FB':'#FAECE7')+'" stroke="var(--rule-strong)"/><text x="'+x(k)+'" y="81" font-size="18" text-anchor="middle" font-family="var(--font-mono)" fill="'+(c==='a'?'#0C447C':'#712B13')+'">'+c+'</text>'});
+  return '<div class="figitem">'+g+'</svg><p class="figcap">それぞれの a から，その右にある b へ線を引くと 4 本．<br>ab → ba を一回するたびに，この線がちょうど 1 本減る．</p></div>'}
+function figWordTile(){return '<div class="figitem"><span class="hint" style="font-family:var(--font-mono)">上の辺 [aba]</span>'+stDemoRow()+'<span class="hint" style="font-family:var(--font-mono)">下の辺 [aab]</span><p class="figcap">タイルの一段 = 書換え一回．段を積めば，書換えの記録になる．</p></div>'}
+
 const FIGS={shiftfig:figShift,torus:figTorus,edge:figEdge,wave:figWave,grow:figGrow,repeat:figRepeat,wang:figWang};
 function setupFig(st){const k=FIGMAP[st.id],b=$('s-figbtn'),box=$('s-fig');if(!k){b.hidden=true;box.hidden=true;return}b.hidden=false;
   const first=!(PROG.fig&&PROG.fig[st.id]);if(first){PROG.fig=PROG.fig||{};PROG.fig[st.id]=true;saveP()}showFig(first)}
@@ -1341,16 +1715,25 @@ function classifySet(kind,how){if(CLASS[SETI])return;CLASS[SETI]={kind,how};cons
 let EV={},EVTIMER=null;
 function evState(){if(!EV[SETI])EV[SETI]={done:[],evidence:null,judged:false};return EV[SETI]}
 function evStepAt(idx){const n=Math.floor(idx/2)+1;return{n,kind:idx%2===0?'sq':'to'}}
-function evRun(st){const T=P.T,n=st.n;if(st.kind==='sq'){const r=searchGen(T,n,n,false,5e6);return{ok:!!r.sol||!!r.timeout,nodes:r.nodes}}
-  let tot=0,unk=false;for(let a=1;a<=n;a++)for(let b=1;b<=n;b++){if(Math.max(a,b)!==n)continue;const r=searchGen(T,a,b,true,5e6);tot+=r.nodes;if(r.timeout)unk=true;if(r.sol)return{found:{a,b,sol:r.sol},nodes:tot}}return{found:null,nodes:tot,unknown:unk}}
+function bestPartial(T,n){const H=Array.from({length:n},()=>Array(n).fill(-1));let best={p:-1,G:null};
+  const ok=(i,j,k)=>{const t=T[k];if(i>0&&T[H[i-1][j]][2]!==t[0])return false;if(j>0&&T[H[i][j-1]][1]!==t[3])return false;return true};
+  let nodes=0;const rec=p=>{if(++nodes>3e6)throw 0;if(p===n*n)return true;const i=Math.floor(p/n),j=p%n;let any=false;for(let k=0;k<T.length;k++)if(ok(i,j,k)){any=true;H[i][j]=k;if(rec(p+1))return true;H[i][j]=-1}if(!any&&p>best.p)best={p,G:H.map(r=>r.slice())};return false};
+  try{rec(0)}catch(e){}return best.G?{G:best.G,stuck:[Math.floor(best.p/n),best.p%n]}:null}
+function evRun(st){const T=P.T,n=st.n;if(st.kind==='sq'){const r=searchGen(T,n,n,false,5e6);if(r.sol)return{ok:true,nodes:r.nodes,sol:r.sol.map(x=>x.slice())};if(r.timeout)return{ok:true,nodes:r.nodes,unknown:true};return{ok:false,nodes:r.nodes,part:bestPartial(T,n)}}
+  let tot=0,unk=false;const tried=[];for(let a=1;a<=n;a++)for(let b=1;b<=n;b++){if(Math.max(a,b)!==n)continue;const r=searchGen(T,a,b,true,5e6);tot+=r.nodes;if(r.timeout)unk=true;if(r.sol){tried.push({a,b,ok:true});return{found:{a,b,sol:r.sol.map(x=>x.slice())},nodes:tot,tried}}tried.push({a,b,ok:false})}return{found:null,nodes:tot,unknown:unk,tried}}
+function miniGarden(G,stuck){const n=G.length,m=G[0].length,s=Math.max(7,Math.min(12,Math.floor(96/Math.max(n,m))));let h='<span class="mgd" style="grid-template-columns:repeat('+m+','+s+'px)">';
+  for(let i=0;i<n;i++)for(let j=0;j<m;j++){const k=G[i][j],st=stuck&&stuck[0]===i&&stuck[1]===j;h+='<span class="mgc'+(st?' stuck':k<0?' emp':'')+'" style="width:'+s+'px;height:'+s+'px;animation-delay:'+((i*m+j)*12)+'ms">'+(k>=0?tileSVG(P.T[k],s,false):'')+'</span>'}return h+'</span>'}
+function triedBoxes(tr){return '<span class="trb">'+tr.map(t=>{const w=Math.max(6,t.b*3),h=Math.max(6,t.a*3);return '<span class="tbx'+(t.ok?' ok':'')+'" title="'+t.a+'×'+t.b+'" style="width:'+w+'px;height:'+h+'px"></span>'}).join('')+'</span>'}
+function costBar(nodes){const f=Math.min(1,Math.log10(nodes+1)/7);return '<span class="costbar"><span style="width:'+Math.round(f*100)+'%"></span></span><span class="no" style="font-size:11px">機械の手間 '+nodes.toLocaleString()+' 回</span>'}
 function evNext(){const ev=evState();if(ev.evidence)return false;const idx=ev.done.length,st=evStepAt(idx),ROWS=STG.P.rows||6;if(st.n>ROWS)return false;const res=evRun(st);ev.done.push(Object.assign(st,res));
   if(st.kind==='sq'&&!res.ok)ev.evidence={kind:'r',n:st.n,how:st.n+'×'+st.n+' の庭が埋まらない'};
   if(st.kind==='to'&&res.found)ev.evidence={kind:'g',n:st.n,found:res.found,how:res.found.a+' 行 × '+res.found.b+' 列のトーラスが埋まる'};
   renderEvid();renderGoals();return !ev.evidence&&ev.done.length<(STG.P.rows||6)*2}
 function miniTorus(g){return '<span style="display:inline-grid;grid-template-columns:repeat('+g[0].length+',12px);line-height:0;vertical-align:middle;margin-right:6px">'+g.map(r=>r.map(k=>tileSVG(P.T[k],12,false)).join('')).join('')+'</span>'}
 function renderEvid(){setTimeout(renderNextStep,0);if(!STG||!['classify','nostop'].includes(STG.goal))return;const ROWS=STG.P.rows||6;const ev=evState(),dn=ev.done.length,sp=STG.P;let h='';$('ev-set').innerHTML='<b>'+sp.sets[SETI].name+' のタイル：</b>'+P.T.map(t=>tileSVG(t,22,PROG.sym)).join('');
-  for(let n=1;n<=ROWS;n++){const cell=(kind)=>{const idx=(n-1)*2+(kind==='sq'?0:1);const d=ev.done[idx];const cost=d&&STG.goal==='nostop'?'<br><span class="no" style="font-size:11px">途中経過 '+d.nodes.toLocaleString()+' 回</span>':'';
-      if(d){if(kind==='sq')return (d.ok?'<span class="no">埋まる（証拠ではない）</span>':'<span class="evr">埋まらない → 行き止まりの証拠</span>')+cost;return (d.found?'<span class="evg">'+miniTorus(d.found.sol)+d.found.a+' 行 × '+d.found.b+' 列がある → 周期の証拠</span>':d.unknown?'<span class="no">調べきれなかった</span>':'<span class="no">ない（証拠ではない）</span>')+cost}
+  for(let n=1;n<=ROWS;n++){const cell=(kind)=>{const idx=(n-1)*2+(kind==='sq'?0:1);const d=ev.done[idx];const cost=d?'<div class="evcost">'+costBar(d.nodes)+'</div>':'';
+      if(d){if(kind==='sq')return '<div class="evvis">'+(d.sol?miniGarden(d.sol):d.part?miniGarden(d.part.G,d.part.stuck):'')+(d.ok?'<span class="no">'+(d.unknown?'調べきれなかった':'埋まる（証拠ではない）')+'</span>':'<span class="evr">埋まらない → 行き止まりの証拠<br><span style="font-weight:400;font-size:11px">赤いマスに置けるタイルがない</span></span>')+'</div>'+cost;
+        return '<div class="evvis">'+(d.tried?triedBoxes(d.tried):'')+(d.found?'<span class="evg">'+miniTorus(d.found.sol)+d.found.a+' 行 × '+d.found.b+' 列がある → 周期の証拠</span>':d.unknown?'<span class="no">調べきれなかった</span>':'<span class="no">'+(d.tried?d.tried.length+' 通りの大きさを試した：どれもない（証拠ではない）':'ない（証拠ではない）')+'</span>')+'</div>'+cost}
       if(ev.evidence)return '<span class="no">（調べなくてよい）</span>';
       return '<button type="button" class="cb'+(idx===dn?' next':'')+'" data-evstep="'+idx+'"'+(idx===dn?'':' disabled')+'>調べる</button>'};
     const hit=ev.evidence&&ev.evidence.n===n,off=ev.evidence&&n>ev.evidence.n;
@@ -1366,7 +1749,7 @@ $('ev-tb').addEventListener('click',e=>{const b=e.target.closest('[data-evstep]'
 $('ev-auto').addEventListener('click',()=>{if(EVTIMER)return;$('ev-auto').hidden=true;EVTIMER=setInterval(()=>{if(!evNext()){stopEvAuto();renderEvid()}},480)});
 $('ev-choice').addEventListener('click',e=>{const b=e.target.closest('[data-judge]');if(!b||SHOWN)return;const j=b.dataset.judge;
   if(j==='x'){beep('win');msg('<span class="ok">その通り．</span>仮説 A（平面を埋められない）の証拠も，仮説 B（周期的に埋められる）の証拠も出てこない．これは第三の可能性，仮説 C（埋められるが，繰り返さない）と矛盾しない．機械はどこまで続けても止まらない．');$('ev-choice').hidden=true;applyCase(STG);complete('nostop')}
-  else{beep('bad');msg('<span class="ng">それを示す証拠は，表のどこにもない．</span>'+(j==='g'?'仮説 B（周期的に埋められる）が正しいなら，どこかでトーラスが見つかるはず．':'仮説 A（平面を埋められない）が正しいなら，どこかで n×n が埋まらなくなるはず．')+'でも n = 8 まで，どちらも出てこなかった．')}});
+  else{beep('bad');msg('<span class="ng">それを示す証拠は，表のどこにもない．</span>'+(j==='g'?'仮説 B（周期的に埋められる）が正しいなら，どこかの大きさのトーラスの盤を埋められるはず．':'仮説 A（平面を埋められない）が正しいなら，どこかで n×n が埋まらなくなるはず．')+'でも n = 8 まで，どちらも出てこなかった．')}});
 $('ev-reset').addEventListener('click',()=>{stopEvAuto();if(CLASS[SETI])return msg('この組はもう判定済み．');EV[SETI]={done:[],evidence:null,judged:false};renderEvid()});
 $('ev-judge').addEventListener('click',()=>{const ev=evState();if(!ev.evidence||ev.judged)return;const e2=ev.evidence;
   if(e2.kind==='g'&&e2.found.a>=2&&e2.found.b>=2){classifySet('periodic',e2.how);BASE=null;setTorusSize(e2.found.a,e2.found.b,e2.found.sol.map(r=>r.slice()))}
@@ -1514,17 +1897,17 @@ const TUTORIALS={
     ()=>'<p>1961 年，数学者ハオ・ワンは考えた．どんなタイルの組でも，平面を埋められないなら「行き止まりの証拠」が，埋められるなら「周期の証拠」が，いつか必ず見つかるはずだ．</p>',
     ()=>'<p>それなら，n を一つずつ大きくしながら二つの証拠を交互に探せば，どんな組でも必ず判定できる．いまやった単純作業を，飽きずにどこまでも続けてくれる機械．これを<b>ワンの機械</b>と呼ぼう．</p><p>もう一組は，この機械に任せてみよう．</p>']},
   judge:{kicker:'新しいこと',title:'判定を下す',pages:[
-    ()=>'<p>このステージでは，ワンの機械に表を n = 8 まで調べさせてから，判定を下す．判定の選び方は三つ．「周期的に埋められる」「平面を埋められない」「この表からは判定できない」．</p><p>表に出た証拠だけを根拠にしよう．</p>']},
+    ()=>'<p>このステージでは，ワンの機械に表を n = 8 まで調べさせてから，判定を下す．判定の選び方は三つ．「周期的に埋められる」「平面を埋められない」「この表からは判定できない」．</p><p>表に出た証拠だけを根拠にしよう．</p><div class="demo" style="display:block">'+figJudge()+'</div>']},
   shift:{kicker:'新しい道具',title:'ずらして重ねる',pages:[
-    ()=>'<h3>写しを重ねる</h3><p>模様の上に，同じ模様の半透明の写しが重なっている．写しをつまんでずらす（矢印のボタンや矢印キーでもよい）と，重なった部分で一致するマスが緑，食い違うマスが赤になる．</p>',
-    ()=>'<h3>周期的とは</h3><p>あるずらし方で全部のマスが緑になれば，その模様は周期的．どうずらしても赤が残るなら，その模様は繰り返していない．「全部のずらし方を調べる」で，機械に全部試させることもできる．</p>']},
+    ()=>'<h3>写しを重ねる</h3><p>模様の上に，同じ模様の半透明の写しが重なっている．写しをつまんでずらす（矢印のボタンや矢印キーでもよい）と，重なった部分で一致するマスが緑，食い違うマスが赤になる．</p><div class="demo" style="display:block">'+figShiftAnim()+'</div>',
+    ()=>'<h3>周期的とは</h3><p>あるずらし方で全部のマスが緑になれば，その模様は周期的．どうずらしても赤が残るなら，その模様は繰り返していない．「全部のずらし方を調べる」で，機械に全部試させることもできる．</p><div class="demo" style="display:block">'+figShift()+'</div>']},
   case5:{kicker:'物語',title:'組 C の調査',pages:[
     ()=>'<p>4-5 で，ワンの機械は組 C（ジャンデル-ラオの 11 枚）で止まらなかった．行き止まりの証拠も，周期の証拠も出てこなかった．組 C は，平面をどう埋めるのだろう．</p>',
-    ()=>'<h3>三つの仮説</h3><p><b>仮説 A：平面を埋められない．</b>どこかの大きさで庭が埋まらなくなるはず．</p><p><b>仮説 B：周期的に埋められる．</b>どこかの大きさのトーラスが埋まるはず．</p><p><b>仮説 C：埋められるが，決して繰り返さない．</b>第三の可能性．ワンは「そんな組はない」と予想した．</p>',
+    ()=>'<h3>三つの仮説</h3><p><b>仮説 A：平面を埋められない．</b>どこかの大きさで庭が埋まらなくなるはず．</p><p><b>仮説 B：周期的に埋められる．</b>どこかの大きさのトーラスが埋まるはず．</p><p><b>仮説 C：埋められるが，決して繰り返さない．</b>第三の可能性．ワンは「そんな組はない」と予想した．</p><div class="demo" style="display:block">'+figHyp()+'</div>',
     ()=>'<h3>調査の進め方</h3><p>第 5 層の各ステージで，仮説を一つずつ確かめる．クリアすると手がかりが手に入り，「どの仮説が揺らいだか」を答えると，手引きの欄の<b>調査ファイル</b>に綴じられる．</p>']},
   case6:{kicker:'物語',title:'タイルに計算をさせる',pages:[
     ()=>'<p>第 5 層で，ワンの機械は組 C で止まらなかった．では，なぜ機械は敷き詰めを判定できないのだろう．</p>',
-    ()=>'<h3>作戦</h3><p>タイルに計算をさせてしまう．敷き詰めの中で計算が進むなら，「敷き詰めが永遠に続くか」は「計算が永遠に続くか」と同じ問題になる．</p>',
+    ()=>'<h3>作戦</h3><p>タイルに計算をさせてしまう．敷き詰めの中で計算が進むなら，「敷き詰めが永遠に続くか」は「計算が永遠に続くか」と同じ問題になる．</p><div class="demo" style="display:block">'+figWordTile()+'</div>',
     ()=>'<h3>計算として使うもの</h3><p>文字の並び（語）を，決まり（規則）に従って書き換えていく遊び．文字列の書換えと呼ばれる計算だ．まずは，タイルなしで遊んでみよう．</p>']},
   rw:{kicker:'新しい遊び',title:'書き換えて遊ぶ',pages:[
     ()=>'<h3>語とスタンプ</h3><p>文字の並びを<b>語</b>と呼ぶ．書き換えの決まり（例：ab → ba）を<b>規則</b>と呼び，ここではスタンプの形で使う．スタンプを選んで，語の中の光っている所を押すと，そこが書き換わる．</p><div class="demo"><span class="lc a">a</span><span class="lc a" style="outline:3px solid var(--head);outline-offset:1px">a</span><span class="lc b" style="outline:3px solid var(--head);outline-offset:1px">b</span><span style="font-size:20px;color:var(--graphite)">→</span><span class="lc a">a</span><span class="lc b">b</span><span class="lc a">a</span></div>',
@@ -1539,15 +1922,30 @@ const TUTORIALS={
   st:{kicker:'新しい盤',title:'段を積む盤',pages:[
     ()=>'<h3>段を積む</h3><p>6-2 の 1 段を，上へ積み重ねていく盤．一番下の種の行の上辺が最初の語．各段の上辺を左から読むと，その時点の語になる．</p><div class="demo">'+stDemoRow()+'</div>',
     ()=>'<h3>自動で敷く</h3><p>盤のすぐ上のボタンで書き換える場所を選ぶと，その段のタイルが自動で敷かれる．カーソルを乗せると，書き換わる所が盤上で光る．</p>',
-    ()=>'<h3>同じ語の再来</h3><p>同じ語が再び現れたら，そこから上は同じ段を繰り返して，永遠に敷ける．これは，敷き詰めが永遠に続くことの有限の証拠になる．</p>']},
+    ()=>'<h3>同じ語の再来</h3><p>同じ語が再び現れたら，そこから上は同じ段を繰り返して，永遠に敷ける．これは，敷き詰めが永遠に続くことの有限の証拠になる．</p><div class="demo" style="display:block">'+figLoopAnim()+'</div>']},
   loop:{kicker:'新しい証拠',title:'同じ語の再来',pages:[
     ()=>'<p>ここからは，書き換える場所を選ぶと，段が自動で敷かれる．</p><p>同じ語が再び現れたら，そこから上は同じ段を繰り返して，永遠に敷ける．これは，敷き詰めが永遠に続くことの有限の証拠になる．</p>']},
   signal:{kicker:'新しいこと',title:'語が伸びる',pages:[
-    ()=>'<p>a → bb のように長さが変わる書換えでは，書き換えた場所より右の文字が，紫の信号に運ばれて一つずつ右へずれる．「信号を見る」で，運ばれている文字をタイルの左右に表示できる．</p>']},
+    ()=>'<p>a → bb のように長さが変わる書換えでは，書き換えた場所より右の文字が，紫の信号に運ばれて一つずつ右へずれる．「信号を見る」で，運ばれている文字をタイルの左右に表示できる．</p><div class="demo" style="display:block">'+figSignal()+'</div>']},
   dtree:{kicker:'新しい道具',title:'全部の選び方を調べる',pages:[
-    ()=>'<p>書き換える場所の選び方を，もしもカードで全部調べる．全部の道が行き止まりなら，敷き詰めは上へ永遠には続かない．カードを選ぶと，その道筋が盤に映る．</p>']},
+    ()=>'<p>書き換える場所の選び方を，もしもカードで全部調べる．全部の道が行き止まりなら，敷き詰めは上へ永遠には続かない．カードを選ぶと，その道筋が盤に映る．</p><div class="demo" style="display:block">'+figTreeMini({R:[['a','bb'],['ab','ba']],w:'aabb'},2,'[aabb] から 2 回目までの選び方．線一本が書換え一回（色と番号は規則）．')+'</div>']},
   smachine:{kicker:'新しい道具',title:'書換えの証拠探し',pages:[
-    ()=>'<p>深さ n = 1, 2, … の順に，「深さ n までに，すべての道が行き止まるか」と「深さ n までに，同じ語が再び現れる道があるか」を調べる．前者なら永遠には続かず，後者なら永遠に続く．どちらも出なければ……？</p><p>「調べる」を押すたびに，<b>語の木</b>が一段育つ．行き止まった語には ✕，同じ語に戻る道には緑の矢印 ↻，まだ先が続く語には ⋮ が付く．</p>']},
+    ()=>'<p>深さ n = 1, 2, … の順に，「深さ n までに，すべての道が行き止まるか」と「深さ n までに，同じ語が再び現れる道があるか」を調べる．前者なら永遠には続かず，後者なら永遠に続く．どちらも出なければ……？</p><p>「調べる」を押すたびに，<b>語の木</b>が一段育つ．行き止まった語には ✕，同じ語に戻る道には緑の矢印 ↻，まだ先が続く語には ⋮ が付く．</p><div class="demo" style="display:block">'+figTreeMini({R:[['a','b'],['ab','aa']],w:'ab'},2,'例：深さ 2 までの語の木．[bb] は行き止まり（✕），[aa] から [ab] へ戻る道がある（↻）．')+'</div>']},
+  case7:{kicker:'物語',title:'作る側に回る',pages:[
+    ()=>'<p>第 6 層までで，敷き詰めが永遠に続くかどうかは，機械では判定できないと分かった．ここからは，タイルの組を<b>作る側</b>に回ってみよう．</p>',
+    ()=>'<h3>問い</h3><p>埋められない組なら，ワンの機械はいつか必ず止まる．では，「何枚の組なら，遅くとも n = いくつまでに止まる」と決められるだろうか．</p><p>できるだけ長く持ちこたえてから止まる組を作って，確かめてみよう．</p><div class="demo" style="display:block">'+figBars()+'</div>']},
+  rule3x:{kicker:'決まり 3',title:'輪の長さが周期になる',pages:[
+    ()=>'<p>端と端がつながった盤（トーラスの盤）の一行は，右端の右隣が左端なので，横の地図で<b>元の色に戻る道</b>になる（隣り合うタイルは，右の色と左の色が同じなので，矢印がつながる）．</p><p>横の地図の輪が長さ 3 の一つだけなら，元に戻る道の長さは 3 の倍数しかない．だから，埋められるトーラスの盤の幅は 3 の倍数．しかもこの組は上下が同じ色で縦にいくらでも積めるので，1 行 × 3 列のトーラスの盤を埋められるはず．</p><div class="demo" style="display:block">'+figRule3()+'</div>']},
+  rule12x:{kicker:'次の段階',title:'輪を断ち切る',pages:[
+    ()=>'<p>横の地図の輪を断ち切ると，何が起きるだろう．矢印を一本だけ，<b>横の地図でまだ使っていない色</b>へ向け直してみよう．輪の中の色へ向け直すと，別の輪ができてしまう．</p><div class="demo" style="display:block">'+figRule12()+'</div>']},
+  rule12:{kicker:'決まり 1・2',title:'輪がなければ行き止まる',pages:[
+    ()=>'<h3>決まり 1</h3><p>横の地図に輪がなく，一番長い道が矢印 k 本なら，横には k 枚までしか並ばない（列の矢印は同じ点を二度通れないから）．だから (k+1)×(k+1) の庭は埋まらない．</p><div class="demo" style="display:block">'+figRule12()+'</div>',
+    ()=>'<h3>決まり 2</h3><p>さらに，どのタイルも上と下が同じ色なら，列をそのまま上に積める．だから k×k の庭はちょうど埋まる．つまり「k×k まで埋まり，(k+1)×(k+1) で行き止まる」．</p><div class="demo" style="display:block">'+figStack()+'</div>']},
+  wk:{kicker:'新しい道具',title:'タイル工房',pages:[
+    ()=>'<h3>色の地図</h3><p>タイルの組を，矢印の地図として読む．<b>横の地図</b>では，各タイルを「左の辺の色 → 右の辺の色」の矢印として描く．<b>縦の地図</b>では「上の辺の色 → 下の辺の色」．</p><p>横に並べた列は，横の地図の上を矢印をたどって歩く道になる．</p><div class="demo" style="display:block">'+figTileArrow()+'</div>',
+    ()=>'<h3>予想してから確かめる</h3><p>「機械で確かめる」を押すと，まず予想を選ぶ．地図から理由をもって予想し，ワンの機械の結果と照らし合わせよう．記録は星で示され，クリアした後も伸ばせる．</p>']},
+  rwk:{kicker:'新しい道具',title:'書換えの工房',pages:[
+    ()=>'<p>問いに答えながら進む．① ab → ba だけの回数を「線」で数える．② a → bb（変身）を加え，機械が見つけた<b>一番長い道を再生</b>して，どの順に書き換えると長くなるかを見る．③ 法則を見つけて回数を予想する．④ 最後に，自由に記録に挑む．</p><div class="demo" style="display:block">'+figCount()+'</div>']},
   trial:{kicker:'考え方',title:'試して，戻る',pages:[
     ()=>'<p>どのマスにも置けるタイルが何通りかあるときは，ひとまず置いてみる．やがて，どのタイルも置けないマスが出てきたら，それは行き止まり．置いたタイルを外して，別のタイルを試そう．</p><p>「1 手戻す」で，置いた順に一つずつ戻せる．</p>']}
 };
@@ -1570,6 +1968,8 @@ const GUIDES={
   wang:[{sel:'#evid',text:'ここが証拠探しの表．上の行から順に調べる．'},{sel:'#setbox',text:'組を切り替える．'}],
   judge:[{sel:'#evid',text:'表を調べ終えたら，下に判定の選択肢が出る．'}],
   shift:[{sel:'#shwrap',text:'ここをつまんで，写しをずらす．'},{sel:'#sh-scan',text:'機械に全部のずらし方を試させる．'}],
+  wk:[{sel:'#wkbox .cmaps',text:'ここが色の地図．組を変えると，すぐに描き直される．'},{sel:'#wkbox .wkquiz',text:'まずは，地図を読んで答えよう．'}],
+  rwk:[{sel:'#wkbox .wkquiz',text:'まずは，回数を考えて答えよう．'}],
   st:[{sel:'#st-opts',text:'書き換える場所は，ここから選ぶ．'},{sel:'#st-board',text:'選ぶと，すぐ下の点線の段が敷かれる．'}],
   wordtile:[{sel:'#trayc',text:'今回の手持ちのタイル．文字の書かれた色がある．'}],
   rw:[{sel:'#rw-stamps',text:'スタンプ（規則）を選ぶ．'},{sel:'#rw-word',text:'光っている所を押すと，書き換わる．'}],
@@ -1595,7 +1995,7 @@ $('gd-next').addEventListener('click',()=>{if(!GD)return;if(GD.i<GD.steps.length
 $('gd-skip').addEventListener('click',()=>endGd());
 window.addEventListener('resize',posGd);
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!$('tut').hidden)closeTu(true);else if(GD)endGd();else if(!$('clear').hidden)$('clear').hidden=true});
-function stageTutIds(st){const ids=[];if(st.L===5)ids.push('case5');if(st.L===6)ids.push('case6');if(st.id==='1-1')ids.push('rules','place');if(st.id==='1-4')ids.push('trial');if(st.newf&&TUTORIALS[st.newf])ids.push(st.newf);return ids}
+function stageTutIds(st){const ids=[];if(st.L===5)ids.push('case5');if(st.L===6)ids.push('case6');if(st.L===7)ids.push('case7');if(st.id==='1-1')ids.push('rules','place');if(st.id==='1-4')ids.push('trial');if(st.newf&&TUTORIALS[st.newf])ids.push(st.newf);return ids}
 function runTutorials(list,force){const todo=force?list.slice():list.filter(id=>!PROG.tut[id]);const step=()=>{if(!todo.length||VIEW!=='stage')return;const id=todo.shift();showTutorial(id,skipped=>{const fin=()=>{PROG.tut[id]=true;saveP();step()};if(skipped)fin();else runGuide(id,fin)},{finalLabel:'やってみる'})};step()}
 function stageIntro(){if(STG)runTutorials(stageTutIds(STG),false)}
 $('s-help').addEventListener('click',()=>{if(STG)runTutorials(stageTutIds(STG),true)});
@@ -1606,7 +2006,7 @@ $('how-btn').addEventListener('click',()=>welcome(true));
 $('teacher').addEventListener('change',function(){PROG.teacher=this.checked;saveP();renderSelect()});
 let resetArmed=false;
 $('resetp').addEventListener('click',function(){if(!resetArmed){resetArmed=true;this.textContent='もう一度押すとリセット';setTimeout(()=>{resetArmed=false;$('resetp').textContent='進み具合をリセット'},4000);return}
-  resetArmed=false;PROG={clear:{},tut:{},books:{},fig:{},case:{st:{},clues:[],ans:{}},teacher:false,sym:false};saveP();this.textContent='進み具合をリセット';renderSelect();toast('進み具合をリセットしました')});
+  resetArmed=false;PROG={clear:{},tut:{},books:{},fig:{},case:{st:{},clues:[],ans:{}},wk:{},teacher:false,sym:false};saveP();this.textContent='進み具合をリセット';renderSelect();toast('進み具合をリセットしました')});
 
 routeHash();
 </script>
